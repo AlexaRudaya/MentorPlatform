@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{AB9EF344-467B-4222-B06A-ACE82C0FE302}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microservices", "Microservices", "{D6443AE9-FC93-4C0E-BA42-8C36E09AD7F2}"
+EndProject
+Global
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D6443AE9-FC93-4C0E-BA42-8C36E09AD7F2} = {AB9EF344-467B-4222-B06A-ACE82C0FE302}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {856D3D0C-8454-446A-AC27-63ED8EA3DA30}
+	EndGlobalSection
+EndGlobal
