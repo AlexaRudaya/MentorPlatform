@@ -1,0 +1,71 @@
+version: "3.9"
+
+networks:
+ deploy-mentor:
+  driver: bridge
+
+services:
+ mentor_api:
+  build:
+   context: .
+   dockerfile: ./Mentor.API/Dockerfile 
+  depends_on:
+   - identityserver
+  entrypoint: /bin/sh -c "dotnet Mentor.API.dll"
+  environment:
+   - ASPNETCORE_ENVIRONMENT=Development
+   - ASPNETCORE_URLS=https://+:7001
+   - AUTHENTICATION__AUTHORITY=https://localhost:44374
+   - AUTHENTICATION__AUDIENCE=a0b78dde-e09a-4ddb-b78c-bea6dd64cf33 
+  ports:
+   - '7001:7001'
+  volumes:
+   - ./localhost.pfx:/https/localhost.pfx:ro
+   - ./localhost.crt:/usr/local/share/ca-certificates/localhost.crt:ro
+
+ postgres_db:
+  container_name: postgres
+  environment:
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: password
+  image: postgres:latest
+  ports:
+   - '5432:5432'
+  volumes:
+   - db:/var/lib/postgresql/data
+  networks:
+   - deploy-mentor
+
+ pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin_4
+    networks:
+      - deploy-mentor
+    ports:
+      - '5050:80'
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=example@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=7777
+    depends_on:
+      - identityserver
+ 
+ identityserver:
+  container_name: identity_server
+  build:
+   context: .
+   dockerfile: Identity.API/Dockerfile 
+  depends_on:
+   - postgres_db
+  entrypoint: /bin/sh -c "update-ca-certificates && dotnet Identity.API.dll"
+  environment:
+   - ASPNETCORE_ENVIRONMENT=Development
+   - ASPNETCORE_URLS=https://+:44374
+   - CONNECTIONSTRINGS__IDENTITYCONNECTION=Server=postgres_db;Port=5432;Database=Identity;User Id=postgres;Password=password;
+   - CONNECTIONSTRINGS__IDENTITYSERVERCONNECTION=Server=postgres_db;Port=5432;Database=IdentityServer;User Id=postgres;Password=password;  
+  ports:
+   - '44374:443'
+  networks:
+   - deploy-mentor
+
+volumes:
+  db:    
