@@ -1,3 +1,5 @@
+using Mentors.Infrastructure.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
@@ -8,6 +10,8 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
+    await MentorsSeed.SeedAsync(app);
+
     app.UseSwagger();
     app.UseSwaggerUI();
 }

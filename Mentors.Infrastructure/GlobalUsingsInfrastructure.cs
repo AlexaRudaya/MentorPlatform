@@ -1,0 +1,10 @@
+﻿global using Mentors.Domain.Entities;
+global using Microsoft.EntityFrameworkCore.Metadata.Builders;
+global using Microsoft.EntityFrameworkCore;
+global using Mentors.Infrastructure.ModelConfiguration;
+global using Mentors.Domain.Abstractions.IRepository;
+global using Mentors.Infrastructure.Data;
+global using Microsoft.EntityFrameworkCore.Query;
+global using System.Linq.Expressions;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Hosting;
