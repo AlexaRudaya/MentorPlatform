@@ -14,3 +14,4 @@ global using Identity.ApplicationCore.Mapper;
 global using FluentValidation;
 global using Identity.ApplicationCore.Validator;
 global using Identity.Domain.Entities;
+global using FluentValidation.AspNetCore;

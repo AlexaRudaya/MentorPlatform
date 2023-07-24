@@ -18,6 +18,7 @@
         public static IServiceCollection ConfigureAPI(this IServiceCollection services)
         {
             services.AddControllers();
+            services.AddFluentValidationAutoValidation();
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
 

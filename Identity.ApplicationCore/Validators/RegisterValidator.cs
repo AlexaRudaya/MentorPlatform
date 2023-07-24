@@ -21,16 +21,5 @@
                 .WithMessage("{PropertyName} must be set")
                 .SetPasswordRules();
         }
-
-        public async static Task ValidateRegister(RegisterDto registerDto)
-        {
-            var validator = new RegisterValidator();
-            var validationResult = await validator.ValidateAsync(registerDto);
-
-            if (!validationResult.IsValid)
-            {
-                throw new InvalidValueException(validationResult.ToString());
-            }
-        }
     }
 }

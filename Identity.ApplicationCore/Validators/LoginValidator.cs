@@ -14,16 +14,5 @@
                 .WithMessage("{PropertyName} must be set")
                 .SetPasswordRules();
         }
-
-        public async static Task ValidateLogin(LoginDto loginDto)
-        {
-            var validator = new LoginValidator();
-            var validationResult = await validator.ValidateAsync(loginDto);
-
-            if (!validationResult.IsValid)
-            {
-                throw new InvalidValueException(validationResult.ToString());
-            }
-        }
     }
 }
