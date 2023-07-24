@@ -1,9 +1,9 @@
-﻿namespace Identity.ApplicationCore.Entities
+﻿namespace Identity.Domain.Entities
 {
     public class ApplicationUser : IdentityUser
     {
         public string? FirstName { get; set; }
 
-        public string? LastName { get; set;}
+        public string? LastName { get; set; }
     }
 }

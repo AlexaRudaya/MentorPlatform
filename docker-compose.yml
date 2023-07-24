@@ -16,7 +16,7 @@ services:
    - ASPNETCORE_ENVIRONMENT=Development
    - ASPNETCORE_URLS=https://+:7001
    - AUTHENTICATION__AUTHORITY=https://localhost:44374
-   - AUTHENTICATION__AUDIENCE=94274b69-0207-4615-8c4a-467f27d7ae3d
+   - AUTHENTICATION__AUDIENCE=a0b78dde-e09a-4ddb-b78c-bea6dd64cf33 
   ports:
    - '7001:7001'
   volumes:
@@ -56,7 +56,7 @@ services:
    dockerfile: Identity.API/Dockerfile 
   depends_on:
    - postgres_db
-  entrypoint: /bin/sh -c "dotnet Identity.API.dll"
+  entrypoint: /bin/sh -c "update-ca-certificates && dotnet Identity.API.dll"
   environment:
    - ASPNETCORE_ENVIRONMENT=Development
    - ASPNETCORE_URLS=https://+:44374

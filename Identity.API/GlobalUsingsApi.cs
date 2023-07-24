@@ -1,5 +1,4 @@
-﻿global using Identity.ApplicationCore.Entities;
-global using Identity.Infrastructure.Data;
+﻿global using Identity.Infrastructure.Data;
 global using Identity.Infrastructure.Factories;
 global using Microsoft.AspNetCore.Identity;
 global using Microsoft.EntityFrameworkCore;
@@ -12,3 +11,6 @@ global using Identity.ApplicationCore.Services;
 global using Identity.ApplicationCore.DTO;
 global using Microsoft.AspNetCore.Mvc;
 global using Identity.ApplicationCore.Mapper;
+global using FluentValidation;
+global using Identity.ApplicationCore.Validator;
+global using Identity.Domain.Entities;

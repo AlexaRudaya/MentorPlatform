@@ -2,8 +2,10 @@
 {
     public class ApplicationUserClaimsPrincipalFactory : UserClaimsPrincipalFactory<ApplicationUser>
     {
-        public ApplicationUserClaimsPrincipalFactory(UserManager<ApplicationUser> userManager,
-            IOptions<IdentityOptions> optionsAccessor) : base(userManager, optionsAccessor) 
+        public ApplicationUserClaimsPrincipalFactory(
+            UserManager<ApplicationUser> userManager,
+            IOptions<IdentityOptions> optionsAccessor) 
+            : base(userManager, optionsAccessor) 
         {          
         }
 

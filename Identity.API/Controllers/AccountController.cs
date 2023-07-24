@@ -27,7 +27,7 @@
         [ProducesResponseType(400)]
 
         public async Task<IActionResult> Login([FromBody] LoginDto loginDto, 
-            CancellationToken cancellationToken)
+            CancellationToken cancellationToken = default)
         { 
             await _accountService.LoginAsync(loginDto, cancellationToken);
 

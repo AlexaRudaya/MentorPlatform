@@ -1,11 +1,13 @@
 var builder = WebApplication.CreateBuilder(args);
 
-ConfigureCoreServices.ConfigureServices(builder.Configuration, builder.Services, builder.Logging);
+builder.Services
+    .ConfigureLogging(builder.Configuration, builder.Logging)
+    .ConfigureAPI()
+    .ConfigureIdentity(builder.Configuration)
+    .ConfigureIdentityServer(builder.Configuration)
+    .ConfigureApplicationCore();
 
 var app = builder.Build();
-
-var logger = app.Services.GetRequiredService<ILogger<IdentitySeed>>();
-logger.LogInformation("Seed data is running");
 
 if (app.Environment.IsDevelopment())
 {
@@ -15,18 +17,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.Use((context, next) =>
-{
-    context.Request.Scheme = "https";
-    return next(context);
-});
+app.UseIdentityServer();
 
 app.UseHttpsRedirection();
 
-app.UseAuthentication();
 app.UseAuthorization();
-
-app.UseIdentityServer();
 
 app.MapControllers();
 

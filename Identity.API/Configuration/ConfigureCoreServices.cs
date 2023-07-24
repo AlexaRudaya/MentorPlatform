@@ -2,36 +2,31 @@
 {
     public static class ConfigureCoreServices
     {
-        public static void ConfigureServices(IConfiguration configuration,
-            IServiceCollection services,
+        public static IServiceCollection ConfigureLogging(this IServiceCollection services,
+            IConfiguration configuration,
             ILoggingBuilder logging)
         {
-            #region Logger
-
             logging.ClearProviders();
             logging.AddSerilog(
-                new LoggerConfiguration()
+            new LoggerConfiguration()
                     .ReadFrom.Configuration(configuration)
                     .CreateLogger());
 
-            #endregion
+            return services;
+        }
 
-            #region API Configuration
-
+        public static IServiceCollection ConfigureAPI(this IServiceCollection services)
+        {
             services.AddControllers();
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
 
-            #endregion
+            return services;
+        }
 
-            #region Mapper
-
-            services.AddAutoMapper(typeof(MapperProfile));
-
-            #endregion
-
-            #region Identity Configuration
-
+        public static IServiceCollection ConfigureIdentity(this IServiceCollection services,
+            IConfiguration configuration)
+        {
             services.AddDbContext<ApplicationDbContext>((serviceProvider, dbContextOptionsBuilder) =>
             {
                 dbContextOptionsBuilder.UseNpgsql(configuration.GetConnectionString("IdentityConnection"),
@@ -43,10 +38,12 @@
                 .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            #endregion
+            return services;
+        }
 
-            #region IdentityServer Configuration
-
+        public static IServiceCollection ConfigureIdentityServer(this IServiceCollection services,
+            IConfiguration configuration)
+        {
             var certificate = GetCertificate(configuration);
 
             var identityServerConfiguration = services.AddIdentityServer()
@@ -69,14 +66,19 @@
                 })
                 .AddSigningCredential(certificate);
 
-            #endregion
+            return services;
+        }
 
-            #region Services
+        public static IServiceCollection ConfigureApplicationCore(this IServiceCollection services)
+        {
+            services.AddAutoMapper(typeof(MapperProfile));
 
             services.AddScoped<IAccountService, AccountService>();
 
-            #endregion
+            services.AddScoped<IValidator<LoginDto>, LoginValidator>();
+            services.AddScoped<IValidator<RegisterDto>, RegisterValidator>();
 
+            return services;
         }
 
         private static void NpgsqlOptionsAction(NpgsqlDbContextOptionsBuilder npgsqlDbContextOptionsBuilder)

@@ -7,7 +7,8 @@
         private readonly IMapper _mapper;
         private readonly ILogger<AccountService> _logger;
 
-        public AccountService(UserManager<ApplicationUser> userManager,
+        public AccountService(
+            UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IMapper mapper,
             ILogger<AccountService> logger)
@@ -21,6 +22,8 @@
         public async Task RegisterAsync(RegisterDto registerDto,
              CancellationToken cancellationToken = default)
         {
+            await RegisterValidator.ValidateRegister(registerDto);
+
             var applicationUser = _mapper.Map<ApplicationUser>(registerDto);
 
             var userToRegister = await _userManager.CreateAsync(applicationUser, registerDto.Password!);
@@ -43,7 +46,9 @@
 
         public async Task LoginAsync(LoginDto loginDto, 
             CancellationToken cancellationToken = default)
-        { 
+        {
+            await LoginValidator.ValidateLogin(loginDto);
+
             var userToLogin = await _userManager.FindByEmailAsync(loginDto.Email!);
 
             if (userToLogin is null)
