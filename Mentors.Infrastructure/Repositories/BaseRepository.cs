@@ -5,7 +5,8 @@
         private readonly MentorDbContext _dbContext;
         private readonly DbSet<T> _table;
 
-        public BaseRepository(MentorDbContext dbContext)
+        public BaseRepository(
+            MentorDbContext dbContext)
         {
             _dbContext = dbContext;
             _table = _dbContext.Set<T>();

@@ -1,6 +1,6 @@
 ﻿namespace Mentors.Domain.Entities
 {
-    public class Mentor : BaseEntity
+    public sealed class Mentor : BaseEntity
     {
         [Required]
         public string? Name { get; set; }

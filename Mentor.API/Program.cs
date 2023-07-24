@@ -1,10 +1,15 @@
-using Mentors.Infrastructure.Data;
-
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+builder.Services
+    .ConfigureLogging(builder.Configuration, builder.Logging)
+    .ConfigureAPI()
+    .ConfigureAuthenticationAndAuthorization(builder.Configuration)
+    .ConfigurePresentationService()
+    .ConfigureCorePolicy()
+    .ConfigureApplicationCore()
+    .ConfigureInfrastructure(builder.Configuration);
+
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
@@ -15,6 +20,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
 
 app.UseHttpsRedirection();
 
