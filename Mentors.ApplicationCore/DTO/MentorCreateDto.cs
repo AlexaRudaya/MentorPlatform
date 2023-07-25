@@ -12,6 +12,6 @@
 
         public Guid CategoryId { get; set; }
 
-        public List<AvailabilityDto>? Availabilities { get; set; } = new();
+        public List<AvailabilityDto> Availabilities { get; set; } = new();
     }
 }

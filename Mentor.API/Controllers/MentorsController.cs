@@ -25,7 +25,7 @@
         [HttpGet("{id:Guid}")]
         [ProducesResponseType(404)]
         public async Task<IActionResult> GetMentor([FromRoute] Guid id,
-                                                   CancellationToken cancellationToken = default)
+            CancellationToken cancellationToken = default)
         {
             var mentor = await _mentorService.GetByIdAsync(id, cancellationToken);
 
@@ -36,7 +36,7 @@
         [HttpPost]
         [ProducesResponseType(201)]
         public async Task<IActionResult> CreateMentor([FromBody] MentorCreateDto mentorDto,
-                                                      CancellationToken cancellationToken = default)
+            CancellationToken cancellationToken = default)
         {
             var mentorToCreate = await _mentorService.CreateAsync(mentorDto, cancellationToken);
 
@@ -47,8 +47,8 @@
         [HttpPatch("{id:Guid}")]
         [ProducesResponseType(204)]
         public async Task<IActionResult> UpdateMentor([FromRoute] Guid id,
-                                                        [FromBody] MentorDto mentorDto,
-                                                        CancellationToken cancellationToken = default)
+            [FromBody] MentorDto mentorDto,
+            CancellationToken cancellationToken = default)
         {
             var mentorToUpdate = await _mentorService.UpdateAsync(id, mentorDto, cancellationToken);
 
@@ -60,7 +60,7 @@
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
         public async Task<IActionResult> DeleteMentor([FromRoute] Guid id,
-                                                      CancellationToken cancellationToken = default)
+            CancellationToken cancellationToken = default)
         {
             var mentorToDelete = await _mentorService.DeleteAsync(id, cancellationToken);
 

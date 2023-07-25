@@ -23,17 +23,11 @@
         {
             var allMentors = await _mentorRepository.GetAllByAsync(
                 include: query => query
-                    .Include(mentor_ => mentor_.Category!)
-                    .Include(mentor_ => mentor_.Availabilities!),
+                    .Include(mentor => mentor.Category!)
+                    .Include(mentor => mentor.Availabilities!),
                     cancellationToken: cancellationToken);
 
-            var mentorsDto = new List<MentorDto>();
-
-            foreach (var mentor in allMentors)
-            {
-                var mentorDto = IdMapping(mentor);
-                mentorsDto.Add(mentorDto);
-            }
+            var mentorsDto = _mapper.Map<IEnumerable<MentorDto>>(allMentors);
 
             if (allMentors is null)
             {
@@ -49,12 +43,12 @@
         {
             var mentor = await _mentorRepository.GetOneByAsync(
                include: query => query
-                   .Include(mentor_ => mentor_.Category!)
-                   .Include(mentor_ => mentor_.Availabilities!),
-               expression: mentor_ => mentor_.Id.Equals(mentorId),
+                   .Include(mentor => mentor.Category!)
+                   .Include(mentor => mentor.Availabilities!),
+               expression: mentor => mentor.Id.Equals(mentorId),
                cancellationToken: cancellationToken);
 
-            var mentorDto = IdMapping(mentor);
+            var mentorDto = _mapper.Map<MentorDto>(mentor);
 
             if (mentor is null)
             {
@@ -81,8 +75,7 @@
                 throw new CategoryNotFoundException($"Such category with Id: {mentorCreateDto.CategoryId} was not found");
             }
 
-            var availabilities = mentorCreateDto.Availabilities!.Select(_mapper.Map<Availability>).ToList();
-            mentorToCreate.Availabilities = availabilities;
+            _mapper.Map(mentorCreateDto.Availabilities, mentorToCreate.Availabilities);
 
             await _mentorRepository.CreateAsync(mentorToCreate, cancellationToken);
 
@@ -129,16 +122,6 @@
             var mentorDeleted = _mapper.Map<MentorDto>(mentorToDelete);
 
             return mentorDeleted;
-        }
-
-        private MentorDto IdMapping(Mentor mentor)
-        {
-            var mentorDto = _mapper.Map<MentorDto>(mentor);
-
-            mentorDto.CategoryId = mentor.Category!.Id;
-            mentorDto.AvailabilitiesIds = mentor.Availabilities!.Select(availability => availability.Id).ToList();
-
-            return mentorDto;
         }
     }
 }

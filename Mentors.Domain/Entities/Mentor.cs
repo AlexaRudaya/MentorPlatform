@@ -18,6 +18,6 @@
 
         public Category? Category { get; set; }
 
-        public List<Availability>? Availabilities { get; set; } = new();
+        public List<Availability> Availabilities { get; set; } = new();
     }
 }

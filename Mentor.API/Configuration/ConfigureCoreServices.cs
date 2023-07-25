@@ -9,8 +9,8 @@
             logging.ClearProviders();
             logging.AddSerilog(
             new LoggerConfiguration()
-                    .ReadFrom.Configuration(configuration)
-                    .CreateLogger());
+                .ReadFrom.Configuration(configuration)
+                .CreateLogger());
 
             return services;
         }
@@ -30,28 +30,26 @@
             var certificate = new X509Certificate2(@"E:\Projects\MentorPlatform\localhost.pfx", "password");
             var key = new X509SecurityKey(certificate);
 
-
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                          .AddJwtBearer(jwtBearerOptions =>
-                          {
-                              jwtBearerOptions.Authority = configuration["Authentication:Authority"];
-                              jwtBearerOptions.Audience = configuration["Authentication:Audience"];
+                    .AddJwtBearer(jwtBearerOptions =>
+                    {
+                        jwtBearerOptions.Authority = configuration["Authentication:Authority"];
+                        jwtBearerOptions.Audience = configuration["Authentication:Audience"];
 
-                              jwtBearerOptions.TokenValidationParameters.ValidateIssuer = true;
-                              jwtBearerOptions.TokenValidationParameters.ValidIssuer = configuration["Authentication:Authority"];
-                              jwtBearerOptions.TokenValidationParameters.IssuerSigningKey = key;
-                              ;
+                        jwtBearerOptions.TokenValidationParameters.ValidateIssuer = true;
+                        jwtBearerOptions.TokenValidationParameters.ValidIssuer = configuration["Authentication:Authority"];
+                        jwtBearerOptions.TokenValidationParameters.IssuerSigningKey = key;
 
-                              jwtBearerOptions.Configuration = new OpenIdConnectConfiguration();
-                              jwtBearerOptions.RequireHttpsMetadata = false;
-                          });
-
+                        jwtBearerOptions.Configuration = new OpenIdConnectConfiguration();
+                        jwtBearerOptions.RequireHttpsMetadata = false;
+                    });
+                    
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
-                .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
-                .RequireAuthenticatedUser()
-                .Build());
+                       .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
+                       .RequireAuthenticatedUser()
+                       .Build());
             });
 
             return services;
@@ -59,9 +57,9 @@
 
         public static IServiceCollection ConfigurePresentationService(this IServiceCollection services)
         {
-            services.AddSwaggerGen(_ =>
+            services.AddSwaggerGen(swaggerGenOptions =>
             {
-                _.SwaggerDoc("v1", new OpenApiInfo
+                swaggerGenOptions.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
                     Title = "Mentors.API",
@@ -69,9 +67,9 @@
                 var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
             });
 
-            services.AddSwaggerGen(_ =>
+            services.AddSwaggerGen(swaggerGenOptions =>
             {
-                _.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+                swaggerGenOptions.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
                 {
                     Name = "Authorization",
                     Type = SecuritySchemeType.Http,
@@ -81,7 +79,7 @@
                     Description = "JWT Authorization header using the Bearer scheme. " +
                     "\r\n\r\n Enter 'Bearer' [space] and then your token in the text input below.\r\n\r\nExample: \"Bearer 12345abcdef\"",
                 });
-                _.AddSecurityRequirement(new OpenApiSecurityRequirement
+                swaggerGenOptions.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
                     {
                         new OpenApiSecurityScheme
@@ -95,8 +93,9 @@
                         Array.Empty<string>()
                     }
                 });
-                _.EnableAnnotations();
+                swaggerGenOptions.EnableAnnotations();
             });
+
             return services;
         }
 
@@ -130,8 +129,8 @@
         public static IServiceCollection ConfigureInfrastructure(this IServiceCollection services,
             IConfiguration configuration)
         {
-            services.AddDbContext<MentorDbContext>(_ => _
-             .UseSqlServer(configuration.GetConnectionString("MentorsConnection")));
+            services.AddDbContext<MentorDbContext>(dbContextOptions =>
+                dbContextOptions.UseSqlServer(configuration.GetConnectionString("MentorsConnection")));
 
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddScoped<ICategoryRepository, CategoryRepository>();

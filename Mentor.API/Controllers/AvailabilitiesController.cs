@@ -1,6 +1,5 @@
 ﻿namespace Mentors.API.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class AvailabilitiesController : ControllerBase
@@ -26,7 +25,7 @@
         [HttpGet("{id:Guid}")]
         [ProducesResponseType(404)]
         public async Task<IActionResult> GetAvailability([FromRoute] Guid id,
-                                                         CancellationToken cancellationToken = default)
+            CancellationToken cancellationToken = default)
         {
             var availability = await _availabilityService.GetByIdAsync(id, cancellationToken);
 
@@ -37,7 +36,7 @@
         [HttpPost]
         [ProducesResponseType(201)]
         public async Task<IActionResult> CreateAvailability([FromBody] AvailabilityDto availabilityDto,
-                                                    CancellationToken cancellationToken = default)
+            CancellationToken cancellationToken = default)
         {
             var mentorToCreate = await _availabilityService.CreateAsync(availabilityDto, cancellationToken);
 
@@ -48,8 +47,8 @@
         [HttpPatch("{id:Guid}")]
         [ProducesResponseType(204)]
         public async Task<IActionResult> UpdateAvailability([FromRoute] Guid id,
-                                                            [FromBody] AvailabilityDto availabilityDto,
-                                                            CancellationToken cancellationToken = default)
+            [FromBody] AvailabilityDto availabilityDto,
+            CancellationToken cancellationToken = default)
         {
             var availabilityToUpdate = await _availabilityService.UpdateAsync(id, availabilityDto, cancellationToken);
 
@@ -61,7 +60,7 @@
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
         public async Task<IActionResult> DeleteAvailability([FromRoute] Guid id,
-                                                            CancellationToken cancellationToken = default)
+            CancellationToken cancellationToken = default)
         {
             var availabilityToToDelete = await _availabilityService.DeleteAsync(id, cancellationToken);
 

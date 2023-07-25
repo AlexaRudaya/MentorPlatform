@@ -4,10 +4,11 @@
     {
         public CategoryValidator()
         {
-            RuleFor(categoryDto => categoryDto.Name).NotNull()
-                                                    .NotEmpty()
-                                                    .WithMessage("The name must be set")
-                                                    .Length(2, 100);
+            RuleFor(categoryDto => categoryDto.Name)
+                .NotNull()
+                .NotEmpty()
+                .WithMessage("The name must be set")
+                .Length(2, 100);
         }
     }
 }

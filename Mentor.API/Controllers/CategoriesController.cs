@@ -1,6 +1,5 @@
 ﻿namespace Mentors.API.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class CategoriesController : ControllerBase
@@ -26,7 +25,7 @@
         [HttpGet("{id:Guid}")]
         [ProducesResponseType(404)]
         public async Task<IActionResult> GetCategory([FromRoute] Guid id,
-                                                     CancellationToken cancellationToken = default)
+            CancellationToken cancellationToken = default)
         {
             var category = await _categoryService.GetByIdAsync(id, cancellationToken);
 
@@ -37,7 +36,7 @@
         [HttpPost]
         [ProducesResponseType(201)]
         public async Task<IActionResult> CreateCategory([FromBody] CategoryDto categoryDto,
-                                                        CancellationToken cancellationToken = default)
+            CancellationToken cancellationToken = default)
         {
             var categoryToCreate = await _categoryService.CreateAsync(categoryDto, cancellationToken);
 
@@ -48,8 +47,8 @@
         [HttpPatch("{id:Guid}")]
         [ProducesResponseType(204)]
         public async Task<IActionResult> UpdateCategory([FromRoute] Guid id,
-                                                        [FromBody] CategoryDto categoryDto,
-                                                        CancellationToken cancellationToken = default)
+            [FromBody] CategoryDto categoryDto,
+            CancellationToken cancellationToken = default)
         {
             var categoryToUpdate = await _categoryService.UpdateAsync(id, categoryDto, cancellationToken);
 
@@ -61,7 +60,7 @@
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
         public async Task<IActionResult> DeleteCategory([FromRoute] Guid id,
-                                                        CancellationToken cancellationToken = default)
+            CancellationToken cancellationToken = default)
         {
             var categoryToToDelete = await _categoryService.DeleteAsync(id, cancellationToken);
 
