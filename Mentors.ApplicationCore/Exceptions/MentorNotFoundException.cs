@@ -2,21 +2,17 @@
 {
     public class MentorNotFoundException : ObjectNotFoundException
     {
-        private static readonly string MentorsNotFoundMessage = "No mentors were found";
-        private static readonly string MentorNotFoundMessage = "Mentor with such Id {0} was not found";
+        private static readonly string _mentorsNotFoundMessage = "No mentors were found";
+        private static readonly string _mentorNotFoundMessage = "Mentor with such Id {0} was not found";
         public Guid MentorId { get; }
 
-        public MentorNotFoundException() : base(MentorsNotFoundMessage)
+        public MentorNotFoundException() : base(_mentorsNotFoundMessage)
         {
         }
 
-        public MentorNotFoundException(Guid mentorId) : base(string.Format(MentorNotFoundMessage, mentorId))
+        public MentorNotFoundException(Guid mentorId) : base(string.Format(_mentorNotFoundMessage, mentorId))
         {
             MentorId = mentorId;
-        }
-
-        public MentorNotFoundException(string message) : base(message)
-        {
         }
     }
 }
