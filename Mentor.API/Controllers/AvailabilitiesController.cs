@@ -44,13 +44,12 @@
         }
 
         [Authorize]
-        [HttpPatch("{id:Guid}")]
+        [HttpPut]
         [ProducesResponseType(204)]
-        public async Task<IActionResult> UpdateAvailability([FromRoute] Guid id,
-            [FromBody] AvailabilityDto availabilityDto,
+        public async Task<IActionResult> UpdateAvailability([FromBody] AvailabilityDto availabilityDto,
             CancellationToken cancellationToken = default)
         {
-            var availabilityToUpdate = await _availabilityService.UpdateAsync(id, availabilityDto, cancellationToken);
+            var availabilityToUpdate = await _availabilityService.UpdateAsync(availabilityDto, cancellationToken);
 
             return NoContent();
         }

@@ -23,7 +23,7 @@
 
             if (allCategories is null)
             {
-                throw new ObjectNotFoundException("No categories were found");
+                throw new CategoryNotFoundException();
             }
 
             var categoriesDto = _mapper.Map<IEnumerable<CategoryDto>>(allCategories);
@@ -41,7 +41,7 @@
 
             if (category is null)
             {
-                throw new ObjectNotFoundException($"Such category with Id: {categoryId} was not found");
+                throw new CategoryNotFoundException(categoryId);
             }
 
             var categoryDto = _mapper.Map<CategoryDto>(category);
@@ -61,11 +61,17 @@
             return categoryDto;
         }
 
-        public async Task<CategoryDto> UpdateAsync(Guid categoryId, CategoryDto categoryDto,
+        public async Task<CategoryDto> UpdateAsync(CategoryDto categoryDto,
             CancellationToken cancellationToken = default)
         {
-            var existingCategory = await _categoryRepository.GetOneByAsync(expression: category => category.Id.Equals(categoryId));
+            var existingCategory = await _categoryRepository.GetOneByAsync(expression: category => category.Id.Equals(categoryDto.Id));
 
+            if (existingCategory is null)
+            {
+                _logger.LogError($"Failed finding category with Id:{categoryDto.Id} while updating entity.");
+                throw new CategoryNotFoundException(categoryDto.Id);
+            }
+            
             var categoryToUpdate = _mapper.Map<Category>(categoryDto);
 
             await _categoryRepository.UpdateAsync(categoryToUpdate, cancellationToken);
@@ -82,7 +88,7 @@
             if (categoryToDelete is null)
             {
                 _logger.LogError($"Failed finding category with Id:{categoryId} while deleting entity.");
-                throw new ObjectNotFoundException($"Such category with Id: {categoryId} was not found");
+                throw new CategoryNotFoundException(categoryId);
             }
 
             var categoryDeleted = _mapper.Map<CategoryDto>(categoryToDelete);

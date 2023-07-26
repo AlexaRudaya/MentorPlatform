@@ -31,7 +31,7 @@
 
             if (allMentors is null)
             {
-                throw new ObjectNotFoundException("No mentors were found");
+                throw new MentorNotFoundException();
             }
 
             _logger.LogInformation("Mentors are loaded");
@@ -52,7 +52,7 @@
 
             if (mentor is null)
             {
-                throw new ObjectNotFoundException($"Such Mentor with Id: {mentorId} was not found");
+                throw new MentorNotFoundException(mentorId);
             }
 
             return mentorDto;
@@ -72,7 +72,7 @@
             else
             {
                 _logger.LogError($"Failed finding category with Id:{mentorCreateDto.CategoryId}.");
-                throw new ObjectNotFoundException($"Such category with Id: {mentorCreateDto.CategoryId} was not found");
+                throw new MentorNotFoundException(mentorCreateDto.CategoryId);
             }
 
             _mapper.Map(mentorCreateDto.Availabilities, mentorToCreate.Availabilities);
@@ -86,10 +86,16 @@
             return createdMentorDto;
         }
 
-        public async Task<MentorDto> UpdateAsync(Guid mentorId, MentorDto mentorDto,
+        public async Task<MentorDto> UpdateAsync(MentorDto mentorDto,
             CancellationToken cancellationToken = default)
         {
-            var existingMentor = await _mentorRepository.GetOneByAsync(expression: mentor => mentor.Id.Equals(mentorId));
+            var existingMentor = await _mentorRepository.GetOneByAsync(expression: mentor => mentor.Id.Equals(mentorDto.Id));
+
+            if (existingMentor is null)
+            {
+                _logger.LogError($"Failed finding mentor with Id:{mentorDto.Id} while updating entity.");
+                throw new MentorNotFoundException(mentorDto.Id);
+            }
 
             var mentorToUpdate = _mapper.Map<Mentor>(mentorDto);
 
@@ -106,7 +112,7 @@
 
             if (mentorToDelete is null)
             {
-                throw new ObjectNotFoundException($"Such mentor with Id: {mentorId} was not found");
+                throw new MentorNotFoundException(mentorId);
             }
 
             await _mentorRepository.DeleteAsync(mentorToDelete, cancellationToken);

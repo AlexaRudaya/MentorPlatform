@@ -16,7 +16,7 @@
             {
                 await next(context);
             }
-            catch (Exception ex) when (ex is ObjectNotFoundException)
+            catch (ObjectNotFoundException ex)
             {
                 _logger.LogError($"Not Found exception has occured: {ex}");
                 await HandleExceptionAsync(context, ex);

@@ -44,13 +44,12 @@
         }
 
         [Authorize]
-        [HttpPatch("{id:Guid}")]
+        [HttpPut]
         [ProducesResponseType(204)]
-        public async Task<IActionResult> UpdateCategory([FromRoute] Guid id,
-            [FromBody] CategoryDto categoryDto,
+        public async Task<IActionResult> UpdateCategory([FromBody] CategoryDto categoryDto,
             CancellationToken cancellationToken = default)
         {
-            var categoryToUpdate = await _categoryService.UpdateAsync(id, categoryDto, cancellationToken);
+            var categoryToUpdate = await _categoryService.UpdateAsync(categoryDto, cancellationToken);
 
             return NoContent();
         }

@@ -44,13 +44,12 @@
         }
 
         [Authorize]
-        [HttpPatch("{id:Guid}")]
+        [HttpPut]
         [ProducesResponseType(204)]
-        public async Task<IActionResult> UpdateMentor([FromRoute] Guid id,
-            [FromBody] MentorDto mentorDto,
+        public async Task<IActionResult> UpdateMentor([FromBody] MentorDto mentorDto,
             CancellationToken cancellationToken = default)
         {
-            var mentorToUpdate = await _mentorService.UpdateAsync(id, mentorDto, cancellationToken);
+            var mentorToUpdate = await _mentorService.UpdateAsync(mentorDto, cancellationToken);
 
             return NoContent();
         }

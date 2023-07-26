@@ -22,7 +22,7 @@
 
             if (allAvailabilities is null)
             {
-                throw new ObjectNotFoundException("No availabilities were found");
+                throw new AvailabilityNotFoundException();
             }
 
             var availabilitiesDto = _mapper.Map<IEnumerable<AvailabilityDto>>(allAvailabilities);
@@ -39,7 +39,7 @@
 
             if (availability is null)
             {
-                throw new ObjectNotFoundException($"Such availability with Id: {availabilityId} was not found");
+                throw new AvailabilityNotFoundException(availabilityId);
             }
 
             var availabilityDto = _mapper.Map<AvailabilityDto>(availability);
@@ -61,10 +61,16 @@
             return createdAvailabilityDto;
         }
 
-        public async Task<AvailabilityDto> UpdateAsync(Guid availabilityId, AvailabilityDto availabilityDto,
+        public async Task<AvailabilityDto> UpdateAsync(AvailabilityDto availabilityDto,
             CancellationToken cancellationToken = default)
         {
-            var existingAvailability = await _availabilityRepository.GetOneByAsync(expression: availability => availability.Id.Equals(availabilityId));
+            var existingAvailability = await _availabilityRepository.GetOneByAsync(expression: availability => availability.Id.Equals(availabilityDto.Id));
+
+            if (existingAvailability is null)
+            {
+                _logger.LogError($"Failed finding availability with Id:{availabilityDto.Id} while updating entity.");
+                throw new AvailabilityNotFoundException(availabilityDto.Id);
+            }
 
             var availabilityToUpdate = _mapper.Map<Availability>(availabilityDto);
 
@@ -82,7 +88,7 @@
             if (availabilityToDelete is null)
             {
                 _logger.LogError($"Failed finding availability with Id:{availabilityId} while deleting entity.");
-                throw new ObjectNotFoundException($"Such category with Id: {availabilityId} was not found");
+                throw new AvailabilityNotFoundException(availabilityId);
             }
 
             var availabilityDeleted = _mapper.Map<AvailabilityDto>(availabilityToDelete);
