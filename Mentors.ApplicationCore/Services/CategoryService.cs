@@ -23,7 +23,7 @@
 
             if (allCategories is null)
             {
-                throw new CategoryNotFoundException("No categories were found");
+                throw new ObjectNotFoundException("No categories were found");
             }
 
             var categoriesDto = _mapper.Map<IEnumerable<CategoryDto>>(allCategories);
@@ -41,7 +41,7 @@
 
             if (category is null)
             {
-                throw new CategoryNotFoundException($"Such category with Id: {categoryId} was not found");
+                throw new ObjectNotFoundException($"Such category with Id: {categoryId} was not found");
             }
 
             var categoryDto = _mapper.Map<CategoryDto>(category);
@@ -79,10 +79,10 @@
         {
             var categoryToDelete = await _categoryRepository.GetOneByAsync(expression: category => category.Id.Equals(categoryId));
 
-            if (categoryToDelete is null || !categoryToDelete.Id.Equals(categoryId))
+            if (categoryToDelete is null)
             {
                 _logger.LogError($"Failed finding category with Id:{categoryId} while deleting entity.");
-                throw new CategoryNotFoundException($"Such category with Id: {categoryId} was not found");
+                throw new ObjectNotFoundException($"Such category with Id: {categoryId} was not found");
             }
 
             var categoryDeleted = _mapper.Map<CategoryDto>(categoryToDelete);

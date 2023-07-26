@@ -2,17 +2,13 @@
 {
     public class Availability : BaseEntity
     {
-        [Required]
-        public DateTime Date { get; set; }
+        public required DateTime Date { get; set; }
 
-        [Required]
-        public bool IsAvailable { get; set; }
+        public required bool IsAvailable { get; set; }
 
-        [Required]
-        public DateTime StartTime { get; set; }
+        public required DateTime StartTime { get; set; }
 
-        [Required]
-        public DateTime EndTime { get; set; }
+        public required DateTime EndTime { get; set; }
 
         public Guid MentorId { get; set; }
 

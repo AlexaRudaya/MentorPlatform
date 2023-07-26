@@ -16,8 +16,7 @@
             {
                 await next(context);
             }
-            catch (Exception ex) when (ex is CategoryNotFoundException || ex is AvailabilityNotFoundException
-                                       || ex is MentorNotFoundException)
+            catch (Exception ex) when (ex is ObjectNotFoundException)
             {
                 _logger.LogError($"Not Found exception has occured: {ex}");
                 await HandleExceptionAsync(context, ex);
@@ -40,9 +39,7 @@
 
             statusCode = exception switch
             {
-                CategoryNotFoundException => HttpStatusCode.NotFound,
-                AvailabilityNotFoundException => HttpStatusCode.NotFound,
-                MentorNotFoundException => HttpStatusCode.NotFound,
+                ObjectNotFoundException => HttpStatusCode.NotFound,
                 InvalidValueException => HttpStatusCode.BadRequest,
                 _ => HttpStatusCode.InternalServerError
             };

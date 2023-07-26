@@ -2,17 +2,13 @@
 {
     public sealed class Mentor : BaseEntity
     {
-        [Required]
-        public string? Name { get; set; }
+        public required string Name { get; set; }
 
-        [Required]
-        public string? Biography { get; set; }
+        public required string Biography { get; set; }
 
-        [Required]
-        public double HourlyRate { get; set; }
+        public required double HourlyRate { get; set; }
 
-        [Required]
-        public int MeetingDuration { get; set; }
+        public required int MeetingDuration { get; set; }
 
         public Guid CategoryId { get; set; }
 

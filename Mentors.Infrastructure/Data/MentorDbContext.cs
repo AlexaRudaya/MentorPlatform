@@ -16,8 +16,7 @@
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .ApplyConfiguration(new MentorModelConfiguration())
-                .ApplyConfiguration(new CategoryModelConfiguration());
+                .ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
     }
 }

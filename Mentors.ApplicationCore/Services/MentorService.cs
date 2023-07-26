@@ -23,15 +23,15 @@
         {
             var allMentors = await _mentorRepository.GetAllByAsync(
                 include: query => query
-                    .Include(mentor => mentor.Category!)
-                    .Include(mentor => mentor.Availabilities!),
+                    .Include(mentor => mentor.Category)
+                    .Include(mentor => mentor.Availabilities),
                     cancellationToken: cancellationToken);
 
             var mentorsDto = _mapper.Map<IEnumerable<MentorDto>>(allMentors);
 
             if (allMentors is null)
             {
-                throw new MentorNotFoundException("No mentors were found");
+                throw new ObjectNotFoundException("No mentors were found");
             }
 
             _logger.LogInformation("Mentors are loaded");
@@ -43,8 +43,8 @@
         {
             var mentor = await _mentorRepository.GetOneByAsync(
                include: query => query
-                   .Include(mentor => mentor.Category!)
-                   .Include(mentor => mentor.Availabilities!),
+                   .Include(mentor => mentor.Category)
+                   .Include(mentor => mentor.Availabilities),
                expression: mentor => mentor.Id.Equals(mentorId),
                cancellationToken: cancellationToken);
 
@@ -52,7 +52,7 @@
 
             if (mentor is null)
             {
-                throw new MentorNotFoundException($"Such Mentor with Id: {mentorId} was not found");
+                throw new ObjectNotFoundException($"Such Mentor with Id: {mentorId} was not found");
             }
 
             return mentorDto;
@@ -72,7 +72,7 @@
             else
             {
                 _logger.LogError($"Failed finding category with Id:{mentorCreateDto.CategoryId}.");
-                throw new CategoryNotFoundException($"Such category with Id: {mentorCreateDto.CategoryId} was not found");
+                throw new ObjectNotFoundException($"Such category with Id: {mentorCreateDto.CategoryId} was not found");
             }
 
             _mapper.Map(mentorCreateDto.Availabilities, mentorToCreate.Availabilities);
@@ -91,12 +91,6 @@
         {
             var existingMentor = await _mentorRepository.GetOneByAsync(expression: mentor => mentor.Id.Equals(mentorId));
 
-            if (existingMentor.Id != mentorId)
-            {
-                _logger.LogError($"Failed finding mentor with Id:{mentorId} while updating data.");
-                throw new MentorNotFoundException($"Such mentor with Id: {mentorId} was not found");
-            }
-
             var mentorToUpdate = _mapper.Map<Mentor>(mentorDto);
 
             await _mentorRepository.UpdateAsync(mentorToUpdate, cancellationToken);
@@ -112,10 +106,10 @@
 
             if (mentorToDelete is null)
             {
-                throw new MentorNotFoundException($"Such mentor with Id: {mentorId} was not found");
+                throw new ObjectNotFoundException($"Such mentor with Id: {mentorId} was not found");
             }
 
-            await _mentorRepository.DeleteAsync(mentorToDelete!, cancellationToken);
+            await _mentorRepository.DeleteAsync(mentorToDelete, cancellationToken);
 
             _logger.LogInformation($"Mentor with Id: {mentorId} is removed");
 

@@ -12,10 +12,9 @@
             _table = _dbContext.Set<T>();
         }
 
-
         public async Task<IEnumerable<T>> GetAllByAsync(Func<IQueryable<T>,
-            IIncludableQueryable<T, object>>? include = null,
-            Expression<Func<T, bool>>? expression = null,
+            IIncludableQueryable<T, object>> include = null,
+            Expression<Func<T, bool>> expression = null,
             CancellationToken cancellationToken = default)
         {
             IQueryable<T> query = _table;
@@ -34,8 +33,8 @@
         }
 
         public async Task<T> GetOneByAsync(Func<IQueryable<T>,
-            IIncludableQueryable<T, object>>? include = null,
-            Expression<Func<T, bool>>? expression = null,
+            IIncludableQueryable<T, object>> include = null,
+            Expression<Func<T, bool>> expression = null,
             CancellationToken cancellationToken = default)
         {
             IQueryable<T> query = _table;
@@ -53,7 +52,7 @@
             var model = await query.AsNoTracking()
                                    .FirstOrDefaultAsync(cancellationToken);
 
-            return model!;
+            return model;
         }
 
         public async Task CreateAsync(T entity, CancellationToken cancellationToken = default)
