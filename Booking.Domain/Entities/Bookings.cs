@@ -6,10 +6,10 @@
 
         public required DateTime EndTimeBooking { get; set; }
 
-        public int StudentId { get; set; }
+        public Guid StudentId { get; set; }
 
         public Student? Student { get; set; }
 
-        public int MentorId { get; set; }
+        public Guid MentorId { get; set; }
     }
 }

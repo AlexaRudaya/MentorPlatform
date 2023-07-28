@@ -1,6 +1,6 @@
 ﻿namespace Booking.Domain.Abstractions.IRepository
 {
-    public interface BaseRepository<T> where T : BaseEntity
+    public interface IBaseRepository<T> where T : BaseEntity
     {
         Task<IEnumerable<T>> GetAllByAsync(Func<IQueryable<T>,
             IIncludableQueryable<T, object>> include = null,
