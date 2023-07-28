@@ -13,6 +13,8 @@ builder.Services.AddEndpointsApiExplorer();
 
 var app = builder.Build();
 
+app.MapGrpcService<GetMentorService>();
+
 if (app.Environment.IsDevelopment())
 {
     await MentorsSeed.SeedAsync(app);

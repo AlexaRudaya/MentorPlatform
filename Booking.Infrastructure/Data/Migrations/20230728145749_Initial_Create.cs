@@ -32,7 +32,7 @@ namespace Booking.Infrastructure.Data.Migrations
                     StartTimeBooking = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndTimeBooking = table.Column<DateTime>(type: "datetime2", nullable: false),
                     StudentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    MentorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    MentorId = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {

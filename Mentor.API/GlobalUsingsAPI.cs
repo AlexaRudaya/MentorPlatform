@@ -23,3 +23,4 @@ global using Mentors.Domain.Entities;
 global using Microsoft.AspNetCore.Mvc;
 global using Mentors.ApplicationCore.Exceptions;
 global using System.Net;
+global using Mentors.ApplicationCore.Services.GrpcServices;

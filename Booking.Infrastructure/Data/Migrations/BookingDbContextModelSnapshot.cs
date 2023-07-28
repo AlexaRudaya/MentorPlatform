@@ -31,8 +31,9 @@ namespace Booking.Infrastructure.Data.Migrations
                     b.Property<DateTime>("EndTimeBooking")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("MentorId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("MentorId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("StartTimeBooking")
                         .HasColumnType("datetime2");

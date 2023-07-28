@@ -1,4 +1,6 @@
-﻿namespace Mentors.ApplicationCore.Services
+﻿using Availability = Mentors.Domain.Entities.Availability;
+
+namespace Mentors.ApplicationCore.Services
 {
     public sealed class AvailabilityService : IAvailabilityService
     {

@@ -1,4 +1,4 @@
-﻿namespace Mentors.API.Configuration
+﻿namespace Booking.API.Configuration
 {
     public static class ConfigureCoreServices
     {
@@ -18,6 +18,7 @@
         public static IServiceCollection ConfigureAPI(this IServiceCollection services)
         {
             services.AddControllers();
+            services.AddEndpointsApiExplorer();
             services.AddFluentValidationAutoValidation();
             services.AddTransient<GlobalExceptionHandlingMiddleware>();
 
@@ -43,7 +44,7 @@
                         jwtBearerOptions.Configuration = new OpenIdConnectConfiguration();
                         jwtBearerOptions.RequireHttpsMetadata = false;
                     });
-                    
+
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
@@ -112,32 +113,34 @@
             return services;
         }
 
-        public static IServiceCollection ConfigureApplicationCore(this IServiceCollection services)
+        public static IServiceCollection ConfigureApplicationCore(this IServiceCollection services,
+            IConfiguration configuration)
         {
-            services.AddGrpc();
+            services.Configure<MentorApiOptions>(configuration.GetSection(MentorApiOptions.MentorAPI));
 
             services.AddAutoMapper(typeof(MapperProfile));
 
-            services.AddScoped<IValidator<CategoryDto>, CategoryValidator>();
-            services.AddScoped<IValidator<AvailabilityDto>, AvailabilityValidator>();
-            services.AddScoped<IValidator<MentorCreateDto>, MentorValidator>();
+            services.AddScoped<IValidator<StudentCreateDto>, StudentValidator>();
+            services.AddScoped<IValidator<BookingsDto>, BookingValidator>();
 
-            services.AddScoped<ICategoryService, CategoryService>();
-            services.AddScoped<IMentorService, MentorService>();
-            services.AddScoped<IAvailabilityService, AvailabilityService>();
+            services.AddScoped<IStudentService, StudentService>();
+            services.AddScoped<IBookingsService, BookingsService>();
+            services.AddScoped<IBookingsForMentorService, BookingsForMentorService>();
+            services.AddScoped<IGetMentorClient, GetMentorClient>();
 
             return services;
         }
+
         public static IServiceCollection ConfigureInfrastructure(this IServiceCollection services,
             IConfiguration configuration)
         {
-            services.AddDbContext<MentorDbContext>(dbContextOptions =>
-                dbContextOptions.UseSqlServer(configuration.GetConnectionString("MentorsConnection")));
+            services.AddDbContext<BookingDbContext>(dbContextOptions =>
+                dbContextOptions.UseSqlServer(configuration.GetConnectionString("BookingsConnection")));
+
 
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
-            services.AddScoped<ICategoryRepository, CategoryRepository>();
-            services.AddScoped<IMentorRepository, MentorRepository>();
-            services.AddScoped<IAvailabilityRepository, AvailabilityRepository>();
+            services.AddScoped<IStudentRepository, StudentRepository>();
+            services.AddScoped<IBookingsRepository, BookingsRepository>();
 
             return services;
         }

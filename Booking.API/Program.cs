@@ -1,14 +1,13 @@
-using Booking.Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
-
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-builder.Services.AddDbContext<BookingDbContext>(dbContextOptions =>
-    dbContextOptions.UseSqlServer(builder.Configuration.GetConnectionString("BookingsConnection")));
+builder.Services
+    .ConfigureLogging(builder.Configuration, builder.Logging)
+    .ConfigureAPI()
+    .ConfigureAuthenticationAndAuthorization(builder.Configuration)
+    .ConfigurePresentationService()
+    .ConfigureCorePolicy()
+    .ConfigureApplicationCore(builder.Configuration)
+    .ConfigureInfrastructure(builder.Configuration);
 
 var app = builder.Build();
 

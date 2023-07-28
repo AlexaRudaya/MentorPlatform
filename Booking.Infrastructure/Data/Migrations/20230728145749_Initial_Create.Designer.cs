@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Booking.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(BookingDbContext))]
-    [Migration("20230728131024_Initial_Create")]
+    [Migration("20230728145749_Initial_Create")]
     partial class Initial_Create
     {
         /// <inheritdoc />
@@ -34,8 +34,9 @@ namespace Booking.Infrastructure.Data.Migrations
                     b.Property<DateTime>("EndTimeBooking")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("MentorId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("MentorId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("StartTimeBooking")
                         .HasColumnType("datetime2");

@@ -9,3 +9,6 @@ global using Mentors.Domain.Abstractions.IRepository;
 global using Microsoft.Extensions.Logging;
 global using Microsoft.EntityFrameworkCore;
 global  using FluentValidation;
+global using Google.Protobuf.WellKnownTypes;
+global using Mentors.API.Protos;
+global using Grpc.Core;

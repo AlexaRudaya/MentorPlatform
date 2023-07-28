@@ -10,6 +10,6 @@
 
         public Student? Student { get; set; }
 
-        public Guid MentorId { get; set; }
+        public string MentorId { get; set; }
     }
 }
