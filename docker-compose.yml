@@ -8,10 +8,10 @@ services:
  mentor_api:
   build:
    context: .
-   dockerfile: ./Mentor.API/Dockerfile 
+   dockerfile: ./Mentors.API/Dockerfile 
   depends_on:
    - identityserver
-  entrypoint: /bin/sh -c "dotnet Mentor.API.dll"
+  entrypoint: /bin/sh -c "dotnet Mentors.API.dll"
   environment:
    - ASPNETCORE_ENVIRONMENT=Development
    - ASPNETCORE_URLS=https://+:7001
