@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Booking.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(BookingDbContext))]
-    [Migration("20230728145749_Initial_Create")]
-    partial class Initial_Create
+    [Migration("20230731094103_Initial Create")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace Booking.Infrastructure.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Booking.Domain.Entities.Bookings", b =>
+            modelBuilder.Entity("Booking.Domain.Entities.MentorBooking", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -48,7 +48,7 @@ namespace Booking.Infrastructure.Data.Migrations
 
                     b.HasIndex("StudentId");
 
-                    b.ToTable("Bookings");
+                    b.ToTable("MentorBookings");
                 });
 
             modelBuilder.Entity("Booking.Domain.Entities.Student", b =>
@@ -70,7 +70,7 @@ namespace Booking.Infrastructure.Data.Migrations
                     b.ToTable("Students");
                 });
 
-            modelBuilder.Entity("Booking.Domain.Entities.Bookings", b =>
+            modelBuilder.Entity("Booking.Domain.Entities.MentorBooking", b =>
                 {
                     b.HasOne("Booking.Domain.Entities.Student", "Student")
                         .WithMany("Bookings")

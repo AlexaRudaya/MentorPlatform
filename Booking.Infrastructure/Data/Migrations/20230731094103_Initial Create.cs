@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Booking.Infrastructure.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial_Create : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -25,7 +25,7 @@ namespace Booking.Infrastructure.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Bookings",
+                name: "MentorBookings",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -36,9 +36,9 @@ namespace Booking.Infrastructure.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Bookings", x => x.Id);
+                    table.PrimaryKey("PK_MentorBookings", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Bookings_Students_StudentId",
+                        name: "FK_MentorBookings_Students_StudentId",
                         column: x => x.StudentId,
                         principalTable: "Students",
                         principalColumn: "Id",
@@ -46,8 +46,8 @@ namespace Booking.Infrastructure.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Bookings_StudentId",
-                table: "Bookings",
+                name: "IX_MentorBookings_StudentId",
+                table: "MentorBookings",
                 column: "StudentId");
         }
 
@@ -55,7 +55,7 @@ namespace Booking.Infrastructure.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Bookings");
+                name: "MentorBookings");
 
             migrationBuilder.DropTable(
                 name: "Students");

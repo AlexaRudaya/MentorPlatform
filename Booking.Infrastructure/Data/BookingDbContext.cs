@@ -4,7 +4,7 @@
     {
         public DbSet<Student> Students { get; set; }
 
-        public DbSet<MentorBooking> Bookings { get; set; }
+        public DbSet<MentorBooking> MentorBookings { get; set; }
 
         public BookingDbContext(DbContextOptions<BookingDbContext> options) : base(options)
         {

@@ -63,7 +63,7 @@
                 swaggerGenOptions.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "Mentors.API",
+                    Title = "Booking.API",
                 });
                 var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
             });

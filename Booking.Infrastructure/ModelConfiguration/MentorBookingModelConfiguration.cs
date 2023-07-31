@@ -1,6 +1,6 @@
 ﻿namespace Booking.Infrastructure.ModelConfiguration
 {
-    public class BookingsModelConfiguration : IEntityTypeConfiguration<MentorBooking>
+    public class MentorBookingModelConfiguration : IEntityTypeConfiguration<MentorBooking>
     {
         public void Configure(EntityTypeBuilder<MentorBooking> builder)
         {
