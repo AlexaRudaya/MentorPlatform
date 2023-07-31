@@ -15,6 +15,7 @@
                     options => options.MapFrom(availability => ToUtcTimestamp(availability.EndTime)))
                 .ForMember(availability => availability.MentorId, options => options.MapFrom(availability => availability.MentorId));
         }
+
         private static Timestamp ToUtcTimestamp(DateTime dateTime)
         {
             return Timestamp.FromDateTime(DateTime.SpecifyKind(dateTime, DateTimeKind.Utc));
