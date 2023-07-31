@@ -11,7 +11,7 @@
 
             CreateMap<Student, StudentCreateDto>().ReverseMap();
 
-            CreateMap<Bookings, BookingsDto>()
+            CreateMap<MentorBooking, BookingDto>()
                 .ForMember(booking => booking.MentorId, options => options.MapFrom(booking => booking.MentorId))
                 .ReverseMap();
 

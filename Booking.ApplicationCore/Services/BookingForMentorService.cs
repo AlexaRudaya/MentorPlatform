@@ -1,36 +1,36 @@
 ﻿namespace Booking.ApplicationCore.Services
 {
-    public class BookingsForMentorService : IBookingsForMentorService
+    public class BookingForMentorService : IBookingForMentorService
     {
-        private readonly IBookingsRepository _bookingsRepository;
+        private readonly IMentorBookingRepository _bookingRepository;
         private readonly IGetMentorClient _mentorClient;
         private readonly IMapper _mapper;
-        private readonly ILogger<BookingsService> _logger;
+        private readonly ILogger<BookingService> _logger;
 
-        public BookingsForMentorService(
-            IBookingsRepository bookingsRepository,
+        public BookingForMentorService(
+            IMentorBookingRepository bookingRepository,
             IGetMentorClient mentorClient,
             IMapper mapper,
-            ILogger<BookingsService> logger)
+            ILogger<BookingService> logger)
         {
-            _bookingsRepository = bookingsRepository;
+            _bookingRepository = bookingRepository;
             _mentorClient = mentorClient;
             _mapper = mapper;
             _logger = logger;
         }
 
-        public async Task<IEnumerable<BookingsDto>> GetBookingsForMentorAsync(string mentorId,
+        public async Task<IEnumerable<BookingDto>> GetBookingsForMentorAsync(string mentorId,
             CancellationToken cancellationToken = default)
         {
-            var bookingsForMentor = await _bookingsRepository.GetAllByAsync(expression: booking => booking.MentorId.Equals(mentorId),
-                                                                            cancellationToken: cancellationToken);
+            var bookingsForMentor = await _bookingRepository.GetAllByAsync(expression: booking => booking.MentorId.Equals(mentorId),
+                                                                           cancellationToken: cancellationToken);
 
             if (bookingsForMentor is null)
             {
                 throw new BookingNotFoundException();
             }
 
-            var bookingDto = _mapper.Map<IEnumerable<BookingsDto>>(bookingsForMentor);
+            var bookingDto = _mapper.Map<IEnumerable<BookingDto>>(bookingsForMentor);
 
             _logger.LogInformation($"Bookings for a mentor:{mentorId} are loaded.");
 

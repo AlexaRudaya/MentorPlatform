@@ -6,7 +6,7 @@
         {
             builder
                 .HasMany(student => student.Bookings)
-                .WithOne(bookings => bookings.Student);
+                .WithOne(booking => booking.Student);
         }
     }
 }

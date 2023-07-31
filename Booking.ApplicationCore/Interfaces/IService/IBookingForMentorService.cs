@@ -1,8 +1,8 @@
 ﻿namespace Booking.ApplicationCore.Interfaces.IService
 {
-    public interface IBookingsForMentorService
+    public interface IBookingForMentorService
     {
-        Task<IEnumerable<BookingsDto>> GetBookingsForMentorAsync(string mentorId, CancellationToken cancellationToken = default);
+        Task<IEnumerable<BookingDto>> GetBookingsForMentorAsync(string mentorId, CancellationToken cancellationToken = default);
 
         Task<IEnumerable<AvailabilityDto>> GetAvailabilitiesOfMentor(string mentorId, CancellationToken cancellationToken = default);
     }

@@ -116,16 +116,16 @@
         public static IServiceCollection ConfigureApplicationCore(this IServiceCollection services,
             IConfiguration configuration)
         {
-            services.Configure<MentorApiOptions>(configuration.GetSection(MentorApiOptions.MentorAPI));
+            services.Configure<MentorApiOptions>(configuration.GetSection("MentorAPI"));
 
             services.AddAutoMapper(typeof(MapperProfile));
 
             services.AddScoped<IValidator<StudentCreateDto>, StudentValidator>();
-            services.AddScoped<IValidator<BookingsDto>, BookingValidator>();
+            services.AddScoped<IValidator<BookingDto>, BookingValidator>();
 
             services.AddScoped<IStudentService, StudentService>();
-            services.AddScoped<IBookingsService, BookingsService>();
-            services.AddScoped<IBookingsForMentorService, BookingsForMentorService>();
+            services.AddScoped<IBookingService, BookingService>();
+            services.AddScoped<IBookingForMentorService, BookingForMentorService>();
             services.AddScoped<IGetMentorClient, GetMentorClient>();
 
             return services;
@@ -135,12 +135,12 @@
             IConfiguration configuration)
         {
             services.AddDbContext<BookingDbContext>(dbContextOptions =>
-                dbContextOptions.UseSqlServer(configuration.GetConnectionString("BookingsConnection")));
+                dbContextOptions.UseSqlServer(configuration.GetConnectionString("BookingConnection")));
 
 
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddScoped<IStudentRepository, StudentRepository>();
-            services.AddScoped<IBookingsRepository, BookingsRepository>();
+            services.AddScoped<IMentorBookingRepository, MentorBookingRepository>();
 
             return services;
         }

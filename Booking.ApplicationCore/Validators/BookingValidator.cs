@@ -1,6 +1,6 @@
 ﻿namespace Booking.ApplicationCore.Validators
 {
-    public class BookingValidator : AbstractValidator<BookingsDto>
+    public class BookingValidator : AbstractValidator<BookingDto>
     {
         public BookingValidator()
         {

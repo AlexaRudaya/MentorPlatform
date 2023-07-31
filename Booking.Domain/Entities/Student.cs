@@ -6,6 +6,6 @@
 
         public required string Email { get; set; }
 
-        public List<Bookings>? Bookings { get; set; } = new();
+        public List<MentorBooking>? Bookings { get; set; } = new();
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Booking.ApplicationCore.DTO
 {
-    public class BookingsDto : BaseDto  
+    public class BookingDto : BaseDto  
     {
         public DateTime StartTimeBooking { get; set; }
 

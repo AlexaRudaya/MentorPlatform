@@ -2,25 +2,25 @@
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BookingsController : ControllerBase
+    public class BookingController : ControllerBase
     {
-        private readonly IBookingsService _bookingsService;
-        private readonly IBookingsForMentorService _bookingsForMentorService;
+        private readonly IBookingService _bookingService;
+        private readonly IBookingForMentorService _bookingForMentorService;
 
-        public BookingsController(
-             IBookingsService bookingsService,
-             IBookingsForMentorService bookingsForMentorService)
+        public BookingController(
+             IBookingService bookingService,
+             IBookingForMentorService bookingForMentorService)
         {
-            _bookingsService = bookingsService;
-            _bookingsForMentorService = bookingsForMentorService;
+            _bookingService = bookingService;
+            _bookingForMentorService = bookingForMentorService;
         }
 
         [HttpGet]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<Bookings>))]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<MentorBooking>))]
         [ProducesResponseType(404)]
         public async Task<IActionResult> GetBookings(CancellationToken cancellationToken = default)
         {
-            var bookings = await _bookingsService.GetAllAsync(cancellationToken);
+            var bookings = await _bookingService.GetAllAsync(cancellationToken);
 
             return Ok(bookings);
         }
@@ -31,29 +31,29 @@
         public async Task<IActionResult> GetBooking([FromRoute] Guid id,
             CancellationToken cancellationToken = default)
         {
-            var booking = await _bookingsService.GetByIdAsync(id, cancellationToken);
+            var booking = await _bookingService.GetByIdAsync(id, cancellationToken);
 
             return Ok(booking);
         }
 
         [HttpGet("student/{id:Guid}")]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<Bookings>))]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<MentorBooking>))]
         [ProducesResponseType(404)]
         public async Task<IActionResult> GetBookingsForStudent([FromRoute] Guid id,
             CancellationToken cancellationToken = default)
         {
-            var bookingsForStudent = await _bookingsService.GetBookingsForStudentAsync(id, cancellationToken);
+            var bookingsForStudent = await _bookingService.GetBookingsForStudentAsync(id, cancellationToken);
 
             return Ok(bookingsForStudent);
         }
 
         [HttpGet("mentor/{id:Guid}")]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<Bookings>))]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<MentorBooking>))]
         [ProducesResponseType(404)]
         public async Task<IActionResult> GetBookingsForMentor([FromRoute] string id,
             CancellationToken cancellationToken = default)
         {
-            var bookingsForMentor = await _bookingsForMentorService.GetBookingsForMentorAsync(id, cancellationToken);
+            var bookingsForMentor = await _bookingForMentorService.GetBookingsForMentorAsync(id, cancellationToken);
 
             return Ok(bookingsForMentor);
         }
@@ -64,17 +64,17 @@
         public async Task<IActionResult> GetAvailabilitiesOfMentor([FromRoute] string id,
             CancellationToken cancellationToken = default)
         {
-            var availabilitiesOfMentor = await _bookingsForMentorService.GetAvailabilitiesOfMentor(id, cancellationToken);
+            var availabilitiesOfMentor = await _bookingForMentorService.GetAvailabilitiesOfMentor(id, cancellationToken);
 
             return Ok(availabilitiesOfMentor);
         }
 
         [HttpPost]
         [ProducesResponseType(201)]
-        public async Task<IActionResult> CreateBooking([FromBody] BookingsDto bookingDto,
+        public async Task<IActionResult> CreateBooking([FromBody] BookingDto bookingDto,
             CancellationToken cancellationToken = default)
         {
-            var bookingToCreate = await _bookingsService.CreateAsync(bookingDto, cancellationToken);
+            var bookingToCreate = await _bookingService.CreateAsync(bookingDto, cancellationToken);
 
             return CreatedAtAction(
                 nameof(GetBooking),
@@ -85,10 +85,10 @@
         [HttpPut]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> UpdateCategory([FromBody] BookingsDto bookingDto,
+        public async Task<IActionResult> UpdateBooking([FromBody] BookingDto bookingDto,
             CancellationToken cancellationToken = default)
         {
-            var bookingToUpdate = await _bookingsService.UpdateAsync(bookingDto, cancellationToken);
+            var bookingToUpdate = await _bookingService.UpdateAsync(bookingDto, cancellationToken);
 
             return NoContent();
         }
@@ -96,10 +96,10 @@
         [HttpDelete("{id:Guid}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> DeleteCategory([FromRoute] Guid id,
+        public async Task<IActionResult> DeleteBooking([FromRoute] Guid id,
             CancellationToken cancellationToken = default)
         {
-            var bookingToDelete = await _bookingsService.DeleteAsync(id, cancellationToken);
+            var bookingToDelete = await _bookingService.DeleteAsync(id, cancellationToken);
 
             return NoContent();
         }

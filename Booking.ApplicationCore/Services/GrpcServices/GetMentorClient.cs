@@ -16,6 +16,7 @@
             CancellationToken cancellationToken = default)
         {
             var request = new GetMentorByIdRequest { MentorId = mentorId };
+
             return await _mentorClient.GetMentorByIdAsync(request);
         }
     }

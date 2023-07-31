@@ -2,7 +2,6 @@
 {
     public class GetMentorService : MentorByIdService.MentorByIdServiceBase
     {
-
         private readonly IMentorRepository _mentorRepository;
         private readonly IMapper _mapper;
         private readonly ILogger<GetMentorService> _logger;

@@ -49,10 +49,10 @@
         [HttpPut]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> UpdateCategory([FromBody] StudentDto studentDto,
+        public async Task<IActionResult> UpdateStudent([FromBody] StudentDto studentDto,
             CancellationToken cancellationToken = default)
         {
-            var categoryToUpdate = await _studentService.UpdateAsync(studentDto, cancellationToken);
+            var studentToUpdate = await _studentService.UpdateAsync(studentDto, cancellationToken);
 
             return NoContent();
         }
@@ -60,10 +60,10 @@
         [HttpDelete("{id:Guid}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> DeleteCategory([FromRoute] Guid id,
+        public async Task<IActionResult> DeleteStudent([FromRoute] Guid id,
             CancellationToken cancellationToken = default)
         {
-            var categoryToToDelete = await _studentService.DeleteAsync(id, cancellationToken);
+            var studentToToDelete = await _studentService.DeleteAsync(id, cancellationToken);
 
             return NoContent();
         }
