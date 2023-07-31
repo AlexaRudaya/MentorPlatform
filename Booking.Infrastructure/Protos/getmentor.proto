@@ -1,6 +1,6 @@
 ﻿syntax = "proto3";
  
-option csharp_namespace = "Booking.API.Protos";
+option csharp_namespace = "Booking.Infrastracture.Protos";
 
 import "google/protobuf/timestamp.proto";
 
@@ -25,10 +25,10 @@ message GetMentorByIdReply {
 }
 
 message Availability {
-	string availability_id = 1;
-	google.protobuf.Timestamp date = 2;
-	bool is_available = 3;
-	google.protobuf.Timestamp start_time = 4;
-	google.protobuf.Timestamp end_time = 5;
-	string mentor_id = 6; 
+  string availability_id = 1;
+  google.protobuf.Timestamp date = 2;
+  bool is_available = 3;
+  google.protobuf.Timestamp start_time = 4;
+  google.protobuf.Timestamp end_time = 5;
+  string mentor_id = 6; 
 }

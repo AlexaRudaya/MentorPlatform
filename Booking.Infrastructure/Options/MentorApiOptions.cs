@@ -1,4 +1,4 @@
-﻿namespace Booking.ApplicationCore.Options
+﻿namespace Booking.Infrastructure.Options
 {
     public class MentorApiOptions
     {

@@ -1,4 +1,4 @@
-﻿namespace Mentors.ApplicationCore.Services.GrpcServices
+﻿namespace Mentors.API.Services.GrpcService
 {
     public class GetMentorService : MentorByIdService.MentorByIdServiceBase
     {

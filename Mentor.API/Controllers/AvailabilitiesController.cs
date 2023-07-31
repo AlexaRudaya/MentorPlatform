@@ -1,4 +1,6 @@
-﻿namespace Mentors.API.Controllers
+﻿using Availability = Mentors.Domain.Entities.Availability;
+
+namespace Mentors.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

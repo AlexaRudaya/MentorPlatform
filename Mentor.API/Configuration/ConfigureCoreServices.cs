@@ -17,6 +17,8 @@
 
         public static IServiceCollection ConfigureAPI(this IServiceCollection services)
         {
+            services.AddAutoMapper(typeof(MapperAPI));
+
             services.AddControllers();
             services.AddFluentValidationAutoValidation();
             services.AddTransient<GlobalExceptionHandlingMiddleware>();

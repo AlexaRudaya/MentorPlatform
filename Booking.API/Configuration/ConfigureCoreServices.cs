@@ -137,6 +137,7 @@
             services.AddDbContext<BookingDbContext>(dbContextOptions =>
                 dbContextOptions.UseSqlServer(configuration.GetConnectionString("BookingConnection")));
 
+            services.AddAutoMapper(typeof(MapperInfrastructure));
 
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddScoped<IStudentRepository, StudentRepository>();

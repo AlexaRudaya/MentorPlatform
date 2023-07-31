@@ -14,13 +14,6 @@
             CreateMap<MentorBooking, BookingDto>()
                 .ForMember(booking => booking.MentorId, options => options.MapFrom(booking => booking.MentorId))
                 .ReverseMap();
-
-            CreateMap<Student, StudentCreateDto>().ReverseMap();
-
-            CreateMap<Availability, AvailabilityDto>().ReverseMap();
-
-            CreateMap<Timestamp, DateTime>().ConvertUsing(timestamp => timestamp.ToDateTime());
-            CreateMap<DateTime, Timestamp>().ConvertUsing(dateTime => Timestamp.FromDateTime(dateTime));
         }
     }
 }

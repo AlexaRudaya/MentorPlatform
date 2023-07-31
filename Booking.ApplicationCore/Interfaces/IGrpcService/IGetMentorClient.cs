@@ -2,7 +2,7 @@
 {
     public interface IGetMentorClient
     {
-        Task<GetMentorByIdReply> GetMentorAsync(string mentorId,
+        Task<MentorDto> GetMentorAsync(string mentorId,
             CancellationToken cancellationToken = default);
     }
 }
