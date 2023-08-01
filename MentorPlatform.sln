@@ -19,9 +19,9 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.Domain", "Identity.Domain\Identity.Domain.csproj", "{1854ED0E-0D85-4FB6-BC7D-F82317FD2694}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mentor", "Mentor", "{56C09C6F-A027-458A-B461-13A37408DDD3}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mentors", "Mentors", "{56C09C6F-A027-458A-B461-13A37408DDD3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mentors.API", "Mentor.API\Mentors.API.csproj", "{2D723AEB-E33F-4534-8EA8-539FA04B4FD9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mentors.API", "Mentors.API\Mentors.API.csproj", "{2D723AEB-E33F-4534-8EA8-539FA04B4FD9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mentors.Infrastructure", "Mentors.Infrastructure\Mentors.Infrastructure.csproj", "{6DC3CB07-A007-4134-83B0-C0AF29F31BBF}"
 EndProject

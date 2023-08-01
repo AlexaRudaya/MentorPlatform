@@ -13,8 +13,6 @@
                 await mentorDbContext.Database.MigrateAsync();
                 SeedMentors(mentorDbContext);
             }
-
-            SeedMentors(mentorDbContext);
         }
 
         private static void SeedMentors(MentorDbContext mentorDbContext)

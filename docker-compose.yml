@@ -3,28 +3,34 @@ version: "3.9"
 networks:
  deploy-mentor:
   driver: bridge
-
+ 
 services:
+
  mentor_api:
   build:
    context: .
    dockerfile: ./Mentors.API/Dockerfile 
+  container_name: mentor_api
+  ports:
+   - '7001:7001'
   depends_on:
-   - identityserver
+   - mentor_db 
   entrypoint: /bin/sh -c "dotnet Mentors.API.dll"
   environment:
    - ASPNETCORE_ENVIRONMENT=Development
    - ASPNETCORE_URLS=https://+:7001
-   - AUTHENTICATION__AUTHORITY=https://localhost:44374
-   - AUTHENTICATION__AUDIENCE=a0b78dde-e09a-4ddb-b78c-bea6dd64cf33 
-  ports:
-   - '7001:7001'
-  volumes:
-   - ./localhost.pfx:/https/localhost.pfx:ro
-   - ./localhost.crt:/usr/local/share/ca-certificates/localhost.crt:ro
 
- postgres_db:
-  container_name: postgres
+ mentor_db:
+  container_name: mentor_db
+  environment:
+   - ACCEPT_EULA=Y
+   - SA_PASSWORD=Ms!1password 
+  image: mcr.microsoft.com/mssql/server:2022-latest
+  ports:
+   - '5015:1433'
+
+ identity_db:
+  container_name: identity_db
   environment:
     POSTGRES_USER: postgres
     POSTGRES_PASSWORD: password
@@ -55,13 +61,13 @@ services:
    context: .
    dockerfile: Identity.API/Dockerfile 
   depends_on:
-   - postgres_db
+   - identity_db
   entrypoint: /bin/sh -c "update-ca-certificates && dotnet Identity.API.dll"
   environment:
    - ASPNETCORE_ENVIRONMENT=Development
    - ASPNETCORE_URLS=https://+:44374
-   - CONNECTIONSTRINGS__IDENTITYCONNECTION=Server=postgres_db;Port=5432;Database=Identity;User Id=postgres;Password=password;
-   - CONNECTIONSTRINGS__IDENTITYSERVERCONNECTION=Server=postgres_db;Port=5432;Database=IdentityServer;User Id=postgres;Password=password;  
+   - CONNECTIONSTRINGS__IDENTITYCONNECTION=Server=identity_db;Port=5432;Database=Identity;User Id=postgres;Password=password;
+   - CONNECTIONSTRINGS__IDENTITYSERVERCONNECTION=Server=identity_db;Port=5432;Database=IdentityServer;User Id=postgres;Password=password;  
   ports:
    - '44374:443'
   networks:

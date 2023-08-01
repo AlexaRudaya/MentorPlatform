@@ -5,13 +5,13 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["Mentor.API/Mentors.API.csproj", "Mentor.API/"]
+COPY ["Mentors.API/Mentors.API.csproj", "Mentors.API/"]
 COPY ["Mentors.ApplicationCore/Mentors.ApplicationCore.csproj", "Mentors.ApplicationCore/"]
 COPY ["Mentors.Domain/Mentors.Domain.csproj", "Mentors.Domain/"]
 COPY ["Mentors.Infrastructure/Mentors.Infrastructure.csproj", "Mentors.Infrastructure/"]
-RUN dotnet restore "Mentor.API/Mentors.API.csproj"
+RUN dotnet restore "Mentors.API/Mentors.API.csproj"
 COPY . .
-WORKDIR "/src/Mentor.API"
+WORKDIR "/src/Mentors.API"
 RUN dotnet build "Mentors.API.csproj" -c Release -o /app/build
 
 FROM build AS publish

@@ -17,7 +17,7 @@ app.MapGrpcService<GetMentorService>();
 
 if (app.Environment.IsDevelopment())
 {
-    await MentorsSeed.SeedAsync(app);
+    //await MentorsSeed.SeedAsync(app);
 
     app.UseSwagger();
     app.UseSwaggerUI();

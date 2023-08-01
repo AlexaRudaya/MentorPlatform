@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Mentors.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(MentorDbContext))]
-    [Migration("20230725131549_Add_NotNull_Availabilities_To_Mentor")]
-    partial class Add_NotNull_Availabilities_To_Mentor
+    [Migration("20230801122248_Initial Create")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -60,7 +60,6 @@ namespace Mentors.Infrastructure.Data.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
