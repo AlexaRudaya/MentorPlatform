@@ -393,3 +393,432 @@
 08/01/2023 14:18:59 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
 08/01/2023 14:18:59 Using the default authentication scheme "Identity.Application" for IdentityServer
 08/01/2023 14:18:59 No XML encryptor configured. Key {8e72e9e9-043a-40fd-b531-1247cda163ca} may be persisted to storage in unencrypted form.
+08/01/2023 15:59:35 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/01/2023 15:59:35 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/01/2023 15:59:35 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/01/2023 15:59:35 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/01/2023 15:59:35 No XML encryptor configured. Key {f3b8de0d-f735-4fd6-b88f-effca9a4bc9a} may be persisted to storage in unencrypted form.
+08/01/2023 16:02:50 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/01/2023 16:02:51 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/01/2023 16:02:51 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/01/2023 16:02:51 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/01/2023 16:02:51 No XML encryptor configured. Key {064bf282-2c24-4bda-bf15-180e052726d9} may be persisted to storage in unencrypted form.
+08/01/2023 16:18:19 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/01/2023 16:18:20 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/01/2023 16:18:20 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/01/2023 16:18:20 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/01/2023 16:18:20 No XML encryptor configured. Key {c93564e4-3579-455f-ac73-c59644aeaff1} may be persisted to storage in unencrypted form.
+08/01/2023 16:20:40 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/01/2023 16:20:40 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/01/2023 16:20:40 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/01/2023 16:20:40 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/01/2023 16:20:40 No XML encryptor configured. Key {f61988e7-480e-4463-b43b-ab6e3ed405c0} may be persisted to storage in unencrypted form.
+08/01/2023 16:26:54 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/01/2023 16:26:54 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/01/2023 16:26:54 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/01/2023 16:26:54 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/01/2023 16:26:54 No XML encryptor configured. Key {791832a4-99a2-4840-9594-79552f32e61d} may be persisted to storage in unencrypted form.
+08/01/2023 17:43:31 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/01/2023 17:43:32 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/01/2023 17:43:32 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/01/2023 17:43:32 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/01/2023 17:43:32 No XML encryptor configured. Key {b9ca719e-fc97-4212-9c9b-7aec983a0620} may be persisted to storage in unencrypted form.
+08/01/2023 17:45:02 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/01/2023 17:45:03 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/01/2023 17:45:03 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/01/2023 17:45:03 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/01/2023 17:45:03 No XML encryptor configured. Key {136770d6-8676-4922-bb0c-133bb4db8fcc} may be persisted to storage in unencrypted form.
+08/01/2023 17:50:35 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/01/2023 17:50:35 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/01/2023 17:50:35 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/01/2023 17:50:35 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/01/2023 17:50:36 No XML encryptor configured. Key {f4c296df-704b-4672-b96a-c9ab6fa7129e} may be persisted to storage in unencrypted form.
+08/01/2023 17:52:20 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/01/2023 17:52:20 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/01/2023 17:52:20 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/01/2023 17:52:20 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/01/2023 17:52:20 No XML encryptor configured. Key {6bb6e0b1-757a-475b-9a9f-2e153cb2ee9e} may be persisted to storage in unencrypted form.
+08/01/2023 17:54:21 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/01/2023 17:54:21 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/01/2023 17:54:21 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/01/2023 17:54:21 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/01/2023 17:54:21 No XML encryptor configured. Key {df3fdf73-0d91-4984-b7fe-93e3de8540fc} may be persisted to storage in unencrypted form.
+08/01/2023 17:55:37 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/01/2023 17:55:38 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/01/2023 17:55:38 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/01/2023 17:55:38 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/01/2023 17:55:38 No XML encryptor configured. Key {9a63cba7-b122-47fd-adff-8515a25bbd7d} may be persisted to storage in unencrypted form.
+08/01/2023 17:56:54 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/01/2023 17:56:54 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/01/2023 17:56:54 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/01/2023 17:56:54 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/01/2023 17:56:55 No XML encryptor configured. Key {a0d31b63-b244-4b00-9688-1558040629f3} may be persisted to storage in unencrypted form.
+08/01/2023 17:59:57 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/01/2023 17:59:57 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/01/2023 17:59:57 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/01/2023 17:59:57 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/01/2023 17:59:58 No XML encryptor configured. Key {3ced966e-fa8b-499d-9382-c1ec54128f8a} may be persisted to storage in unencrypted form.
+08/01/2023 18:03:04 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/01/2023 18:03:04 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/01/2023 18:03:04 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/01/2023 18:03:04 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/01/2023 18:03:04 No XML encryptor configured. Key {205954d7-78e4-45d3-a880-7acca5c283c4} may be persisted to storage in unencrypted form.
+08/01/2023 18:04:58 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/01/2023 18:04:58 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/01/2023 18:04:58 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/01/2023 18:04:58 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/01/2023 18:04:59 No XML encryptor configured. Key {2b8b8fe6-06f6-4de4-be1a-31516fe41ed3} may be persisted to storage in unencrypted form.
+08/01/2023 18:07:05 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/01/2023 18:07:05 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/01/2023 18:07:05 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/01/2023 18:07:05 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/01/2023 18:07:06 No XML encryptor configured. Key {52f56e09-3c81-4985-bd11-1e1e2f879bbe} may be persisted to storage in unencrypted form.
+08/01/2023 18:09:00 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/01/2023 18:09:01 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/01/2023 18:09:01 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/01/2023 18:09:01 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/01/2023 18:09:01 No XML encryptor configured. Key {556b7e80-fbb2-4d4d-ad06-5b9e6d7a46de} may be persisted to storage in unencrypted form.
+08/01/2023 18:11:24 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/01/2023 18:11:24 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/01/2023 18:11:24 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/01/2023 18:11:24 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/01/2023 18:11:25 No XML encryptor configured. Key {5fee2c56-a91b-4470-831a-20fe0f2c5f7c} may be persisted to storage in unencrypted form.
+08/01/2023 18:13:43 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/01/2023 18:13:44 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/01/2023 18:13:44 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/01/2023 18:13:44 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/01/2023 18:13:44 No XML encryptor configured. Key {def89ef7-8ab6-4bd2-944e-58285c90af4f} may be persisted to storage in unencrypted form.
+08/01/2023 18:37:50 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/01/2023 18:37:51 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/01/2023 18:37:51 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/01/2023 18:37:51 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/01/2023 18:37:51 No XML encryptor configured. Key {98aaa466-53f0-4c5e-ab8e-5ce57dfcafbc} may be persisted to storage in unencrypted form.
+08/01/2023 18:43:20 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/01/2023 18:43:20 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/01/2023 18:43:20 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/01/2023 18:43:20 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/01/2023 18:43:20 No XML encryptor configured. Key {4e5f6624-833c-432d-a77d-31ca578b8079} may be persisted to storage in unencrypted form.
+08/01/2023 19:26:51 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/01/2023 19:26:52 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/01/2023 19:26:52 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/01/2023 19:26:52 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/01/2023 19:26:52 No XML encryptor configured. Key {079fd54b-dbf0-4a9e-8836-eba194788050} may be persisted to storage in unencrypted form.
+08/01/2023 19:37:45 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/01/2023 19:37:46 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/01/2023 19:37:46 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/01/2023 19:37:46 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/01/2023 19:37:46 No XML encryptor configured. Key {4686aa0a-028d-4c77-9396-ea49ef74b8ea} may be persisted to storage in unencrypted form.
+08/01/2023 19:42:38 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/01/2023 19:42:38 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/01/2023 19:42:38 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/01/2023 19:42:38 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/01/2023 19:42:38 No XML encryptor configured. Key {ff032753-4884-4d4d-a8ae-f44149db7a6f} may be persisted to storage in unencrypted form.
+08/02/2023 06:04:42 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 06:04:42 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 06:04:42 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 06:04:42 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 06:04:43 No XML encryptor configured. Key {17c42eba-48c1-4528-b3f3-c8520a62be1a} may be persisted to storage in unencrypted form.
+08/02/2023 06:19:17 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 06:19:17 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 06:19:17 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 06:19:17 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 06:19:17 No XML encryptor configured. Key {f14aeee5-7ec4-438d-86e2-c56c980c592c} may be persisted to storage in unencrypted form.
+08/02/2023 06:26:18 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 06:26:18 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 06:26:18 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 06:26:18 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 06:26:18 No XML encryptor configured. Key {c54ffd1e-1755-499b-9e87-ea4223f16d87} may be persisted to storage in unencrypted form.
+08/02/2023 06:33:17 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 06:33:17 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 06:33:17 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 06:33:17 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 06:33:17 No XML encryptor configured. Key {2211a97f-1042-41f9-8273-cca18100712d} may be persisted to storage in unencrypted form.
+08/02/2023 06:41:04 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 06:41:05 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 06:41:05 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 06:41:05 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 06:41:05 No XML encryptor configured. Key {355bb99a-2aef-4de2-a55d-17b500e4ea86} may be persisted to storage in unencrypted form.
+08/02/2023 06:48:10 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 06:48:11 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 06:48:11 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 06:48:11 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 06:48:11 No XML encryptor configured. Key {c76c9b7d-ceb3-4d7f-ba28-f1fb704f9ae1} may be persisted to storage in unencrypted form.
+08/02/2023 06:52:14 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 06:52:14 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 06:52:14 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 06:52:14 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 06:52:14 No XML encryptor configured. Key {08017716-cd79-4066-88bb-6e01c79c5376} may be persisted to storage in unencrypted form.
+08/02/2023 06:54:16 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 06:54:16 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 06:54:16 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 06:54:16 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 06:54:16 No XML encryptor configured. Key {1601a7a4-5cf8-4205-9801-6c5ed74a1352} may be persisted to storage in unencrypted form.
+08/02/2023 06:58:46 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 06:58:46 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 06:58:46 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 06:58:46 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 06:58:46 No XML encryptor configured. Key {b41781ba-fe73-46fb-a867-47e90660ee90} may be persisted to storage in unencrypted form.
+08/02/2023 07:10:33 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 07:10:33 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 07:10:33 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 07:10:33 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 07:10:33 No XML encryptor configured. Key {87f9cddf-33f9-4a50-bd21-e6d64f3d3540} may be persisted to storage in unencrypted form.
+08/02/2023 07:14:06 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 07:14:06 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 07:14:06 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 07:14:06 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 07:14:06 No XML encryptor configured. Key {5b6364d7-6874-4bdd-bcee-03124f281a7e} may be persisted to storage in unencrypted form.
+08/02/2023 07:18:03 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 07:18:03 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 07:18:03 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 07:18:03 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 07:18:04 No XML encryptor configured. Key {3184a348-d484-4248-85ec-d7096bcfdad0} may be persisted to storage in unencrypted form.
+08/02/2023 07:28:47 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 07:28:47 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 07:28:47 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 07:28:47 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 07:28:48 No XML encryptor configured. Key {b5188ab2-41a5-4de5-b829-6e2337f962c0} may be persisted to storage in unencrypted form.
+08/02/2023 07:46:27 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 07:46:28 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 07:46:28 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 07:46:28 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 07:46:28 No XML encryptor configured. Key {98f7f664-4e57-447e-9fdb-2ba34b74a5d5} may be persisted to storage in unencrypted form.
+08/02/2023 07:56:57 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 07:56:57 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 07:56:57 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 07:56:57 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 07:56:57 No XML encryptor configured. Key {84bb055f-4c87-4ba9-9744-718be758e9b6} may be persisted to storage in unencrypted form.
+08/02/2023 07:58:02 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 07:58:03 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 07:58:03 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 07:58:03 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 07:58:03 No XML encryptor configured. Key {63064b98-babb-4eda-8a3e-a3c1d9a3d2f3} may be persisted to storage in unencrypted form.
+08/02/2023 08:44:47 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 08:44:48 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 08:44:48 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 08:44:48 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 08:44:48 No XML encryptor configured. Key {b2118bcf-f9f0-4829-bca2-6a06fb698e58} may be persisted to storage in unencrypted form.
+08/02/2023 08:47:55 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 08:47:56 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 08:47:56 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 08:47:56 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 08:47:56 No XML encryptor configured. Key {9b5d3f1c-71e6-4ed9-bcd6-ca08d5efd159} may be persisted to storage in unencrypted form.
+08/02/2023 08:49:49 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 08:49:50 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 08:49:50 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 08:49:50 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 08:49:50 No XML encryptor configured. Key {48b0f98d-37f7-4b47-9a1b-d75b333c9eff} may be persisted to storage in unencrypted form.
+08/02/2023 08:52:32 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 08:52:32 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 08:52:32 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 08:52:32 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 08:52:33 No XML encryptor configured. Key {d069c66d-e2dd-4249-baf5-e38d3009e79a} may be persisted to storage in unencrypted form.
+08/02/2023 09:33:59 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 09:34:00 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 09:34:00 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 09:34:00 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 09:34:00 No XML encryptor configured. Key {143562df-9bf2-4349-a9a7-7150c9b5cc72} may be persisted to storage in unencrypted form.
+08/02/2023 09:41:26 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 09:41:26 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 09:41:26 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 09:41:26 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 09:41:26 No XML encryptor configured. Key {1446df23-47f4-45b6-8647-f72f864b90cc} may be persisted to storage in unencrypted form.
+08/02/2023 09:48:52 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 09:48:53 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 09:48:53 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 09:48:53 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 09:48:53 No XML encryptor configured. Key {347d2d82-63e0-4dbf-821d-32e4bfe993af} may be persisted to storage in unencrypted form.
+08/02/2023 09:54:13 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 09:54:14 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 09:54:14 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 09:54:14 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 09:54:14 No XML encryptor configured. Key {a2b7c464-dd17-4912-a538-fc2c670388fe} may be persisted to storage in unencrypted form.
+08/02/2023 10:03:03 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 10:03:03 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 10:03:03 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 10:03:03 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 10:03:03 No XML encryptor configured. Key {d6941d3c-5eb5-45e5-b298-53b80125a9c7} may be persisted to storage in unencrypted form.
+08/02/2023 10:09:48 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 10:09:49 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 10:09:49 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 10:09:49 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 10:09:49 No XML encryptor configured. Key {3b2ddc70-b94c-4ccc-b0c2-e8e8b710c085} may be persisted to storage in unencrypted form.
+08/02/2023 10:14:31 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 10:14:32 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 10:14:32 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 10:14:32 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 10:14:32 No XML encryptor configured. Key {688964c4-c84a-42a4-8d42-570f3b4b2d11} may be persisted to storage in unencrypted form.
+08/02/2023 10:33:38 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 10:33:39 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 10:33:39 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 10:33:39 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 10:33:39 No XML encryptor configured. Key {04558673-e39a-4260-aff0-3e672413bd66} may be persisted to storage in unencrypted form.
+08/02/2023 10:36:08 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 10:36:08 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 10:36:08 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 10:36:08 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 10:36:08 No XML encryptor configured. Key {185d20b3-5295-4661-82fe-0c4ce230103d} may be persisted to storage in unencrypted form.
+08/02/2023 10:39:01 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 10:39:01 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 10:39:01 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 10:39:01 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 10:39:01 No XML encryptor configured. Key {a40f9041-e1f7-4412-97f4-5a6ee1fc42c5} may be persisted to storage in unencrypted form.
+08/02/2023 10:43:44 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 10:43:44 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 10:43:44 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 10:43:44 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 10:43:45 No XML encryptor configured. Key {2adc22ad-7dc2-4685-b73e-b839eb26ac9a} may be persisted to storage in unencrypted form.
+08/02/2023 10:54:28 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 10:54:28 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 10:54:28 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 10:54:28 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 10:54:28 No XML encryptor configured. Key {1563bb23-fbf7-4469-8fc8-2164120e2070} may be persisted to storage in unencrypted form.
+08/02/2023 11:01:41 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 11:01:41 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 11:01:41 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 11:01:41 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 11:01:41 No XML encryptor configured. Key {f1dc5a55-f51d-4461-9a5b-abc306cd0a39} may be persisted to storage in unencrypted form.
+08/02/2023 11:04:53 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 11:04:53 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 11:04:53 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 11:04:53 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 11:04:53 No XML encryptor configured. Key {1f68aaf8-7844-4243-a773-16781152e865} may be persisted to storage in unencrypted form.
+08/02/2023 11:12:00 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 11:12:01 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 11:12:01 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 11:12:01 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 11:12:01 No XML encryptor configured. Key {f7c45f0d-0316-4e08-877e-3cbaaed1748c} may be persisted to storage in unencrypted form.
+08/02/2023 11:16:12 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 11:16:13 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 11:16:13 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 11:16:13 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 11:16:13 No XML encryptor configured. Key {b51c1d58-9355-441d-bb01-dbeb6e78fec6} may be persisted to storage in unencrypted form.
+08/02/2023 11:31:15 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 11:31:15 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 11:31:16 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 11:31:16 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 11:31:16 No XML encryptor configured. Key {2267e290-c771-4827-a113-4f1360733449} may be persisted to storage in unencrypted form.
+08/02/2023 11:37:19 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 11:37:20 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 11:37:20 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 11:37:20 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 11:37:20 No XML encryptor configured. Key {5e269bd9-3d1a-4ff9-85c0-11c65edcdb43} may be persisted to storage in unencrypted form.
+08/02/2023 11:55:35 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 11:55:35 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 11:55:36 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 11:55:36 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 11:55:36 No XML encryptor configured. Key {f2a39c57-bd64-4ee1-9150-f2c112337f3a} may be persisted to storage in unencrypted form.
+08/02/2023 11:59:30 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 11:59:30 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 11:59:30 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 11:59:30 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 12:09:47 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 12:09:47 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 12:09:47 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 12:09:47 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 12:09:47 No XML encryptor configured. Key {a078f96a-046d-405f-bbd3-57b829b7d14d} may be persisted to storage in unencrypted form.
+08/02/2023 12:12:07 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 12:12:08 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 12:12:08 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 12:12:08 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 12:12:08 No XML encryptor configured. Key {7c47bc99-eafe-449e-bc89-1a7ac47ed258} may be persisted to storage in unencrypted form.
+08/02/2023 12:16:12 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 12:16:13 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 12:16:13 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 12:16:13 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 12:16:13 No XML encryptor configured. Key {b8aafcdf-6aee-412a-ae59-88e3facb8ee2} may be persisted to storage in unencrypted form.
+08/02/2023 12:23:20 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 12:23:21 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 12:23:21 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 12:23:21 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 12:23:21 No XML encryptor configured. Key {2fffe236-4870-4277-9e73-c7859c49aef8} may be persisted to storage in unencrypted form.
+08/02/2023 12:26:00 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 12:26:00 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 12:26:01 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 12:26:01 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 12:26:01 No XML encryptor configured. Key {ad5450be-236b-43bb-9cdc-c981cf9aa651} may be persisted to storage in unencrypted form.
+08/02/2023 12:54:24 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 12:54:24 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 12:54:25 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 12:54:25 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 12:54:25 No XML encryptor configured. Key {65be6d8c-72c7-424f-8a99-2fb01a58bcbb} may be persisted to storage in unencrypted form.
+08/02/2023 12:56:59 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 12:56:59 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 12:56:59 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 12:56:59 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 12:57:00 No XML encryptor configured. Key {c88c05b1-ea24-46fd-b5ca-10b20f3d72bf} may be persisted to storage in unencrypted form.
+08/02/2023 13:00:16 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 13:00:16 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 13:00:16 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 13:00:16 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 13:00:16 No XML encryptor configured. Key {4f1a7b57-ce7c-484c-97eb-cd486a898e4f} may be persisted to storage in unencrypted form.
+08/02/2023 13:07:58 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 13:07:58 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 13:07:58 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 13:07:58 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 13:07:59 No XML encryptor configured. Key {de8580be-a707-438e-b549-e28731b8eb2a} may be persisted to storage in unencrypted form.
+08/02/2023 13:13:07 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 13:13:07 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 13:13:07 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 13:13:07 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 13:13:07 No XML encryptor configured. Key {10497d3e-06c3-4eb3-a778-1397d8cb36b3} may be persisted to storage in unencrypted form.
+08/02/2023 13:23:48 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 13:23:48 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 13:23:49 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 13:23:49 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 13:23:49 No XML encryptor configured. Key {32d7e91f-6100-4a16-8bba-dc47c070c333} may be persisted to storage in unencrypted form.
+08/02/2023 13:33:11 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 13:33:11 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 13:33:12 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 13:33:12 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 13:33:12 No XML encryptor configured. Key {b6d57b96-e4ee-42ab-bc4f-e3a24206c271} may be persisted to storage in unencrypted form.
+08/02/2023 16:42:29 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 16:42:29 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 16:42:29 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 16:42:29 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 16:42:29 No XML encryptor configured. Key {5cecb93b-1e89-4fc4-bd43-ba3c319d5548} may be persisted to storage in unencrypted form.
+08/02/2023 16:45:31 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 16:45:31 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 16:45:31 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 16:45:31 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 16:45:31 No XML encryptor configured. Key {2f13056a-689c-4513-a84f-62c93578072a} may be persisted to storage in unencrypted form.
+08/02/2023 16:52:56 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 16:52:56 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 16:52:56 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 16:52:56 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 16:52:56 No XML encryptor configured. Key {824ca4cf-6242-49ec-821c-eada76fbef5a} may be persisted to storage in unencrypted form.
+08/02/2023 16:56:01 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 16:56:02 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 16:56:02 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 16:56:02 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 16:56:02 No XML encryptor configured. Key {9b3b72c7-5ad4-4e36-aa24-f8ae78636f58} may be persisted to storage in unencrypted form.
+08/02/2023 16:59:28 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 16:59:28 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 16:59:28 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 16:59:28 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 16:59:28 No XML encryptor configured. Key {55ca0955-7334-4541-8fe0-14b2cb252c03} may be persisted to storage in unencrypted form.
+08/02/2023 17:03:32 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 17:03:32 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 17:03:32 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 17:03:32 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 17:03:32 No XML encryptor configured. Key {c6dd03fe-fa71-461b-bd28-26d0a3734575} may be persisted to storage in unencrypted form.
+08/02/2023 17:08:45 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 17:08:46 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 17:08:46 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 17:08:46 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 17:08:46 No XML encryptor configured. Key {97de57ea-c669-472a-b75a-a1f73af02701} may be persisted to storage in unencrypted form.
+08/02/2023 17:13:57 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 17:13:57 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 17:13:57 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 17:13:57 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 17:13:57 No XML encryptor configured. Key {f38f54b1-9fda-447b-8a51-e9448dc36300} may be persisted to storage in unencrypted form.
+08/02/2023 17:16:16 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 17:16:16 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 17:16:16 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 17:16:16 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 17:16:16 No XML encryptor configured. Key {36d03972-79da-4a59-99f4-d97c8ee85f08} may be persisted to storage in unencrypted form.
+08/02/2023 17:18:41 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 17:18:42 Starting Duende IdentityServer version "6.3.3+4b4117844553d1ce52966e37734f2b7cd285de89" (".NET 7.0.9")
+08/02/2023 17:18:42 You do not have a valid license key for the Duende software. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+08/02/2023 17:18:42 Using the default authentication scheme "Identity.Application" for IdentityServer
+08/02/2023 17:18:42 No XML encryptor configured. Key {acf3d590-a076-4304-ac1e-3cfbb9137b3b} may be persisted to storage in unencrypted form.

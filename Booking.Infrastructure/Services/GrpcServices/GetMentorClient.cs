@@ -12,7 +12,17 @@
         {
             _options = options.Value;
             _mapper = mapper;
-            var channel = GrpcChannel.ForAddress(_options.MentorApiUrl);
+
+            var httpHandler = new HttpClientHandler
+            {
+                ServerCertificateCustomValidationCallback =
+                HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+            };
+            var channel = GrpcChannel.ForAddress(_options.MentorApiUrl, new GrpcChannelOptions
+            {
+                HttpHandler = httpHandler
+            });
+   
             _mentorClient = new MentorByIdService.MentorByIdServiceClient(channel);
         }
 
