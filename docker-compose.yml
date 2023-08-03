@@ -99,8 +99,6 @@ services:
   environment:
    - ASPNETCORE_ENVIRONMENT=Development
    - ASPNETCORE_URLS=https://+:443
-   - CONNECTIONSTRINGS__IDENTITYCONNECTION=Server=identity_db;Port=5432;Database=Identity;User Id=postgres;Password=password;
-   - CONNECTIONSTRINGS__IDENTITYSERVERCONNECTION=Server=identity_db;Port=5432;Database=IdentityServer;User Id=postgres;Password=password;  
   ports:
    - '443:443'
   networks:

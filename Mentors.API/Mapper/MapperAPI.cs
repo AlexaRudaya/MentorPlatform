@@ -5,8 +5,7 @@
         public MapperAPI()
         {
             CreateMap<Mentor, GetMentorByIdReply>()
-                .ForMember(reply => reply.MentorId, options => options.MapFrom(reply => reply.Id))
-                .ReverseMap();
+                .ForMember(reply => reply.MentorId, options => options.MapFrom(reply => reply.Id));
 
             CreateMap<Domain.Entities.Availability, Protos.Availability>()
                 .ForMember(availability => availability.Date,

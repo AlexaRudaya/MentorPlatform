@@ -4,8 +4,8 @@
     {
         public MapperInfrastructure()
         {
-            CreateMap<GetMentorByIdReply, MentorDto>().ReverseMap();
-            CreateMap<Availability, AvailabilityDto>().ReverseMap();
+            CreateMap<GetMentorByIdReply, MentorDto>();
+            CreateMap<Availability, AvailabilityDto>();
             CreateMap<Timestamp, DateTime>().ConvertUsing(timestamp => timestamp.ToDateTime());
             CreateMap<DateTime, Timestamp>().ConvertUsing(dateTime => Timestamp.FromDateTime(dateTime));
         }
