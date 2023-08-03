@@ -8034,3 +8034,8 @@ System.FormatException: Guid should contain 32 digits with 4 dashes (xxxxxxxx-xx
 08/03/2023 06:58:25 Overriding address(es) '"https://+:7001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
 08/03/2023 06:58:35 Mentors are loaded
 08/03/2023 06:58:47 Mentor with ID 52844b8f-7de4-4ee7-3de6-08db93ef0824 found
+08/03/2023 07:10:05 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/03/2023 07:10:06 No XML encryptor configured. Key {46108571-bd36-4502-9d61-cf8bfed5da4d} may be persisted to storage in unencrypted form.
+08/03/2023 07:10:06 Overriding address(es) '"https://+:7001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+08/03/2023 07:10:30 Mentors are loaded
+08/03/2023 07:10:51 Mentor with ID 59561737-e10f-41a3-f1ad-08db93f0a9cc found

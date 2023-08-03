@@ -3690,3 +3690,5 @@ Error Number:515,State:2,Class:16
 08/03/2023 06:56:17 Bookings are loaded
 08/03/2023 06:58:23 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
 08/03/2023 06:58:23 No XML encryptor configured. Key {82c501e9-0ae1-4389-bd1a-23ff8ba608d1} may be persisted to storage in unencrypted form.
+08/03/2023 07:10:03 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/03/2023 07:10:03 No XML encryptor configured. Key {3e4bc782-2bc4-47d7-82b0-af0892545f83} may be persisted to storage in unencrypted form.
