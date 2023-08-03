@@ -1,4 +1,5 @@
-﻿using Mentors.Infrastructure.MessageBroker;
+﻿using MassTransit;
+using Mentors.Infrastructure.MessageBroker;
 using Microsoft.Extensions.Options;
 
 namespace Mentors.API.Configuration
@@ -140,15 +141,37 @@ namespace Mentors.API.Configuration
             services.AddDbContext<MentorDbContext>(dbContextOptions =>
                 dbContextOptions.UseSqlServer(configuration.GetConnectionString("MentorsConnection")));
 
+            services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IMentorRepository, MentorRepository>();
+            services.AddScoped<IAvailabilityRepository, AvailabilityRepository>();
+
+            return services;
+        }
+
+        public static IServiceCollection ConfigureMessageBroker(this IServiceCollection services,
+            IConfiguration configuration)
+        {
             services.Configure<MessageBrokerSettings>(configuration.GetSection("MessageBroker"));
 
             services.AddSingleton(serviceProvider =>
                 serviceProvider.GetRequiredService<IOptions<MessageBrokerSettings>>().Value);
 
-            services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
-            services.AddScoped<ICategoryRepository, CategoryRepository>();
-            services.AddScoped<IMentorRepository, MentorRepository>();
-            services.AddScoped<IAvailabilityRepository, AvailabilityRepository>();
+            services.AddMassTransit(busConfigurator =>
+            {
+                busConfigurator.SetKebabCaseEndpointNameFormatter();
+
+                busConfigurator.UsingRabbitMq((busRegistrationContext, busConfigurator) =>
+                {
+                    MessageBrokerSettings settings = busRegistrationContext.GetRequiredService<MessageBrokerSettings>();
+
+                    busConfigurator.Host(new Uri(settings.Host), hostConfigurator =>
+                    {
+                        hostConfigurator.Username(settings.Username);
+                        hostConfigurator.Password(settings.Password);
+                    });
+                });
+            });
 
             return services;
         }
