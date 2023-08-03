@@ -11,6 +11,7 @@
 
         public MentorDbContext(DbContextOptions<MentorDbContext> options) : base(options)
         {
+            Database.Migrate();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

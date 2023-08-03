@@ -239,6 +239,8 @@ ClientBin/
 *.pfx
 *.crt
 *.key
+*.logs.json
+*Logslogs.json
 *.publishsettings
 orleans.codegen.cs
 

@@ -8,13 +8,11 @@
 
             var mentorDbContext = scope.ServiceProvider.GetRequiredService<MentorDbContext>();
 
-            if (!mentorDbContext.Mentors.Any())
+            if (!mentorDbContext.Categories.Any())
             {
                 await mentorDbContext.Database.MigrateAsync();
                 SeedMentors(mentorDbContext);
             }
-
-            SeedMentors(mentorDbContext);
         }
 
         private static void SeedMentors(MentorDbContext mentorDbContext)

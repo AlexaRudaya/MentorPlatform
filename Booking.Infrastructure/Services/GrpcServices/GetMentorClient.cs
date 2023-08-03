@@ -12,7 +12,10 @@
         {
             _options = options.Value;
             _mapper = mapper;
-            var channel = GrpcChannel.ForAddress(_options.MentorApiUrl);
+            var channel = GrpcChannel.ForAddress(_options.MentorApiUrl, new GrpcChannelOptions
+            {
+                HttpHandler = GetHttpClientHandler()
+            });
             _mentorClient = new MentorByIdService.MentorByIdServiceClient(channel);
         }
 
@@ -26,6 +29,17 @@
             var mentorDto = _mapper.Map<MentorDto>(reply);
 
             return mentorDto;
+        }
+
+        private HttpClientHandler GetHttpClientHandler()
+        {
+            var httpHandler = new HttpClientHandler
+            {
+                ServerCertificateCustomValidationCallback =
+                HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+            };
+
+            return httpHandler;
         }
     }
 }

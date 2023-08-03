@@ -45,7 +45,7 @@
         public static IServiceCollection ConfigureIdentityServer(this IServiceCollection services,
             IConfiguration configuration)
         {
-            var certificate = GetCertificate(configuration);
+            //var certificate = GetCertificate(configuration);
 
             var identityServerConfiguration = services.AddIdentityServer()
                 .AddAspNetIdentity<ApplicationUser>()
@@ -64,8 +64,8 @@
                         dbContextOptionsBuilder.UseNpgsql(configuration.GetConnectionString("IdentityServerConnection"),
                             NpgsqlOptionsAction);
                     };
-                })
-                .AddSigningCredential(certificate);
+                });
+                //.AddSigningCredential(certificate);
 
             return services;
         }

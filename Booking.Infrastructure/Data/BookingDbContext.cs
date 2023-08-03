@@ -8,6 +8,7 @@
 
         public BookingDbContext(DbContextOptions<BookingDbContext> options) : base(options)
         {
+            Database.Migrate();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
