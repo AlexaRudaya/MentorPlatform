@@ -37,7 +37,7 @@
             return bookingDto;
         }
 
-        public async Task<IEnumerable<MentorDto>> GetAvailabilitiesOfMentor(string mentorId, 
+        public async Task<IEnumerable<AvailabilityDto>> GetAvailabilitiesOfMentor(string mentorId, 
             CancellationToken cancellationToken = default)
         {
             var mentorReply = await _mentorClient.GetMentorAsync(mentorId);
@@ -48,7 +48,7 @@
                 throw new ObjectNotFoundException("Mentor was not found");
             }
 
-            var availabilities = _mapper.Map<IEnumerable<MentorDto>>(mentorReply);
+            var availabilities = _mapper.Map<IEnumerable<AvailabilityDto>>(mentorReply.Availabilities);
 
             return availabilities;
         }

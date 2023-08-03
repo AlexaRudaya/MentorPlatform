@@ -7988,3 +7988,49 @@ System.FormatException: Guid should contain 32 digits with 4 dashes (xxxxxxxx-xx
 08/02/2023 17:18:42 Overriding address(es) '"https://+:7001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
 08/02/2023 17:18:51 Mentors are loaded
 08/02/2023 17:19:36 Mentor with ID 4b51490b-16c0-401d-d351-08db937c8503 found
+08/02/2023 17:27:42 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/02/2023 17:27:42 Overriding address(es) '"https://+:7001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+08/02/2023 17:27:52 Mentors are loaded
+08/02/2023 17:28:28 Mentor with ID 7a31c66f-6b27-4fa8-d350-08db937c8503 found
+08/03/2023 06:30:43 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/03/2023 06:30:43 No XML encryptor configured. Key {1442891e-fdf8-43da-af4c-3c85e56f1d94} may be persisted to storage in unencrypted form.
+08/03/2023 06:30:44 Overriding address(es) '"https://+:7001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+08/03/2023 06:30:58 Mentors are loaded
+08/03/2023 06:31:50 Error status code 'NotFound' with detail '"Mentor not found"' raised.
+08/03/2023 06:32:17 Mentors are loaded
+08/03/2023 06:32:32 Mentor with ID 64e45d4f-69a2-4a0d-0d8b-08db93eb2a08 found
+08/03/2023 06:33:56 Mentor with ID 64e45d4f-69a2-4a0d-0d8b-08db93eb2a08 found
+08/03/2023 06:36:13 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/03/2023 06:36:13 No XML encryptor configured. Key {52c245a1-111d-44a2-99b0-0172362d1d1d} may be persisted to storage in unencrypted form.
+08/03/2023 06:36:14 Overriding address(es) '"https://+:7001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+08/03/2023 06:36:58 Mentors are loaded
+08/03/2023 06:37:27 Mentor with ID 23422a7f-1799-4a7e-960d-08db93ebeec8 found
+08/03/2023 06:38:36 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/03/2023 06:38:36 No XML encryptor configured. Key {cb13138d-28c1-45be-b415-a844fd598006} may be persisted to storage in unencrypted form.
+08/03/2023 06:38:36 Overriding address(es) '"https://+:7001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+08/03/2023 06:39:26 Mentors are loaded
+08/03/2023 06:39:40 Mentor with ID 6d922b6f-07f0-48de-fce0-08db93ec43f0 found
+08/03/2023 06:40:39 Mentor with ID 6d922b6f-07f0-48de-fce0-08db93ec43f0 found
+08/03/2023 06:41:06 Mentor with ID 6d922b6f-07f0-48de-fce0-08db93ec43f0 found
+08/03/2023 06:44:58 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/03/2023 06:44:58 No XML encryptor configured. Key {37af84aa-ef85-435a-a8be-d63ed2b2c22d} may be persisted to storage in unencrypted form.
+08/03/2023 06:44:58 Overriding address(es) '"https://+:7001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+08/03/2023 06:45:11 Mentors are loaded
+08/03/2023 06:45:24 Mentor with ID da831a8e-c54f-4152-983b-08db93ed2764 found
+08/03/2023 06:47:45 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/03/2023 06:47:45 No XML encryptor configured. Key {88f6d8fc-d2c2-42cc-87a3-94c260275b5a} may be persisted to storage in unencrypted form.
+08/03/2023 06:47:45 Overriding address(es) '"https://+:7001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+08/03/2023 06:47:58 Mentors are loaded
+08/03/2023 06:48:32 Mentor with ID 612005b7-f739-467f-33b9-08db93ed8ace found
+08/03/2023 06:52:29 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/03/2023 06:52:29 No XML encryptor configured. Key {71e4b47d-c38e-4b2a-82f9-78441722eecf} may be persisted to storage in unencrypted form.
+08/03/2023 06:52:29 Overriding address(es) '"https://+:7001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+08/03/2023 06:52:37 Mentors are loaded
+08/03/2023 06:52:53 Mentor with ID 0db95562-67d4-4b92-8b23-08db93ee3474 found
+08/03/2023 06:54:42 Mentor with ID 0db95562-67d4-4b92-8b23-08db93ee3474 found
+08/03/2023 06:55:17 Mentor with ID 0db95562-67d4-4b92-8b23-08db93ee3474 found
+08/03/2023 06:58:24 Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+08/03/2023 06:58:24 No XML encryptor configured. Key {af0610ae-5925-446c-8052-9244d6447bd1} may be persisted to storage in unencrypted form.
+08/03/2023 06:58:25 Overriding address(es) '"https://+:7001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+08/03/2023 06:58:35 Mentors are loaded
+08/03/2023 06:58:47 Mentor with ID 52844b8f-7de4-4ee7-3de6-08db93ef0824 found

@@ -1,15 +1,19 @@
 ﻿namespace Booking.ApplicationCore.DTO
 {
-    public class MentorDto : BaseDto
+    public class MentorDto 
     {
         public string MentorId { get; set; }
 
-        public DateTime Date { get; set; }
+        public string Name { get; set; }
 
-        public bool IsAvailable { get; set; }
+        public string Biography { get; set; }
 
-        public DateTime StartTime { get; set; }
+        public double HourlyRate { get; set; }
 
-        public DateTime EndTime { get; set; }
+        public int MeetingDuration { get; set; }
+
+        public string CategoryId { get; set; }
+
+        public List<AvailabilityDto> Availabilities { get; set; } = new();
     }
 }

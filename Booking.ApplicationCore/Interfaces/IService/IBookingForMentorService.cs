@@ -4,6 +4,6 @@
     {
         Task<IEnumerable<BookingDto>> GetBookingsForMentorAsync(string mentorId, CancellationToken cancellationToken = default);
 
-        Task<IEnumerable<MentorDto>> GetAvailabilitiesOfMentor(string mentorId, CancellationToken cancellationToken = default);
+        Task<IEnumerable<AvailabilityDto>> GetAvailabilitiesOfMentor(string mentorId, CancellationToken cancellationToken = default);
     }
 }
