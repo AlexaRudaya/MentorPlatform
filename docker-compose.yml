@@ -104,5 +104,16 @@ services:
   networks:
    - deploy-mentor
 
+ rabbitmq:
+  image: rabbitmq:management
+  container_name: rabbitmq
+  hostname: mentor_queue
+  volumes:
+   - ./.containers/rabbitmq/data/:/var/lib/rabbit
+   - ./.containers/rabbitmq/log/:/var/log/rabbit
+  environment:
+   RABBITMQ_DEFAULT_USER: guest
+   RABBITMQ_DEFAULT_PASSWORD: password
+
 volumes:
   db:    
