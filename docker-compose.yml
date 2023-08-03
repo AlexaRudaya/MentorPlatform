@@ -3,28 +3,67 @@ version: "3.9"
 networks:
  deploy-mentor:
   driver: bridge
-
+ 
 services:
+ booking_api:
+  build:
+   context: .
+   dockerfile: ./Booking.API/Dockerfile
+  container_name: booking_api
+  ports:
+   - '7005:7005'
+  depends_on:
+   - booking_db 
+  entrypoint: /bin/sh -c "dotnet Booking.API.dll"
+  environment:
+   - ASPNETCORE_ENVIRONMENT=Development
+   - ASPNETCORE_URLS=https://+:7005
+  networks:
+   - deploy-mentor
+ 
+ booking_db:
+  container_name: booking_db
+  environment:
+   - ACCEPT_EULA=Y
+   - MSSQL_SA_PASSWORD=Book1!pass 
+  image: mcr.microsoft.com/mssql/server:2022-latest
+  ports:
+   - '5000:1433'
+  networks:
+   - deploy-mentor
+
  mentor_api:
   build:
    context: .
    dockerfile: ./Mentors.API/Dockerfile 
+  container_name: mentor_api
+  ports:
+   - '7001:7001'
+   - '7002:7002'
   depends_on:
-   - identityserver
+   - mentor_db 
   entrypoint: /bin/sh -c "dotnet Mentors.API.dll"
   environment:
    - ASPNETCORE_ENVIRONMENT=Development
    - ASPNETCORE_URLS=https://+:7001
-   - AUTHENTICATION__AUTHORITY=https://localhost:44374
-   - AUTHENTICATION__AUDIENCE=a0b78dde-e09a-4ddb-b78c-bea6dd64cf33 
-  ports:
-   - '7001:7001'
-  volumes:
-   - ./localhost.pfx:/https/localhost.pfx:ro
-   - ./localhost.crt:/usr/local/share/ca-certificates/localhost.crt:ro
+   - GRPC_DNS_RESOLVER=native
+  networks:
+   - deploy-mentor
 
- postgres_db:
-  container_name: postgres
+ mentor_db:
+  container_name: mentor_db
+  environment:
+   - DatabaseUser=sa
+   - ACCEPT_EULA=Y
+   - MSSQL_SA_PASSWORD=Ms!1password 
+  image: mcr.microsoft.com/mssql/server:2022-latest
+  ports:
+   - '5015:1433'
+  networks:
+   - deploy-mentor
+
+ identity_db:
+  container_name: identity_db
   environment:
     POSTGRES_USER: postgres
     POSTGRES_PASSWORD: password
@@ -55,15 +94,13 @@ services:
    context: .
    dockerfile: Identity.API/Dockerfile 
   depends_on:
-   - postgres_db
+   - identity_db
   entrypoint: /bin/sh -c "update-ca-certificates && dotnet Identity.API.dll"
   environment:
    - ASPNETCORE_ENVIRONMENT=Development
-   - ASPNETCORE_URLS=https://+:44374
-   - CONNECTIONSTRINGS__IDENTITYCONNECTION=Server=postgres_db;Port=5432;Database=Identity;User Id=postgres;Password=password;
-   - CONNECTIONSTRINGS__IDENTITYSERVERCONNECTION=Server=postgres_db;Port=5432;Database=IdentityServer;User Id=postgres;Password=password;  
+   - ASPNETCORE_URLS=https://+:443
   ports:
-   - '44374:443'
+   - '443:443'
   networks:
    - deploy-mentor
 

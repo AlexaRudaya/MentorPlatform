@@ -8,8 +8,7 @@
             CreateMap<Availability, AvailabilityDto>().ReverseMap();
             CreateMap<Mentor, MentorDto>()
                 .ForMember(mentorDto => mentorDto.AvailabilitiesIds,
-                    options => options.MapFrom(mentor => mentor.Availabilities
-                                                               .Select(availability => availability.Id)))
+                    options => options.MapFrom(mentor => mentor.Availabilities.Select(availability => availability.Id)))
                 .ReverseMap();
             CreateMap<Mentor, MentorCreateDto>().ReverseMap();
         }

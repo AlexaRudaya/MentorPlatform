@@ -1,0 +1,11 @@
+﻿global using Swashbuckle.AspNetCore.Annotations;
+global using Booking.ApplicationCore.DTO;
+global using Booking.Domain.Entities;
+global using AutoMapper;
+global using Booking.ApplicationCore.Exceptions;
+global using Booking.ApplicationCore.Interfaces.IService;
+global using Booking.Domain.Abstractions.IRepository;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.Extensions.Logging;
+global using Booking.ApplicationCore.Interfaces.IGrpcService;
+global using FluentValidation;

@@ -5,12 +5,21 @@
         public static async Task SeedAsync(IHost host)
         {
             using var scope = host.Services.CreateScope();
-            var services = scope.ServiceProvider;
 
-            var mentorDbContext = services.GetRequiredService<MentorDbContext>();
-            await mentorDbContext.Database.MigrateAsync();
+            var mentorDbContext = scope.ServiceProvider.GetRequiredService<MentorDbContext>();
 
-            GetPreConfiguredMentors(mentorDbContext);
+            if (!mentorDbContext.Categories.Any())
+            {
+                await mentorDbContext.Database.MigrateAsync();
+                SeedMentors(mentorDbContext);
+            }
+        }
+
+        private static void SeedMentors(MentorDbContext mentorDbContext)
+        {
+            var mentors = GetPreConfiguredMentors(mentorDbContext);
+            mentorDbContext.Mentors.AddRange(mentors);
+            mentorDbContext.SaveChanges();
         }
 
         private static IEnumerable<Mentor> GetPreConfiguredMentors(MentorDbContext mentorDbContext)

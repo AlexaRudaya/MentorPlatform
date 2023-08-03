@@ -1,0 +1,16 @@
+﻿global using Booking.Domain.Entities;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore.Metadata.Builders;
+global using System.Reflection;
+global using Booking.Domain.Abstractions.IRepository;
+global using Booking.Infrastructure.Data;
+global using Microsoft.EntityFrameworkCore.Query;
+global using System.Linq.Expressions;
+global using AutoMapper;
+global using Booking.ApplicationCore.DTO;
+global using Booking.ApplicationCore.Interfaces.IGrpcService;
+global using Booking.Infrastracture.Protos;
+global using Booking.Infrastructure.Options;
+global using Grpc.Net.Client;
+global using Microsoft.Extensions.Options;
+global using Google.Protobuf.WellKnownTypes;

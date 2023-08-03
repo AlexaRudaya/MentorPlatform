@@ -1,0 +1,34 @@
+﻿syntax = "proto3";
+ 
+option csharp_namespace = "Booking.Infrastracture.Protos";
+
+import "google/protobuf/timestamp.proto";
+
+package mentor;
+ 
+service MentorByIdService {
+  rpc GetMentorById (GetMentorByIdRequest) returns (GetMentorByIdReply);
+}
+ 
+message GetMentorByIdRequest {
+  string mentor_id = 1; 
+}
+ 
+message GetMentorByIdReply {
+  string mentor_id = 1; 
+  string name = 2;
+  string biography = 3;
+  double hourly_rate = 4;
+  int32 meeting_duration = 5;
+  string category_id = 6; 
+  repeated Availability Availabilities = 7;
+}
+
+message Availability {
+  string availability_id = 1;
+  google.protobuf.Timestamp date = 2;
+  bool is_available = 3;
+  google.protobuf.Timestamp start_time = 4;
+  google.protobuf.Timestamp end_time = 5;
+  string mentor_id = 6; 
+}
