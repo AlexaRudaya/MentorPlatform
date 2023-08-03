@@ -1,16 +1,16 @@
 ﻿using MassTransit;
 using MentorPlatform.Shared.MessageBus;
 
-namespace Mentors.Infrastructure.MessageBroker
+namespace Booking.Infrastructure.MessageBroker
 {
-    public sealed class Producer : IProducer
+    public sealed class BookingProducer : IProducer
     {
         IPublishEndpoint _publishEndpoint;
 
-        public Producer(
+        public BookingProducer(
             IPublishEndpoint publishEndpoint)
         {
-            _publishEndpoint = publishEndpoint;    
+            _publishEndpoint = publishEndpoint;
         }
 
         public Task PublishAsync<T>(T message, CancellationToken cancellationToken = default)

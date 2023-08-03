@@ -1,5 +1,5 @@
 ﻿using MentorPlatform.Shared.MassTransitEvents;
-using Mentors.ApplicationCore.Interfaces.IProducer;
+using MentorPlatform.Shared.MessageBus;
 using Availability = Mentors.Domain.Entities.Availability;
 
 namespace Mentors.ApplicationCore.Services

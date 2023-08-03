@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Booking.Domain\Booking.Domain.csproj" />
+    <ProjectReference Include="..\MentorPlatform.Shared\MentorPlatform.Shared.csproj" />
   </ItemGroup>
 
 </Project>

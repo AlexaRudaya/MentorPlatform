@@ -1,4 +1,7 @@
-﻿namespace Booking.ApplicationCore.Services
+﻿using MentorPlatform.Shared.MassTransitEvents;
+using MentorPlatform.Shared.MessageBus;
+
+namespace Booking.ApplicationCore.Services
 {
     public class BookingService : IBookingService
     {
@@ -7,19 +10,22 @@
         private readonly IGetMentorClient _mentorClient;
         private readonly IMapper _mapper;
         private readonly ILogger<BookingService> _logger;
+        private readonly IProducer _producer;
 
         public BookingService(
             IMentorBookingRepository bookingRepository,
             IStudentRepository studentRepository,
             IGetMentorClient mentorClient,
             IMapper mapper,
-            ILogger<BookingService> logger)
+            ILogger<BookingService> logger,
+            IProducer producer)
         {
             _bookingRepository = bookingRepository;
             _studentRepository = studentRepository;
             _mentorClient = mentorClient;
             _mapper = mapper;
             _logger = logger;
+            _producer = producer;
         }
 
         public async Task<IEnumerable<BookingDto>> GetAllAsync(CancellationToken cancellationToken = default)
@@ -98,6 +104,16 @@
             await _bookingRepository.CreateAsync(bookingToCreate, cancellationToken);
 
             _logger.LogInformation($"Booking with Id: {bookingToCreate.Id}");
+
+            await _producer.PublishAsync(
+                new MeetingBookingEvent
+                { 
+                    Id = bookingDto.Id,
+                    StartTimeBooking = bookingDto.StartTimeBooking,
+                    EndTimeBooking = bookingDto.EndTimeBooking,
+                    StudentId = bookingDto.StudentId,
+                    MentorId = bookingDto.MentorId
+                });
 
             return bookingDto;
         }

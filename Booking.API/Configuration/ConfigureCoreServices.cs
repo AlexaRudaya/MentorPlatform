@@ -1,6 +1,7 @@
 ﻿using Booking.Infrastructure.Consumer;
 using Booking.Infrastructure.MessageBroker;
 using MassTransit;
+using MentorPlatform.Shared.MessageBus;
 using Microsoft.Extensions.Options;
 
 namespace Booking.API.Configuration
@@ -147,6 +148,7 @@ namespace Booking.API.Configuration
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddScoped<IStudentRepository, StudentRepository>();
             services.AddScoped<IMentorBookingRepository, MentorBookingRepository>();
+            services.AddScoped<IProducer, BookingProducer>();
 
             return services;
         }

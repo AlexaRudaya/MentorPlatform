@@ -1,5 +1,6 @@
 ﻿using MassTransit;
-using Mentors.ApplicationCore.Interfaces.IProducer;
+using MentorPlatform.Shared.MessageBus;
+using Mentors.Infrastructure.Consumer;
 using Mentors.Infrastructure.MessageBroker;
 using Microsoft.Extensions.Options;
 
@@ -133,8 +134,6 @@ namespace Mentors.API.Configuration
             services.AddScoped<IMentorService, MentorService>();
             services.AddScoped<IAvailabilityService, AvailabilityService>();
 
-            services.AddScoped<IProducer, Producer>();
-
             return services;
         }
 
@@ -148,6 +147,7 @@ namespace Mentors.API.Configuration
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IMentorRepository, MentorRepository>();
             services.AddScoped<IAvailabilityRepository, AvailabilityRepository>();
+            services.AddScoped<IProducer, Producer>();
 
             return services;
         }
@@ -163,6 +163,8 @@ namespace Mentors.API.Configuration
             services.AddMassTransit(busConfigurator =>
             {
                 busConfigurator.SetKebabCaseEndpointNameFormatter();
+
+                busConfigurator.AddConsumer<MeetingBookingEventConsumer>();
 
                 busConfigurator.UsingRabbitMq((busRegistrationContext, busConfigurator) =>
                 {

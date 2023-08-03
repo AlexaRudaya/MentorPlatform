@@ -1,4 +1,4 @@
-﻿namespace Mentors.ApplicationCore.Interfaces.IProducer
+﻿namespace MentorPlatform.Shared.MessageBus
 {
     public interface IProducer
     {
