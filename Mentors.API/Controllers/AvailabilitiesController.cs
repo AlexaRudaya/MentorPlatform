@@ -34,7 +34,7 @@ namespace Mentors.API.Controllers
             return Ok(availability);
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpPost]
         [ProducesResponseType(201)]
         public async Task<IActionResult> CreateAvailability([FromBody] AvailabilityDto availabilityDto,
