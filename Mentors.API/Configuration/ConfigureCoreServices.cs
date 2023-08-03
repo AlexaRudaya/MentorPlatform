@@ -1,4 +1,7 @@
-﻿namespace Mentors.API.Configuration
+﻿using Mentors.Infrastructure.MessageBroker;
+using Microsoft.Extensions.Options;
+
+namespace Mentors.API.Configuration
 {
     public static class ConfigureCoreServices
     {
@@ -130,11 +133,17 @@
 
             return services;
         }
+
         public static IServiceCollection ConfigureInfrastructure(this IServiceCollection services,
             IConfiguration configuration)
         {
             services.AddDbContext<MentorDbContext>(dbContextOptions =>
                 dbContextOptions.UseSqlServer(configuration.GetConnectionString("MentorsConnection")));
+
+            services.Configure<MessageBrokerSettings>(configuration.GetSection("MessageBroker"));
+
+            services.AddSingleton(serviceProvider =>
+                serviceProvider.GetRequiredService<IOptions<MessageBrokerSettings>>().Value);
 
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddScoped<ICategoryRepository, CategoryRepository>();
