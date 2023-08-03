@@ -1,4 +1,9 @@
-﻿namespace Booking.API.Configuration
+﻿using Booking.Infrastructure.Consumer;
+using Booking.Infrastructure.MessageBroker;
+using MassTransit;
+using Microsoft.Extensions.Options;
+
+namespace Booking.API.Configuration
 {
     public static class ConfigureCoreServices
     {
@@ -142,6 +147,37 @@
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddScoped<IStudentRepository, StudentRepository>();
             services.AddScoped<IMentorBookingRepository, MentorBookingRepository>();
+
+            return services;
+        }
+
+        public static IServiceCollection ConfigureMessageBroker(this IServiceCollection services,
+           IConfiguration configuration)
+        {
+            services.Configure<MessageBrokerSettings>(configuration.GetSection("MessageBroker"));
+
+            services.AddSingleton(serviceProvider =>
+                serviceProvider.GetRequiredService<IOptions<MessageBrokerSettings>>().Value);
+
+            services.AddMassTransit(busConfigurator =>
+            {
+                busConfigurator.SetKebabCaseEndpointNameFormatter();
+
+                busConfigurator.AddConsumer<AvailabilityOfMentorEventConsumer>();
+
+                busConfigurator.UsingRabbitMq((busRegistrationContext, busConfigurator) =>
+                {
+                    MessageBrokerSettings settings = busRegistrationContext.GetRequiredService<MessageBrokerSettings>();
+
+                    busConfigurator.Host(new Uri(settings.Host), hostConfigurator =>
+                    {
+                        hostConfigurator.Username(settings.Username);
+                        hostConfigurator.Password(settings.Password);
+                    });
+
+                    busConfigurator.ConfigureEndpoints(busRegistrationContext);
+                });
+            });
 
             return services;
         }

@@ -1,6 +1,6 @@
-﻿namespace Mentors.ApplicationCore.MassTransitEvents
+﻿namespace MentorPlatform.Shared.MassTransitEvents
 {
-    public  class AvailabilityOfMentorCreatedEvent
+    public class AvailabilityOfMentorEvent
     {
         public Guid Id { get; set; }
 

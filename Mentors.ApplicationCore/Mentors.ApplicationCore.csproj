@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MentorPlatform.Shared\MentorPlatform.Shared.csproj" />
     <ProjectReference Include="..\Mentors.Domain\Mentors.Domain.csproj" />
   </ItemGroup>
 

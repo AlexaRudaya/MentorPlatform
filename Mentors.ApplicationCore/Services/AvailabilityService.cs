@@ -1,5 +1,5 @@
-﻿using Mentors.ApplicationCore.Interfaces.IProducer;
-using Mentors.ApplicationCore.MassTransitEvents;
+﻿using MentorPlatform.Shared.MassTransitEvents;
+using Mentors.ApplicationCore.Interfaces.IProducer;
 using Availability = Mentors.Domain.Entities.Availability;
 
 namespace Mentors.ApplicationCore.Services
@@ -66,7 +66,7 @@ namespace Mentors.ApplicationCore.Services
             var createdAvailabilityDto = _mapper.Map<AvailabilityDto>(availabilityToCreate);
 
             await _producer.PublishAsync(
-                new AvailabilityOfMentorCreatedEvent
+                new AvailabilityOfMentorEvent
                 { 
                     Id = createdAvailabilityDto.Id,
                     Date = createdAvailabilityDto.Date,
