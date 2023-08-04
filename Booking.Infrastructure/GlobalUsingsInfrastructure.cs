@@ -14,3 +14,7 @@ global using Booking.Infrastructure.Options;
 global using Grpc.Net.Client;
 global using Microsoft.Extensions.Options;
 global using Google.Protobuf.WellKnownTypes;
+global using MassTransit;
+global using MentorPlatform.Shared.MassTransitEvents;
+global using Microsoft.Extensions.Logging;
+global using MentorPlatform.Shared.MessageBus;

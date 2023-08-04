@@ -1,7 +1,4 @@
-﻿using MassTransit;
-using MentorPlatform.Shared.MessageBus;
-
-namespace Mentors.Infrastructure.MessageBroker
+﻿namespace Mentors.Infrastructure.MessageBroker
 {
     public sealed class Producer : IProducer
     {

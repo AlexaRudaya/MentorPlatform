@@ -1,10 +1,4 @@
-﻿using Booking.Infrastructure.Consumer;
-using Booking.Infrastructure.MessageBroker;
-using MassTransit;
-using MentorPlatform.Shared.MessageBus;
-using Microsoft.Extensions.Options;
-
-namespace Booking.API.Configuration
+﻿namespace Booking.API.Configuration
 {
     public static class ConfigureCoreServices
     {

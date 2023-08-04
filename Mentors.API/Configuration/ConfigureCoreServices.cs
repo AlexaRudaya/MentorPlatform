@@ -1,10 +1,4 @@
-﻿using MassTransit;
-using MentorPlatform.Shared.MessageBus;
-using Mentors.Infrastructure.Consumer;
-using Mentors.Infrastructure.MessageBroker;
-using Microsoft.Extensions.Options;
-
-namespace Mentors.API.Configuration
+﻿namespace Mentors.API.Configuration
 {
     public static class ConfigureCoreServices
     {

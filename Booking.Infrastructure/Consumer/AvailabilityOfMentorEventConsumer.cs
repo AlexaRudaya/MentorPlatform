@@ -1,8 +1,4 @@
-﻿using MassTransit;
-using MentorPlatform.Shared.MassTransitEvents;
-using Microsoft.Extensions.Logging;
-
-namespace Booking.Infrastructure.Consumer
+﻿namespace Booking.Infrastructure.Consumer
 {
     public sealed class AvailabilityOfMentorEventConsumer : IConsumer<AvailabilityOfMentorEvent>
     {

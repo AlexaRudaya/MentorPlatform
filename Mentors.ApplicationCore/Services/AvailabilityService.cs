@@ -1,6 +1,4 @@
-﻿using MentorPlatform.Shared.MassTransitEvents;
-using MentorPlatform.Shared.MessageBus;
-using Availability = Mentors.Domain.Entities.Availability;
+﻿using Availability = Mentors.Domain.Entities.Availability;
 
 namespace Mentors.ApplicationCore.Services
 {
@@ -65,15 +63,9 @@ namespace Mentors.ApplicationCore.Services
 
             var createdAvailabilityDto = _mapper.Map<AvailabilityDto>(availabilityToCreate);
 
-            await _producer.PublishAsync(
-                new AvailabilityOfMentorEvent
-                { 
-                    Id = createdAvailabilityDto.Id,
-                    Date = createdAvailabilityDto.Date,
-                    StartTime = createdAvailabilityDto.StartTime,
-                    EndTime = createdAvailabilityDto.EndTime,
-                    MentorId = createdAvailabilityDto.MentorId,
-                }, cancellationToken);
+            var eventToPublish = _mapper.Map<AvailabilityOfMentorEvent>(availabilityToCreate);
+
+            await _producer.PublishAsync(eventToPublish, cancellationToken);
 
             return createdAvailabilityDto;
         }

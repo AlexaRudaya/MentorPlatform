@@ -29,3 +29,8 @@ global using Mentors.API.Protos;
 global using Google.Protobuf.WellKnownTypes;
 global using Mentors.API.Mapper;
 global using Mentors.API.Services.GrpcService;
+global using MassTransit;
+global using MentorPlatform.Shared.MessageBus;
+global using Mentors.Infrastructure.Consumer;
+global using Mentors.Infrastructure.MessageBroker;
+global using Microsoft.Extensions.Options;

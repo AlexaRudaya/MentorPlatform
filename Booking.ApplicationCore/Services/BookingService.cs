@@ -1,7 +1,4 @@
-﻿using MentorPlatform.Shared.MassTransitEvents;
-using MentorPlatform.Shared.MessageBus;
-
-namespace Booking.ApplicationCore.Services
+﻿namespace Booking.ApplicationCore.Services
 {
     public class BookingService : IBookingService
     {
@@ -105,15 +102,9 @@ namespace Booking.ApplicationCore.Services
 
             _logger.LogInformation($"Booking with Id: {bookingToCreate.Id}");
 
-            await _producer.PublishAsync(
-                new MeetingBookingEvent
-                { 
-                    Id = bookingDto.Id,
-                    StartTimeBooking = bookingDto.StartTimeBooking,
-                    EndTimeBooking = bookingDto.EndTimeBooking,
-                    StudentId = bookingDto.StudentId,
-                    MentorId = bookingDto.MentorId
-                });
+            var eventToPublish = _mapper.Map<MeetingBookingEvent>(bookingToCreate);
+
+            await _producer.PublishAsync(eventToPublish, cancellationToken);
 
             return bookingDto;
         }
