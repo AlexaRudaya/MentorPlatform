@@ -34,3 +34,5 @@ global using MentorPlatform.Shared.MessageBus;
 global using Mentors.Infrastructure.Consumer;
 global using Mentors.Infrastructure.MessageBroker;
 global using Microsoft.Extensions.Options;
+global using Serilog.Exceptions;
+global using Serilog.Sinks.Elasticsearch;
