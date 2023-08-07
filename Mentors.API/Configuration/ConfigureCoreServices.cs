@@ -19,6 +19,7 @@
         {
             services.AddAutoMapper(typeof(MapperAPI));
 
+            services.AddOptions();
             services.AddControllers();
             services.AddFluentValidationAutoValidation();
             services.AddTransient<GlobalExceptionHandlingMiddleware>();
@@ -151,9 +152,6 @@
         {
             services.Configure<MessageBrokerSettings>(configuration.GetSection("MessageBroker"));
 
-            services.AddSingleton(serviceProvider =>
-                serviceProvider.GetRequiredService<IOptions<MessageBrokerSettings>>().Value);
-
             services.AddMassTransit(busConfigurator =>
             {
                 busConfigurator.SetKebabCaseEndpointNameFormatter();
@@ -162,7 +160,7 @@
 
                 busConfigurator.UsingRabbitMq((busRegistrationContext, busConfigurator) =>
                 {
-                    MessageBrokerSettings settings = busRegistrationContext.GetRequiredService<MessageBrokerSettings>();
+                    MessageBrokerSettings settings = busRegistrationContext.GetRequiredService<IOptions<MessageBrokerSettings>>().Value;
 
                     busConfigurator.Host(new Uri(settings.Host), hostConfigurator =>
                     {
