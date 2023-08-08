@@ -153,6 +153,16 @@ services:
   networks:
    - deploy-mentor
 
+ redis:
+  container_name: redis
+  image: redis:latest
+  ports:
+   - 6379:6379
+  volumes:
+   - redis-data:/data/redis
+  networks:
+   - deploy-mentor
+
 volumes:
   db:    
   elasticsearch-data:    
