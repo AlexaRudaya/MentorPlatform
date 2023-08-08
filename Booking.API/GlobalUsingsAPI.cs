@@ -33,3 +33,5 @@ global using Booking.Infrastructure.MessageBroker;
 global using MassTransit;
 global using MentorPlatform.Shared.MessageBus;
 global using Microsoft.Extensions.Options;
+global using Serilog.Exceptions;
+global using Serilog.Sinks.Elasticsearch;

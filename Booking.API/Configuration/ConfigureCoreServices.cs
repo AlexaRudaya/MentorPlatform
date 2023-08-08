@@ -3,14 +3,26 @@
     public static class ConfigureCoreServices
     {
         public static IServiceCollection ConfigureLogging(this IServiceCollection services,
-           IConfiguration configuration,
-           ILoggingBuilder logging)
+            WebApplicationBuilder builder)
         {
-            logging.ClearProviders();
-            logging.AddSerilog(
-            new LoggerConfiguration()
+            var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
+            var configuration = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{environment}.json", optional: true)
+                .Build();
+
+            Log.Logger = new LoggerConfiguration()
+                .Enrich.FromLogContext()
+                .Enrich.WithExceptionDetails()
+                .WriteTo.Debug()
+                .WriteTo.Console()
+                .WriteTo.Elasticsearch(ConfigureElasticsearchSink(configuration, environment))
+                .Enrich.WithProperty("Environment", environment)
                 .ReadFrom.Configuration(configuration)
-                .CreateLogger());
+                .CreateLogger();
+
+            builder.Host.UseSerilog();
 
             return services;
         }
@@ -148,7 +160,7 @@
         }
 
         public static IServiceCollection ConfigureMessageBroker(this IServiceCollection services,
-           IConfiguration configuration)
+            IConfiguration configuration)
         {
             services.Configure<MessageBrokerSettings>(configuration.GetSection("MessageBroker"));
 
@@ -176,6 +188,21 @@
             });
 
             return services;
+        }
+
+        private static ElasticsearchSinkOptions ConfigureElasticsearchSink(IConfigurationRoot configuration,
+            string environment)
+        {
+            return new ElasticsearchSinkOptions(new Uri(configuration["ElasticConfiguration:Uri"]))
+            {
+                AutoRegisterTemplate = true,
+                IndexFormat = $"{Assembly.GetExecutingAssembly()
+                                         .GetName()
+                                         .Name.ToLower()
+                                         .Replace(".", "-")}-{environment.ToLower()}-{DateTime.UtcNow:yyyy-MM}",
+                NumberOfReplicas = 1,
+                NumberOfShards = 2
+            };
         }
     }
 }
