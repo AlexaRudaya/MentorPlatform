@@ -11,6 +11,7 @@
                     options => options.MapFrom(mentor => mentor.Availabilities.Select(availability => availability.Id)))
                 .ReverseMap();
             CreateMap<Mentor, MentorCreateDto>().ReverseMap();
+            CreateMap<Availability, AvailabilityOfMentorEvent>();
         }
     }
 }

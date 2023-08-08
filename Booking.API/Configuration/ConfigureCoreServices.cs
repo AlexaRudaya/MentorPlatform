@@ -17,6 +17,7 @@
 
         public static IServiceCollection ConfigureAPI(this IServiceCollection services)
         {
+            services.AddOptions();
             services.AddControllers();
             services.AddEndpointsApiExplorer();
             services.AddFluentValidationAutoValidation();
@@ -142,6 +143,35 @@
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddScoped<IStudentRepository, StudentRepository>();
             services.AddScoped<IMentorBookingRepository, MentorBookingRepository>();
+            services.AddScoped<IProducer, BookingProducer>();
+
+            return services;
+        }
+
+        public static IServiceCollection ConfigureMessageBroker(this IServiceCollection services,
+           IConfiguration configuration)
+        {
+            services.Configure<MessageBrokerSettings>(configuration.GetSection("MessageBroker"));
+
+            services.AddMassTransit(busConfigurator =>
+            {
+                busConfigurator.SetKebabCaseEndpointNameFormatter();
+
+                busConfigurator.AddConsumer<AvailabilityOfMentorEventConsumer>();
+
+                busConfigurator.UsingRabbitMq((busRegistrationContext, busConfigurator) =>
+                {
+                    MessageBrokerSettings settings = busRegistrationContext.GetRequiredService<IOptions<MessageBrokerSettings>>().Value;
+
+                    busConfigurator.Host(new Uri(settings.Host), hostConfigurator =>
+                    {
+                        hostConfigurator.Username(settings.Username);
+                        hostConfigurator.Password(settings.Password);
+                    });
+
+                    busConfigurator.ConfigureEndpoints(busRegistrationContext);
+                });
+            });
 
             return services;
         }

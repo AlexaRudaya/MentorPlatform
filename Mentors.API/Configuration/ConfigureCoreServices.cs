@@ -19,6 +19,7 @@
         {
             services.AddAutoMapper(typeof(MapperAPI));
 
+            services.AddOptions();
             services.AddControllers();
             services.AddFluentValidationAutoValidation();
             services.AddTransient<GlobalExceptionHandlingMiddleware>();
@@ -130,6 +131,7 @@
 
             return services;
         }
+
         public static IServiceCollection ConfigureInfrastructure(this IServiceCollection services,
             IConfiguration configuration)
         {
@@ -140,6 +142,35 @@
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IMentorRepository, MentorRepository>();
             services.AddScoped<IAvailabilityRepository, AvailabilityRepository>();
+            services.AddScoped<IProducer, Producer>();
+
+            return services;
+        }
+
+        public static IServiceCollection ConfigureMessageBroker(this IServiceCollection services,
+            IConfiguration configuration)
+        {
+            services.Configure<MessageBrokerSettings>(configuration.GetSection("MessageBroker"));
+
+            services.AddMassTransit(busConfigurator =>
+            {
+                busConfigurator.SetKebabCaseEndpointNameFormatter();
+
+                busConfigurator.AddConsumer<MeetingBookingEventConsumer>();
+
+                busConfigurator.UsingRabbitMq((busRegistrationContext, busConfigurator) =>
+                {
+                    MessageBrokerSettings settings = busRegistrationContext.GetRequiredService<IOptions<MessageBrokerSettings>>().Value;
+
+                    busConfigurator.Host(new Uri(settings.Host), hostConfigurator =>
+                    {
+                        hostConfigurator.Username(settings.Username);
+                        hostConfigurator.Password(settings.Password);
+                    });
+
+                    busConfigurator.ConfigureEndpoints(busRegistrationContext);
+                });
+            });
 
             return services;
         }

@@ -7,7 +7,8 @@ builder.Services
     .ConfigurePresentationService()
     .ConfigureCorePolicy()
     .ConfigureApplicationCore()
-    .ConfigureInfrastructure(builder.Configuration);
+    .ConfigureInfrastructure(builder.Configuration)
+    .ConfigureMessageBroker(builder.Configuration);
 
 builder.Services.AddEndpointsApiExplorer();
 

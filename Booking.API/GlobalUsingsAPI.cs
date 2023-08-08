@@ -28,3 +28,8 @@ global using Booking.Infrastructure.Options;
 global using Booking.Infrastracture.Protos;
 global using Booking.Infrastructure.Services.GrpcServices;
 global using Booking.Infrastructure.Mapper;
+global using Booking.Infrastructure.Consumer;
+global using Booking.Infrastructure.MessageBroker;
+global using MassTransit;
+global using MentorPlatform.Shared.MessageBus;
+global using Microsoft.Extensions.Options;

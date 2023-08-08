@@ -31,13 +31,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mentors.Domain", "Mentors.D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Booking", "Booking", "{2FE3CF4A-6F4E-47BC-9118-79E2BBCE4BCB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booking.Domain", "Booking.Domain\Booking.Domain.csproj", "{0F03C49E-03BD-46BB-8A0B-05F6E00A0053}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booking.Domain", "Booking.Domain\Booking.Domain.csproj", "{0F03C49E-03BD-46BB-8A0B-05F6E00A0053}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booking.API", "Booking.API\Booking.API.csproj", "{99D2083D-C3C8-47C4-8925-301E4B5DBB1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booking.API", "Booking.API\Booking.API.csproj", "{99D2083D-C3C8-47C4-8925-301E4B5DBB1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booking.Infrastructure", "Booking.Infrastructure\Booking.Infrastructure.csproj", "{2FB16434-7509-4E13-86AE-76C673C10129}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booking.Infrastructure", "Booking.Infrastructure\Booking.Infrastructure.csproj", "{2FB16434-7509-4E13-86AE-76C673C10129}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booking.ApplicationCore", "Booking.ApplicationCore\Booking.ApplicationCore.csproj", "{F2885F6A-70C7-4459-A793-89E85E9215C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booking.ApplicationCore", "Booking.ApplicationCore\Booking.ApplicationCore.csproj", "{F2885F6A-70C7-4459-A793-89E85E9215C4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MentorPlatform.Shared", "MentorPlatform.Shared", "{B15AC3A1-1F1A-47BD-8F9B-E94A0A0CF0A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MentorPlatform.Shared", "MentorPlatform.Shared\MentorPlatform.Shared.csproj", "{93454627-F9A3-4DC1-BCCC-208C3AB77CF7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -97,6 +101,10 @@ Global
 		{F2885F6A-70C7-4459-A793-89E85E9215C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2885F6A-70C7-4459-A793-89E85E9215C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2885F6A-70C7-4459-A793-89E85E9215C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93454627-F9A3-4DC1-BCCC-208C3AB77CF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93454627-F9A3-4DC1-BCCC-208C3AB77CF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93454627-F9A3-4DC1-BCCC-208C3AB77CF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93454627-F9A3-4DC1-BCCC-208C3AB77CF7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -118,6 +126,8 @@ Global
 		{99D2083D-C3C8-47C4-8925-301E4B5DBB1A} = {2FE3CF4A-6F4E-47BC-9118-79E2BBCE4BCB}
 		{2FB16434-7509-4E13-86AE-76C673C10129} = {2FE3CF4A-6F4E-47BC-9118-79E2BBCE4BCB}
 		{F2885F6A-70C7-4459-A793-89E85E9215C4} = {2FE3CF4A-6F4E-47BC-9118-79E2BBCE4BCB}
+		{B15AC3A1-1F1A-47BD-8F9B-E94A0A0CF0A2} = {D6443AE9-FC93-4C0E-BA42-8C36E09AD7F2}
+		{93454627-F9A3-4DC1-BCCC-208C3AB77CF7} = {B15AC3A1-1F1A-47BD-8F9B-E94A0A0CF0A2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {856D3D0C-8454-446A-AC27-63ED8EA3DA30}

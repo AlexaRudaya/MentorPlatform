@@ -104,5 +104,23 @@ services:
   networks:
    - deploy-mentor
 
+ rabbitmq:
+  image: rabbitmq:management
+  container_name: mentor_queue
+  healthcheck:
+   test: rabbitmq-diagnostics -q ping
+   interval: 10s
+   timeout: 10s
+   retries: 10
+   start_period: 10s
+  ports:
+   - 5672:5672
+   - 15672:15672
+  volumes:
+   - ./.containers/rabbitmq/data/:/var/lib/rabbit
+   - ./.containers/rabbitmq/log/:/var/log/rabbit
+  networks:
+   - deploy-mentor
+
 volumes:
   db:    

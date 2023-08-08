@@ -8,3 +8,8 @@ global using System.Linq.Expressions;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Hosting;
 global using System.Reflection;
+global using MassTransit;
+global using MentorPlatform.Shared.MassTransitEvents;
+global using Mentors.ApplicationCore.Exceptions;
+global using Microsoft.Extensions.Logging;
+global using MentorPlatform.Shared.MessageBus;

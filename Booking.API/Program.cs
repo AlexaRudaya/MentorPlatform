@@ -7,7 +7,8 @@ builder.Services
     .ConfigurePresentationService()
     .ConfigureCorePolicy()
     .ConfigureApplicationCore(builder.Configuration)
-    .ConfigureInfrastructure(builder.Configuration);
+    .ConfigureInfrastructure(builder.Configuration)
+    .ConfigureMessageBroker(builder.Configuration);
 
 var app = builder.Build();
 

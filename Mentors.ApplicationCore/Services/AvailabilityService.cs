@@ -7,15 +7,18 @@ namespace Mentors.ApplicationCore.Services
         private readonly IAvailabilityRepository _availabilityRepository;
         private readonly IMapper _mapper;
         private readonly ILogger<AvailabilityService> _logger;
+        private readonly IProducer _producer;
 
         public AvailabilityService(
             IAvailabilityRepository availabilityRepository,
             IMapper mapper,
-            ILogger<AvailabilityService> logger)
+            ILogger<AvailabilityService> logger,
+            IProducer producer)
         {
             _availabilityRepository = availabilityRepository;
             _mapper = mapper;
             _logger = logger;
+            _producer = producer;
         }
 
         public async Task<IEnumerable<AvailabilityDto>> GetAllAsync(CancellationToken cancellationToken = default)
@@ -59,6 +62,10 @@ namespace Mentors.ApplicationCore.Services
             _logger.LogInformation($"Availability with Id: {availabilityToCreate.Id} is created.");
 
             var createdAvailabilityDto = _mapper.Map<AvailabilityDto>(availabilityToCreate);
+
+            var eventToPublish = _mapper.Map<AvailabilityOfMentorEvent>(availabilityToCreate);
+
+            await _producer.PublishAsync(eventToPublish, cancellationToken);
 
             return createdAvailabilityDto;
         }

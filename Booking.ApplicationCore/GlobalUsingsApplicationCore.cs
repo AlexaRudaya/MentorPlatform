@@ -9,3 +9,5 @@ global using Microsoft.EntityFrameworkCore;
 global using Microsoft.Extensions.Logging;
 global using Booking.ApplicationCore.Interfaces.IGrpcService;
 global using FluentValidation;
+global using MentorPlatform.Shared.MassTransitEvents;
+global using MentorPlatform.Shared.MessageBus;
