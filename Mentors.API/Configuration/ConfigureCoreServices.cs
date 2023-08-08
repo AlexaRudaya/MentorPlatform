@@ -189,6 +189,19 @@
             return services;
         }
 
+        public static IServiceCollection ConfigureRedis(this IServiceCollection services,
+            IConfiguration configuration)
+        {
+            services.AddStackExchangeRedisCache(redisOptions =>
+            {
+                string connection = configuration.GetConnectionString("Redis");
+
+                redisOptions.Configuration = connection;
+            });
+
+            return services;
+        }
+
         private static ElasticsearchSinkOptions ConfigureElasticsearchSink(IConfigurationRoot configuration, 
             string environment)
         {

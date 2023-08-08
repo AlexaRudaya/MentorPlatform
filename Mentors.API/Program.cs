@@ -8,7 +8,8 @@ builder.Services
     .ConfigureCorePolicy()
     .ConfigureApplicationCore()
     .ConfigureInfrastructure(builder.Configuration)
-    .ConfigureMessageBroker(builder.Configuration);
+    .ConfigureMessageBroker(builder.Configuration)
+    .ConfigureRedis(builder.Configuration);
 
 builder.Services.AddEndpointsApiExplorer();
 
