@@ -4,17 +4,20 @@
     {
         private readonly IMentorRepository _mentorRepository;
         private readonly ICategoryRepository _categoryRepository;
+        private readonly ICachedMentorRepository _cachedMentorRepository;
         private readonly IMapper _mapper;
         private readonly ILogger<MentorService> _logger;
 
         public MentorService(
             IMentorRepository mentorRepository,
             ICategoryRepository categoryRepository,
+            ICachedMentorRepository cachedMentorRepository,
             IMapper mapper,
             ILogger<MentorService> logger)
         {
             _mentorRepository = mentorRepository;
             _categoryRepository = categoryRepository;
+            _cachedMentorRepository = cachedMentorRepository;
             _mapper = mapper;
             _logger = logger;
         }
@@ -41,12 +44,7 @@
 
         public async Task<MentorDto> GetByIdAsync(Guid mentorId, CancellationToken cancellationToken = default)
         {
-            var mentor = await _mentorRepository.GetOneByAsync(
-               include: query => query
-                   .Include(mentor => mentor.Category)
-                   .Include(mentor => mentor.Availabilities),
-               expression: mentor => mentor.Id.Equals(mentorId),
-               cancellationToken: cancellationToken);
+            var mentor = await _cachedMentorRepository.GetByIdAsync(mentorId, cancellationToken);   
 
             var mentorDto = _mapper.Map<MentorDto>(mentor);
 

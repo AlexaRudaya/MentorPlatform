@@ -166,3 +166,4 @@ services:
 volumes:
   db:    
   elasticsearch-data:    
+  redis-data:  

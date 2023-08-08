@@ -154,6 +154,7 @@
             services.AddScoped<IMentorRepository, MentorRepository>();
             services.AddScoped<IAvailabilityRepository, AvailabilityRepository>();
             services.AddScoped<IProducer, Producer>();
+            services.AddScoped<ICachedMentorRepository, CachedMentorRepository>();
 
             return services;
         }

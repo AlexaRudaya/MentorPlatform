@@ -1,33 +1,70 @@
-﻿namespace Mentors.Infrastructure.Repositories
+﻿using Microsoft.Extensions.Caching.Distributed;
+using Newtonsoft.Json;
+
+namespace Mentors.Infrastructure.Repositories
 {
-    public class CachedMentorRepository : IMentorRepository
+    public class CachedMentorRepository : ICachedMentorRepository
     {
-        public Task<Mentor> GetOneByAsync(Func<IQueryable<Mentor>, 
-            IIncludableQueryable<Mentor, object>> include = null, 
-            Expression<Func<Mentor, bool>> expression = null, 
-            CancellationToken cancellationToken = default)
+        private readonly IMentorRepository _mentorRepository;
+        private readonly IDistributedCache _distributedCache;
+
+        public CachedMentorRepository(
+            IMentorRepository mentorRepository,
+            IDistributedCache distributedCache)
+        {
+            _mentorRepository = mentorRepository;
+            _distributedCache = distributedCache;
+        }
+
+        public Task<IEnumerable<Mentor>> GetAllByAsync(CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }
 
-        public Task CreateAsync(Mentor entity, CancellationToken cancellationToken = default)
+        public async Task<Mentor> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            string key = $"mentor-{id}";
+
+            var cachedMentor = await _distributedCache.GetStringAsync(key, cancellationToken);
+
+            Mentor mentor;
+
+            if (string.IsNullOrEmpty(cachedMentor))
+            {
+                mentor = await _mentorRepository.GetOneByAsync(
+                    include: query => query
+                        .Include(mentor => mentor.Category)
+                        .Include(mentor => mentor.Availabilities),
+                    expression: mentor => mentor.Id.Equals(id),
+                    cancellationToken: cancellationToken);
+
+                if(mentor is null)
+                {
+                    throw new MentorNotFoundException(id);
+                }
+
+                var mentorJson = SerializeMentorToJson(mentor);
+
+                await _distributedCache.SetStringAsync(key,
+                   mentorJson,
+                   cancellationToken);
+
+                return mentor;
+            }
+
+            mentor = JsonConvert.DeserializeObject<Mentor>(cachedMentor);
+
+            return mentor;
         }
 
-        public Task DeleteAsync(Mentor entity, CancellationToken cancellationToken = default)
+        private string SerializeMentorToJson(Mentor mentor)
         {
-            throw new NotImplementedException();
-        }
+            var settings = new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            };
 
-        public Task<IEnumerable<Mentor>> GetAllByAsync(Func<IQueryable<Mentor>, IIncludableQueryable<Mentor, object>> include = null, Expression<Func<Mentor, bool>> expression = null, CancellationToken cancellationToken = default)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateAsync(Mentor entity, CancellationToken cancellationToken = default)
-        {
-            throw new NotImplementedException();
+            return JsonConvert.SerializeObject(mentor, settings);
         }
     }
 }
