@@ -24,11 +24,7 @@
 
         public async Task<IEnumerable<MentorDto>> GetAllAsync(CancellationToken cancellationToken = default)
         {
-            var allMentors = await _mentorRepository.GetAllByAsync(
-                include: query => query
-                    .Include(mentor => mentor.Category)
-                    .Include(mentor => mentor.Availabilities),
-                    cancellationToken: cancellationToken);
+            var allMentors = await _cachedMentorRepository.GetAllAsync(cancellationToken);
 
             var mentorsDto = _mapper.Map<IEnumerable<MentorDto>>(allMentors);
 

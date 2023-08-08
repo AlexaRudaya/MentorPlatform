@@ -16,9 +16,43 @@ namespace Mentors.Infrastructure.Repositories
             _distributedCache = distributedCache;
         }
 
-        public Task<IEnumerable<Mentor>> GetAllByAsync(CancellationToken cancellationToken = default)
+        public async Task<IEnumerable<Mentor>> GetAllAsync(CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            string key = "mentors";
+
+            var cachedMentors = await _distributedCache.GetStringAsync(key);
+
+            IEnumerable<Mentor> mentors;
+
+            if (string.IsNullOrEmpty(cachedMentors))
+            {
+                mentors = await _mentorRepository.GetAllByAsync(
+                    include: query => query
+                        .Include(mentor => mentor.Category)
+                        .Include(mentor => mentor.Availabilities),
+                    cancellationToken: cancellationToken);
+
+                if (mentors is null)
+                {
+                    throw new MentorNotFoundException();
+                }
+
+                var mentorsJson = SerializeMentorsListToJson(mentors);
+
+                await _distributedCache.SetStringAsync(key,
+                   mentorsJson,
+                   new DistributedCacheEntryOptions
+                   { 
+                        AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(30)
+                   },
+                   cancellationToken);
+
+                return mentors;
+            }
+
+            mentors = JsonConvert.DeserializeObject<IEnumerable<Mentor>>(cachedMentors);
+
+            return mentors;
         }
 
         public async Task<Mentor> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
@@ -47,6 +81,10 @@ namespace Mentors.Infrastructure.Repositories
 
                 await _distributedCache.SetStringAsync(key,
                    mentorJson,
+                   new DistributedCacheEntryOptions
+                   {
+                       AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(30)
+                   },
                    cancellationToken);
 
                 return mentor;
@@ -55,6 +93,16 @@ namespace Mentors.Infrastructure.Repositories
             mentor = JsonConvert.DeserializeObject<Mentor>(cachedMentor);
 
             return mentor;
+        }
+
+        private string SerializeMentorsListToJson(IEnumerable<Mentor> mentors)
+        {
+            var settings = new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            };
+
+            return JsonConvert.SerializeObject(mentors, settings);
         }
 
         private string SerializeMentorToJson(Mentor mentor)

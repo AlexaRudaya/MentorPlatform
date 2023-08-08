@@ -4,6 +4,6 @@
     {
         Task<Mentor> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
 
-        Task<IEnumerable<Mentor>> GetAllByAsync(CancellationToken cancellationToken = default);
+        Task<IEnumerable<Mentor>> GetAllAsync(CancellationToken cancellationToken = default);
     }
 }
