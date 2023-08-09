@@ -15,3 +15,6 @@ global using FluentValidation;
 global using Identity.ApplicationCore.Validator;
 global using Identity.Domain.Entities;
 global using FluentValidation.AspNetCore;
+global using Serilog.Exceptions;
+global using Serilog.Sinks.Elasticsearch;
+global using System.Reflection;

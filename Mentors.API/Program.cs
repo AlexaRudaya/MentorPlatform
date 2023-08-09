@@ -1,7 +1,7 @@
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
-    .ConfigureLogging(builder.Configuration, builder.Logging)
+    .ConfigureLogging(builder)
     .ConfigureAPI()
     .ConfigureAuthenticationAndAuthorization(builder.Configuration)
     .ConfigurePresentationService()
