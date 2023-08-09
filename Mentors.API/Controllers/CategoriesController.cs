@@ -40,7 +40,10 @@
         {
             var categoryToCreate = await _categoryService.CreateAsync(categoryDto, cancellationToken);
 
-            return Ok("Successfully created");
+            return CreatedAtAction(
+                nameof(GetCategory),
+                new { id = categoryToCreate.Id },
+                categoryToCreate);
         }
 
         [Authorize]

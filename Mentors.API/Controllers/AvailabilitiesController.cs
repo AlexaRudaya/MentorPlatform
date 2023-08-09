@@ -34,15 +34,18 @@ namespace Mentors.API.Controllers
             return Ok(availability);
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpPost]
         [ProducesResponseType(201)]
         public async Task<IActionResult> CreateAvailability([FromBody] AvailabilityDto availabilityDto,
             CancellationToken cancellationToken = default)
         {
-            var mentorToCreate = await _availabilityService.CreateAsync(availabilityDto, cancellationToken);
+            var availabilityToCreate = await _availabilityService.CreateAsync(availabilityDto, cancellationToken);
 
-            return Ok("Successfully created");
+            return CreatedAtAction(
+                nameof(GetAvailability),
+                new { id = availabilityToCreate.Id },
+                availabilityToCreate);
         }
 
         [Authorize]

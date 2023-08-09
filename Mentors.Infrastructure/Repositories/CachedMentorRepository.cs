@@ -1,7 +1,4 @@
-﻿using Microsoft.Extensions.Caching.Distributed;
-using Newtonsoft.Json;
-
-namespace Mentors.Infrastructure.Repositories
+﻿namespace Mentors.Infrastructure.Repositories
 {
     public class CachedMentorRepository : ICachedMentorRepository
     {
@@ -40,12 +37,9 @@ namespace Mentors.Infrastructure.Repositories
                 var mentorsJson = SerializeMentorsListToJson(mentors);
 
                 await _distributedCache.SetStringAsync(key,
-                   mentorsJson,
-                   new DistributedCacheEntryOptions
-                   { 
-                        AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(30)
-                   },
-                   cancellationToken);
+                    mentorsJson,
+                    SetExpirationTime(),
+                    cancellationToken);
 
                 return mentors;
             }
@@ -80,12 +74,9 @@ namespace Mentors.Infrastructure.Repositories
                 var mentorJson = SerializeMentorToJson(mentor);
 
                 await _distributedCache.SetStringAsync(key,
-                   mentorJson,
-                   new DistributedCacheEntryOptions
-                   {
-                       AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(30)
-                   },
-                   cancellationToken);
+                    mentorJson,
+                    SetExpirationTime(),
+                    cancellationToken);
 
                 return mentor;
             }
@@ -95,24 +86,36 @@ namespace Mentors.Infrastructure.Repositories
             return mentor;
         }
 
-        private string SerializeMentorsListToJson(IEnumerable<Mentor> mentors)
+        private JsonSerializerSettings SerializerSettings()
         {
             var settings = new JsonSerializerSettings
             {
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             };
+
+            return settings;
+        }
+
+        private string SerializeMentorsListToJson(IEnumerable<Mentor> mentors)
+        {
+            var settings = SerializerSettings();
 
             return JsonConvert.SerializeObject(mentors, settings);
         }
 
         private string SerializeMentorToJson(Mentor mentor)
         {
-            var settings = new JsonSerializerSettings
-            {
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-            };
+            var settings = SerializerSettings();
 
             return JsonConvert.SerializeObject(mentor, settings);
+        }
+
+        private DistributedCacheEntryOptions SetExpirationTime()
+        {
+            return new DistributedCacheEntryOptions
+            {
+                AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(30)
+            };
         }
     }
 }

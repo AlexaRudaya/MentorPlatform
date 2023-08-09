@@ -13,3 +13,5 @@ global using MentorPlatform.Shared.MassTransitEvents;
 global using Mentors.ApplicationCore.Exceptions;
 global using Microsoft.Extensions.Logging;
 global using MentorPlatform.Shared.MessageBus;
+global using Microsoft.Extensions.Caching.Distributed;
+global using Newtonsoft.Json;
