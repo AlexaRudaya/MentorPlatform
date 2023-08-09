@@ -1,4 +1,6 @@
-﻿namespace Booking.API.Configuration
+﻿using Hangfire;
+
+namespace Booking.API.Configuration
 {
     public static class ConfigureCoreServices
     {
@@ -186,6 +188,20 @@
                     busConfigurator.ConfigureEndpoints(busRegistrationContext);
                 });
             });
+
+            return services;
+        }
+
+        public static IServiceCollection ConfigureHangfire(this IServiceCollection services,
+            IConfiguration configuration)
+        {
+            services.AddHangfire(globalConfiguration => globalConfiguration
+                .SetDataCompatibilityLevel(CompatibilityLevel.Version_180)
+                .UseSimpleAssemblyNameTypeSerializer()
+                .UseRecommendedSerializerSettings()
+                .UseSqlServerStorage(configuration.GetConnectionString("HangfireConnection")));
+
+            services.AddHangfireServer();
 
             return services;
         }

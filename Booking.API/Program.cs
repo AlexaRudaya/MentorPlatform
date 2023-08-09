@@ -8,7 +8,8 @@ builder.Services
     .ConfigureCorePolicy()
     .ConfigureApplicationCore(builder.Configuration)
     .ConfigureInfrastructure(builder.Configuration)
-    .ConfigureMessageBroker(builder.Configuration);
+    .ConfigureMessageBroker(builder.Configuration)
+    .ConfigureHangfire(builder.Configuration);
 
 var app = builder.Build();
 
