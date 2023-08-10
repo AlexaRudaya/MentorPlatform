@@ -1,19 +1,22 @@
 ﻿namespace Mentors.Infrastructure.Repositories
 {
-    public class CachedMentorRepository : ICachedMentorRepository
+    public class CachedMentorRepository : IMentorRepository
     {
-        private readonly IMentorRepository _mentorRepository;
+        private readonly IMentorRepository _decoratedRepository;
         private readonly IDistributedCache _distributedCache;
 
         public CachedMentorRepository(
-            IMentorRepository mentorRepository,
+            IMentorRepository decoratedRepository,
             IDistributedCache distributedCache)
         {
-            _mentorRepository = mentorRepository;
+            _decoratedRepository = decoratedRepository;
             _distributedCache = distributedCache;
         }
 
-        public async Task<IEnumerable<Mentor>> GetAllAsync(CancellationToken cancellationToken = default)
+        public async Task<IEnumerable<Mentor>> GetAllByAsync(Func<IQueryable<Mentor>, 
+            IIncludableQueryable<Mentor, object>> include = null,
+            Expression<Func<Mentor, bool>> expression = null, 
+            CancellationToken cancellationToken = default)
         {
             string key = "mentors";
 
@@ -23,7 +26,7 @@
 
             if (string.IsNullOrEmpty(cachedMentors))
             {
-                mentors = await _mentorRepository.GetAllByAsync(
+                mentors = await _decoratedRepository.GetAllByAsync(
                     include: query => query
                         .Include(mentor => mentor.Category)
                         .Include(mentor => mentor.Availabilities),
@@ -49,9 +52,12 @@
             return mentors;
         }
 
-        public async Task<Mentor> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+        public async Task<Mentor> GetOneByAsync(Func<IQueryable<Mentor>, 
+            IIncludableQueryable<Mentor, object>> include = null, 
+            Expression<Func<Mentor, bool>> expression = null, 
+            CancellationToken cancellationToken = default)
         {
-            string key = $"mentor-{id}";
+            string key = "mentor";
 
             var cachedMentor = await _distributedCache.GetStringAsync(key, cancellationToken);
 
@@ -59,16 +65,16 @@
 
             if (string.IsNullOrEmpty(cachedMentor))
             {
-                mentor = await _mentorRepository.GetOneByAsync(
+                mentor = await _decoratedRepository.GetOneByAsync(
                     include: query => query
                         .Include(mentor => mentor.Category)
-                        .Include(mentor => mentor.Availabilities),
-                    expression: mentor => mentor.Id.Equals(id),
-                    cancellationToken: cancellationToken);
+                        .Include(mentor => mentor.Availabilities), 
+                    expression, 
+                    cancellationToken);
 
-                if(mentor is null)
+                if (mentor is null)
                 {
-                    throw new MentorNotFoundException(id);
+                    throw new MentorNotFoundException();
                 }
 
                 var mentorJson = SerializeMentorToJson(mentor);
@@ -84,6 +90,21 @@
             mentor = JsonConvert.DeserializeObject<Mentor>(cachedMentor);
 
             return mentor;
+        }
+
+        public async Task CreateAsync(Mentor mentor, CancellationToken cancellationToken = default)
+        {
+            await _decoratedRepository.CreateAsync(mentor, cancellationToken);
+        }
+
+        public async Task UpdateAsync(Mentor mentor, CancellationToken cancellationToken = default)
+        {
+            await _decoratedRepository.UpdateAsync(mentor, cancellationToken);
+        }
+
+        public async Task DeleteAsync(Mentor mentor, CancellationToken cancellationToken = default)
+        {
+            await _decoratedRepository.DeleteAsync(mentor, cancellationToken);
         }
 
         private JsonSerializerSettings SerializerSettings()
