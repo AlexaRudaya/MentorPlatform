@@ -1,3 +1,6 @@
+using Hangfire;
+using HangfireBasicAuthenticationFilter;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
@@ -24,5 +27,17 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseHangfireDashboard("/hangfire", new DashboardOptions
+{ 
+    Authorization = new[]
+    { 
+        new HangfireCustomBasicAuthenticationFilter
+        { 
+            User = app.Configuration.GetSection("HangfireOptions:User").Value,
+            Pass = app.Configuration.GetSection("HangfireOptions:Pass").Value
+        }
+    }
+});
 
 app.Run();

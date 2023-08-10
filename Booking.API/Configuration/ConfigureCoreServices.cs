@@ -1,4 +1,5 @@
 ﻿using Hangfire;
+using Hangfire.SqlServer;
 
 namespace Booking.API.Configuration
 {
@@ -195,11 +196,32 @@ namespace Booking.API.Configuration
         public static IServiceCollection ConfigureHangfire(this IServiceCollection services,
             IConfiguration configuration)
         {
+            var options = new SqlServerStorageOptions
+            {
+                PrepareSchemaIfNecessary = true,
+                EnableHeavyMigrations = true,
+                CommandBatchMaxTimeout = TimeSpan.FromMinutes(5),
+                SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
+                QueuePollInterval = TimeSpan.Zero,
+                UseRecommendedIsolationLevel = true,
+                DisableGlobalLocks = true
+            };
+
             services.AddHangfire(globalConfiguration => globalConfiguration
                 .SetDataCompatibilityLevel(CompatibilityLevel.Version_180)
                 .UseSimpleAssemblyNameTypeSerializer()
                 .UseRecommendedSerializerSettings()
-                .UseSqlServerStorage(configuration.GetConnectionString("HangfireConnection")));
+                .UseSqlServerStorage(configuration.GetConnectionString("HangfireConnection"), options));
+            //new SqlServerStorageOptions
+            //{
+            //    PrepareSchemaIfNecessary = true,
+            //    EnableHeavyMigrations = true,
+            //    CommandBatchMaxTimeout = TimeSpan.FromMinutes(5),
+            //    SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
+            //    QueuePollInterval = TimeSpan.Zero,
+            //    UseRecommendedIsolationLevel = true,
+            //    DisableGlobalLocks = true,
+            //}));
 
             services.AddHangfireServer();
 
