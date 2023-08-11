@@ -64,7 +64,7 @@
         public async Task<IActionResult> GetAvailabilitiesOfMentor([FromRoute] string id,
             CancellationToken cancellationToken = default)
         {
-            var availabilitiesOfMentor = await _bookingForMentorService.GetAvailabilitiesOfMentor(id, cancellationToken);
+            var availabilitiesOfMentor = _bookingForMentorService.GetAvailabilitiesOfMentor(id, cancellationToken);
 
             return Ok(availabilitiesOfMentor);
         }

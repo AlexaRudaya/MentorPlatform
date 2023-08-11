@@ -2,7 +2,6 @@
 using Booking.Infrastructure.BackGroundJobs;
 using Hangfire;
 using Hangfire.SqlServer;
-using Microsoft.Extensions.Options;
 
 namespace Booking.API.Configuration
 {
@@ -154,6 +153,9 @@ namespace Booking.API.Configuration
         {
             services.AddDbContext<BookingDbContext>(dbContextOptions =>
                 dbContextOptions.UseSqlServer(configuration.GetConnectionString("BookingConnection")));
+
+            services.AddDbContext<HangfireDbContext>(dbContextOptions =>
+                dbContextOptions.UseSqlServer(configuration.GetConnectionString("HangfireConnection")));
 
             services.AddAutoMapper(typeof(MapperInfrastructure));
 

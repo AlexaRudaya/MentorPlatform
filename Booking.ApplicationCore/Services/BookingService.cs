@@ -110,7 +110,9 @@ namespace Booking.ApplicationCore.Services
 
             var eventToPublish = _mapper.Map<MeetingBookingEvent>(bookingToCreate);
 
-            BackgroundJob.Enqueue(() => _backgroundJobsService.PublishBookingEvent(eventToPublish, cancellationToken));
+            //BackgroundJob.Enqueue(() => _backgroundJobsService.PublishBookingEvent(eventToPublish, cancellationToken));
+
+            BackgroundJob.Enqueue<IBackgroundJobsService>(backgroundJob => backgroundJob.PublishBookingEvent(eventToPublish, cancellationToken));
 
             //await _producer.PublishAsync(eventToPublish, cancellationToken);
 
