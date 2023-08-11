@@ -1,5 +1,8 @@
-﻿using Hangfire;
+﻿using Booking.ApplicationCore.Interfaces.IBackgroundJobs;
+using Booking.Infrastructure.BackGroundJobs;
+using Hangfire;
 using Hangfire.SqlServer;
+using Microsoft.Extensions.Options;
 
 namespace Booking.API.Configuration
 {
@@ -158,6 +161,7 @@ namespace Booking.API.Configuration
             services.AddScoped<IStudentRepository, StudentRepository>();
             services.AddScoped<IMentorBookingRepository, MentorBookingRepository>();
             services.AddScoped<IProducer, BookingProducer>();
+            services.AddScoped<IBackgroundJobsService, BackgroundJobsService>();
 
             return services;
         }
@@ -212,16 +216,6 @@ namespace Booking.API.Configuration
                 .UseSimpleAssemblyNameTypeSerializer()
                 .UseRecommendedSerializerSettings()
                 .UseSqlServerStorage(configuration.GetConnectionString("HangfireConnection"), options));
-            //new SqlServerStorageOptions
-            //{
-            //    PrepareSchemaIfNecessary = true,
-            //    EnableHeavyMigrations = true,
-            //    CommandBatchMaxTimeout = TimeSpan.FromMinutes(5),
-            //    SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
-            //    QueuePollInterval = TimeSpan.Zero,
-            //    UseRecommendedIsolationLevel = true,
-            //    DisableGlobalLocks = true,
-            //}));
 
             services.AddHangfireServer();
 

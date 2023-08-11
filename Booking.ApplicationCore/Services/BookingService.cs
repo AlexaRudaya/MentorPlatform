@@ -1,4 +1,7 @@
-﻿namespace Booking.ApplicationCore.Services
+﻿using Booking.ApplicationCore.Interfaces.IBackgroundJobs;
+using Hangfire;
+
+namespace Booking.ApplicationCore.Services
 {
     public class BookingService : IBookingService
     {
@@ -8,6 +11,7 @@
         private readonly IMapper _mapper;
         private readonly ILogger<BookingService> _logger;
         private readonly IProducer _producer;
+        private readonly IBackgroundJobsService _backgroundJobsService;
 
         public BookingService(
             IMentorBookingRepository bookingRepository,
@@ -15,7 +19,8 @@
             IGetMentorClient mentorClient,
             IMapper mapper,
             ILogger<BookingService> logger,
-            IProducer producer)
+            IProducer producer,
+            IBackgroundJobsService backgroundJobsService)
         {
             _bookingRepository = bookingRepository;
             _studentRepository = studentRepository;
@@ -23,6 +28,7 @@
             _mapper = mapper;
             _logger = logger;
             _producer = producer;
+            _backgroundJobsService = backgroundJobsService;
         }
 
         public async Task<IEnumerable<BookingDto>> GetAllAsync(CancellationToken cancellationToken = default)
@@ -104,7 +110,9 @@
 
             var eventToPublish = _mapper.Map<MeetingBookingEvent>(bookingToCreate);
 
-            await _producer.PublishAsync(eventToPublish, cancellationToken);
+            BackgroundJob.Enqueue(() => _backgroundJobsService.PublishBookingEvent(eventToPublish, cancellationToken));
+
+            //await _producer.PublishAsync(eventToPublish, cancellationToken);
 
             return bookingDto;
         }
