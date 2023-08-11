@@ -21,11 +21,7 @@
 
         public async Task<IEnumerable<MentorDto>> GetAllAsync(CancellationToken cancellationToken = default)
         {
-            var allMentors = await _mentorRepository.GetAllByAsync(
-                include: query => query
-                    .Include(mentor => mentor.Category)
-                    .Include(mentor => mentor.Availabilities),
-                    cancellationToken: cancellationToken);
+            var allMentors = await _mentorRepository.GetAllByAsync(cancellationToken: cancellationToken);
 
             var mentorsDto = _mapper.Map<IEnumerable<MentorDto>>(allMentors);
 
@@ -41,12 +37,8 @@
 
         public async Task<MentorDto> GetByIdAsync(Guid mentorId, CancellationToken cancellationToken = default)
         {
-            var mentor = await _mentorRepository.GetOneByAsync(
-               include: query => query
-                   .Include(mentor => mentor.Category)
-                   .Include(mentor => mentor.Availabilities),
-               expression: mentor => mentor.Id.Equals(mentorId),
-               cancellationToken: cancellationToken);
+            var mentor = await _mentorRepository.GetOneByAsync(expression: mentor => mentor.Id.Equals(mentorId),
+                                                               cancellationToken: cancellationToken);   
 
             var mentorDto = _mapper.Map<MentorDto>(mentor);
 

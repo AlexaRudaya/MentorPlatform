@@ -7,7 +7,6 @@ global using Mentors.ApplicationCore.Exceptions;
 global using Mentors.ApplicationCore.Interfaces.IService;
 global using Mentors.Domain.Abstractions.IRepository;
 global using Microsoft.Extensions.Logging;
-global using Microsoft.EntityFrameworkCore;
 global using FluentValidation;
 global using MentorPlatform.Shared.MassTransitEvents;
 global using MentorPlatform.Shared.MessageBus;

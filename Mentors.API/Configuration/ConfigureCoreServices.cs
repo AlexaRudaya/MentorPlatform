@@ -155,6 +155,7 @@
             services.AddScoped<IMentorRepository, MentorRepository>();
             services.AddScoped<IAvailabilityRepository, AvailabilityRepository>();
             services.AddScoped<IProducer, Producer>();
+            services.Decorate<IMentorRepository, CachedMentorRepository>();
 
             return services;
         }
@@ -182,6 +183,19 @@
 
                     busConfigurator.ConfigureEndpoints(busRegistrationContext);
                 });
+            });
+
+            return services;
+        }
+
+        public static IServiceCollection ConfigureRedis(this IServiceCollection services,
+            IConfiguration configuration)
+        {
+            services.AddStackExchangeRedisCache(redisOptions =>
+            {
+                string connection = configuration.GetConnectionString("Redis");
+
+                redisOptions.Configuration = connection;
             });
 
             return services;

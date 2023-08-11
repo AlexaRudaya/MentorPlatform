@@ -40,7 +40,10 @@
         {
             var mentorToCreate = await _mentorService.CreateAsync(mentorDto, cancellationToken);
 
-            return Ok("Successfully created");
+            return CreatedAtAction(
+                nameof(GetMentor),
+                new { id = mentorToCreate.Id },
+                mentorToCreate);
         }
 
         [Authorize]
