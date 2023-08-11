@@ -18,3 +18,5 @@ global using MassTransit;
 global using MentorPlatform.Shared.MassTransitEvents;
 global using Microsoft.Extensions.Logging;
 global using MentorPlatform.Shared.MessageBus;
+global using Booking.ApplicationCore.Exceptions;
+global using Booking.ApplicationCore.Interfaces.IBackgroundJobs;

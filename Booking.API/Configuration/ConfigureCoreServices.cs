@@ -1,9 +1,4 @@
-﻿using Booking.ApplicationCore.Interfaces.IBackgroundJobs;
-using Booking.Infrastructure.BackGroundJobs;
-using Hangfire;
-using Hangfire.SqlServer;
-
-namespace Booking.API.Configuration
+﻿namespace Booking.API.Configuration
 {
     public static class ConfigureCoreServices
     {

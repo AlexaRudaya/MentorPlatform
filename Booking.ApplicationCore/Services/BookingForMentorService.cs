@@ -1,25 +1,19 @@
-﻿using Booking.ApplicationCore.Interfaces.IBackgroundJobs;
-using Hangfire;
-
-namespace Booking.ApplicationCore.Services
+﻿namespace Booking.ApplicationCore.Services
 {
     public class BookingForMentorService : IBookingForMentorService
     {
         private readonly IMentorBookingRepository _bookingRepository;
-        private readonly IGetMentorClient _mentorClient;
         private readonly IMapper _mapper;
         private readonly ILogger<BookingService> _logger;
         private readonly IBackgroundJobsService _backgroundJobsService;
 
         public BookingForMentorService(
             IMentorBookingRepository bookingRepository,
-            IGetMentorClient mentorClient,
             IMapper mapper,
             ILogger<BookingService> logger,
             IBackgroundJobsService backgroundJobsService)
         {
             _bookingRepository = bookingRepository;
-            _mentorClient = mentorClient;
             _mapper = mapper;
             _logger = logger;
             _backgroundJobsService = backgroundJobsService;
@@ -43,7 +37,7 @@ namespace Booking.ApplicationCore.Services
             return bookingDto;
         }
 
-        public async Task GetAvailabilitiesOfMentor(string mentorId, 
+        public async Task<IEnumerable<AvailabilityDto>> GetAvailabilitiesOfMentor(string mentorId, 
             CancellationToken cancellationToken = default)
         {
             RecurringJob.AddOrUpdate<IBackgroundJobsService>($"GetAvailabilitiesForMentor-{mentorId}",
@@ -51,17 +45,7 @@ namespace Booking.ApplicationCore.Services
 
             var availabilities = await _backgroundJobsService.GetMentorAvailabilitiesFromMentorApi(mentorId, cancellationToken);
 
-            //var mentorReply = await _mentorClient.GetMentorAsync(mentorId);
-
-            //if (mentorReply is null)
-            //{
-            //    _logger.LogError($"Failed finding mentor with Id:{mentorId}");
-            //    throw new ObjectNotFoundException("Mentor was not found");
-            //}
-
-            //var availabilities = _mapper.Map<IEnumerable<AvailabilityDto>>(mentorReply.Availabilities);
-
-            //return availabilities;
+            return availabilities;
         }
     }
 }

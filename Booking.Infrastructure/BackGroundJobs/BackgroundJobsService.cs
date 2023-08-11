@@ -1,7 +1,4 @@
-﻿using Booking.ApplicationCore.Exceptions;
-using Booking.ApplicationCore.Interfaces.IBackgroundJobs;
-
-namespace Booking.Infrastructure.BackGroundJobs
+﻿namespace Booking.Infrastructure.BackGroundJobs
 {
     public class BackgroundJobsService : IBackgroundJobsService
     {

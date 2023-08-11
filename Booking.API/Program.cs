@@ -1,6 +1,3 @@
-using Hangfire;
-using HangfireBasicAuthenticationFilter;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services

@@ -35,3 +35,8 @@ global using MentorPlatform.Shared.MessageBus;
 global using Microsoft.Extensions.Options;
 global using Serilog.Exceptions;
 global using Serilog.Sinks.Elasticsearch;
+global using Hangfire;
+global using HangfireBasicAuthenticationFilter;
+global using Booking.ApplicationCore.Interfaces.IBackgroundJobs;
+global using Booking.Infrastructure.BackGroundJobs;
+global using Hangfire.SqlServer;

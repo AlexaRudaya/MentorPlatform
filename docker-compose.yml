@@ -118,7 +118,6 @@ services:
   volumes:
    - ./.containers/rabbitmq/data/:/var/lib/rabbit
    - ./.containers/rabbitmq/log/:/var/log/rabbit
-  mem_limit: 50M
   networks:
    - deploy-mentor
 
@@ -139,7 +138,7 @@ services:
    timeout: 10s
    retries: 10
    start_period: 10s
-  mem_limit: 50M
+  mem_limit: 500M
   networks:
    - deploy-mentor
 
