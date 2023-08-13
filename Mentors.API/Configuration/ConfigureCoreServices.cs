@@ -1,4 +1,6 @@
-﻿namespace Mentors.API.Configuration
+﻿using Mentors.Infrastructure.MongoDb;
+
+namespace Mentors.API.Configuration
 {
     public static class ConfigureCoreServices
     {
@@ -199,6 +201,14 @@
 
                 redisOptions.Configuration = connection;
             });
+
+            return services;
+        }
+
+        public static IServiceCollection ConfigureMongoDb(this IServiceCollection services,
+            IConfiguration configuration)
+        {
+            services.Configure<MongoDbSettings>(configuration.GetSection("MongoDb"));
 
             return services;
         }

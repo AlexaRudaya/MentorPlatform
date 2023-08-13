@@ -9,7 +9,8 @@ builder.Services
     .ConfigureApplicationCore()
     .ConfigureInfrastructure(builder.Configuration)
     .ConfigureMessageBroker(builder.Configuration)
-    .ConfigureRedis(builder.Configuration);
+    .ConfigureRedis(builder.Configuration)
+    .ConfigureMongoDb(builder.Configuration);
 
 builder.Services.AddEndpointsApiExplorer();
 
