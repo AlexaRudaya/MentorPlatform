@@ -165,6 +165,17 @@ services:
   networks:
    - deploy-mentor
 
+ mongodb:
+  container_name: mongodb
+  image: mongo:latest
+  ports:
+   - 27017:27017 
+  networks:
+   - deploy-mentor
+  environment:
+   - MONGO_INITDB_ROOT_USERNAME=root
+   - MONGO_INITDB_ROOT_PASSWORD=mongo123
+
 volumes:
   db:    
   elasticsearch-data:    
