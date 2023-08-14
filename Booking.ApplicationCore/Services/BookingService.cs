@@ -7,7 +7,7 @@
         private readonly IGetMentorClient _mentorClient;
         private readonly IMapper _mapper;
         private readonly ILogger<BookingService> _logger;
-        private readonly IProducer _producer;
+        private readonly IBackgroundJobsService _backgroundJobsService;
 
         public BookingService(
             IMentorBookingRepository bookingRepository,
@@ -15,14 +15,14 @@
             IGetMentorClient mentorClient,
             IMapper mapper,
             ILogger<BookingService> logger,
-            IProducer producer)
+            IBackgroundJobsService backgroundJobsService)
         {
             _bookingRepository = bookingRepository;
             _studentRepository = studentRepository;
             _mentorClient = mentorClient;
             _mapper = mapper;
             _logger = logger;
-            _producer = producer;
+            _backgroundJobsService = backgroundJobsService;
         }
 
         public async Task<IEnumerable<BookingDto>> GetAllAsync(CancellationToken cancellationToken = default)
@@ -104,7 +104,7 @@
 
             var eventToPublish = _mapper.Map<MeetingBookingEvent>(bookingToCreate);
 
-            await _producer.PublishAsync(eventToPublish, cancellationToken);
+            BackgroundJob.Enqueue(() => _backgroundJobsService.PublishBookingEvent(eventToPublish, cancellationToken));
 
             return bookingDto;
         }

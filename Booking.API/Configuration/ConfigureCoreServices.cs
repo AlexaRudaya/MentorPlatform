@@ -150,12 +150,16 @@
             services.AddDbContext<BookingDbContext>(dbContextOptions =>
                 dbContextOptions.UseSqlServer(configuration.GetConnectionString("BookingConnection")));
 
+            services.AddDbContext<HangfireDbContext>(dbContextOptions =>
+                dbContextOptions.UseSqlServer(configuration.GetConnectionString("HangfireConnection")));
+
             services.AddAutoMapper(typeof(MapperInfrastructure));
 
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddScoped<IStudentRepository, StudentRepository>();
             services.AddScoped<IMentorBookingRepository, MentorBookingRepository>();
             services.AddScoped<IProducer, BookingProducer>();
+            services.AddScoped<IBackgroundJobsService, BackgroundJobsService>();
 
             return services;
         }
@@ -184,6 +188,31 @@
                     busConfigurator.ConfigureEndpoints(busRegistrationContext);
                 });
             });
+
+            return services;
+        }
+
+        public static IServiceCollection ConfigureHangfire(this IServiceCollection services,
+            IConfiguration configuration)
+        {
+            var options = new SqlServerStorageOptions
+            {
+                PrepareSchemaIfNecessary = true,
+                EnableHeavyMigrations = true,
+                CommandBatchMaxTimeout = TimeSpan.FromMinutes(5),
+                SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
+                QueuePollInterval = TimeSpan.Zero,
+                UseRecommendedIsolationLevel = true,
+                DisableGlobalLocks = true
+            };
+
+            services.AddHangfire(globalConfiguration => globalConfiguration
+                .SetDataCompatibilityLevel(CompatibilityLevel.Version_180)
+                .UseSimpleAssemblyNameTypeSerializer()
+                .UseRecommendedSerializerSettings()
+                .UseSqlServerStorage(configuration.GetConnectionString("HangfireConnection"), options));
+
+            services.AddHangfireServer();
 
             return services;
         }

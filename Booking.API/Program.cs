@@ -8,7 +8,8 @@ builder.Services
     .ConfigureCorePolicy()
     .ConfigureApplicationCore(builder.Configuration)
     .ConfigureInfrastructure(builder.Configuration)
-    .ConfigureMessageBroker(builder.Configuration);
+    .ConfigureMessageBroker(builder.Configuration)
+    .ConfigureHangfire(builder.Configuration);
 
 var app = builder.Build();
 
@@ -18,10 +19,24 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+HangfireExtension.MigrateHangfire(builder.Services);
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseHangfireDashboard("/hangfire", new DashboardOptions
+{ 
+    Authorization = new[]
+    { 
+        new HangfireCustomBasicAuthenticationFilter
+        { 
+            User = app.Configuration.GetSection("HangfireOptions:User").Value,
+            Pass = app.Configuration.GetSection("HangfireOptions:Pass").Value
+        }
+    }
+});
 
 app.Run();

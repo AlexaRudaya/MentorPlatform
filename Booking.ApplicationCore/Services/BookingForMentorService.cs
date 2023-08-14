@@ -3,20 +3,20 @@
     public class BookingForMentorService : IBookingForMentorService
     {
         private readonly IMentorBookingRepository _bookingRepository;
-        private readonly IGetMentorClient _mentorClient;
         private readonly IMapper _mapper;
         private readonly ILogger<BookingService> _logger;
+        private readonly IBackgroundJobsService _backgroundJobsService;
 
         public BookingForMentorService(
             IMentorBookingRepository bookingRepository,
-            IGetMentorClient mentorClient,
             IMapper mapper,
-            ILogger<BookingService> logger)
+            ILogger<BookingService> logger,
+            IBackgroundJobsService backgroundJobsService)
         {
             _bookingRepository = bookingRepository;
-            _mentorClient = mentorClient;
             _mapper = mapper;
             _logger = logger;
+            _backgroundJobsService = backgroundJobsService;
         }
 
         public async Task<IEnumerable<BookingDto>> GetBookingsForMentorAsync(string mentorId,
@@ -40,15 +40,10 @@
         public async Task<IEnumerable<AvailabilityDto>> GetAvailabilitiesOfMentor(string mentorId, 
             CancellationToken cancellationToken = default)
         {
-            var mentorReply = await _mentorClient.GetMentorAsync(mentorId);
+            RecurringJob.AddOrUpdate<IBackgroundJobsService>($"GetAvailabilitiesForMentor-{mentorId}",
+                backgroundJob => backgroundJob.GetMentorAvailabilitiesFromMentorApi(mentorId, cancellationToken), Cron.Daily);
 
-            if (mentorReply is null)
-            {
-                _logger.LogError($"Failed finding mentor with Id:{mentorId}");
-                throw new ObjectNotFoundException("Mentor was not found");
-            }
-
-            var availabilities = _mapper.Map<IEnumerable<AvailabilityDto>>(mentorReply.Availabilities);
+            var availabilities = await _backgroundJobsService.GetMentorAvailabilitiesFromMentorApi(mentorId, cancellationToken);
 
             return availabilities;
         }

@@ -118,7 +118,6 @@ services:
   volumes:
    - ./.containers/rabbitmq/data/:/var/lib/rabbit
    - ./.containers/rabbitmq/log/:/var/log/rabbit
-  mem_limit: 1024m
   networks:
    - deploy-mentor
 
@@ -139,7 +138,7 @@ services:
    timeout: 10s
    retries: 10
    start_period: 10s
-  mem_limit: 1024m
+  mem_limit: 500M
   networks:
    - deploy-mentor
 
@@ -152,6 +151,7 @@ services:
    - elasticsearch
   environment:
    - ELASTICSEARCH_URL:http://localhost:9200
+  mem_limit: 50M
   networks:
    - deploy-mentor
 
