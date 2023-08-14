@@ -1,4 +1,6 @@
-﻿using Mentors.Infrastructure.MongoDb;
+﻿using Mentors.Domain.Abstractions.IRepository.IMongoRepository;
+using Mentors.Infrastructure.MongoDb;
+using Mentors.Infrastructure.Repositories.MongoRepository;
 
 namespace Mentors.API.Configuration
 {
@@ -33,6 +35,7 @@ namespace Mentors.API.Configuration
         {
             services.AddAutoMapper(typeof(MapperAPI));
 
+            services.AddOptions();
             services.AddControllers();
             services.AddFluentValidationAutoValidation();
             services.AddTransient<GlobalExceptionHandlingMiddleware>();
@@ -209,6 +212,8 @@ namespace Mentors.API.Configuration
             IConfiguration configuration)
         {
             services.Configure<MongoDbSettings>(configuration.GetSection("MongoDb"));
+
+            services.AddScoped(typeof(IMongoRepository<>), typeof(MongoRepository<>));
 
             return services;
         }
