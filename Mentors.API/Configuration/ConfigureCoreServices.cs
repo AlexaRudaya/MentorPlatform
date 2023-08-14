@@ -214,6 +214,7 @@ namespace Mentors.API.Configuration
             services.Configure<MongoDbSettings>(configuration.GetSection("MongoDb"));
 
             services.AddScoped(typeof(IMongoRepository<>), typeof(MongoRepository<>));
+            services.AddScoped<IMentorshipSubjectRepository, MentorshipSubjectRepository>();
 
             return services;
         }

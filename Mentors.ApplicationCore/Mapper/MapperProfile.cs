@@ -12,6 +12,7 @@
                 .ReverseMap();
             CreateMap<Mentor, MentorCreateDto>().ReverseMap();
             CreateMap<Availability, AvailabilityOfMentorEvent>();
+            CreateMap<MentorshipSubject, MentorshipSubjectDto>().ReverseMap();
         }
     }
 }
