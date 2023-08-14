@@ -1,4 +1,6 @@
-﻿using Mentors.Domain.Abstractions.IRepository.IMongoRepository;
+﻿using Mentors.ApplicationCore.Interfaces.IMongoService;
+using Mentors.ApplicationCore.Services.MongoServices;
+using Mentors.Domain.Abstractions.IRepository.IMongoRepository;
 using Mentors.Infrastructure.MongoDb;
 using Mentors.Infrastructure.Repositories.MongoRepository;
 
@@ -144,6 +146,7 @@ namespace Mentors.API.Configuration
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IMentorService, MentorService>();
             services.AddScoped<IAvailabilityService, AvailabilityService>();
+            services.AddScoped<IMentorshipSubjectService, MentorshipSubjectService>();
 
             return services;
         }

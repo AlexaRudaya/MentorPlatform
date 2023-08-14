@@ -22,7 +22,7 @@ namespace Mentors.Infrastructure.Repositories.MongoRepository
             return await _mongoCollection.Find(Builders<T>.Filter.Empty).ToListAsync(cancellationToken);    
         }
 
-        public async Task<T> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+        public async Task<T> GetByIdAsync(string id, CancellationToken cancellationToken = default)
         {
             var entity = await _mongoCollection.FindAsync(Builders<T>.Filter.Eq(entity => entity.Id, id));
 
@@ -41,7 +41,7 @@ namespace Mentors.Infrastructure.Repositories.MongoRepository
             await _mongoCollection.ReplaceOneAsync(filter, entity, cancellationToken: cancellationToken);
         }
 
-        public async Task DeleteAsync(Guid id, CancellationToken cancellationToken = default)
+        public async Task DeleteAsync(string id, CancellationToken cancellationToken = default)
         {
             var filter = Builders<T>.Filter.Eq(existingEntity => existingEntity.Id, id);
 

@@ -35,7 +35,7 @@ namespace Mentors.ApplicationCore.Services.MongoServices
             return subjectsDto;
         }
 
-        public async Task<MentorshipSubjectDto> GetByIdAsync(Guid subjectId, CancellationToken cancellationToken = default)
+        public async Task<MentorshipSubjectDto> GetByIdAsync(string subjectId, CancellationToken cancellationToken = default)
         {
             var subject = await _subjectRepository.GetByIdAsync(subjectId, cancellationToken);
 
@@ -56,7 +56,7 @@ namespace Mentors.ApplicationCore.Services.MongoServices
 
             await _subjectRepository.CreateAsync(subjectToCreate, cancellationToken);
 
-            _logger.LogInformation($"A mentorship subject with Id:{subjectToCreate.Id} and Name:{subjectToCreate.Name} is created successfully");
+            _logger.LogInformation($"A mentorship subject with Id:{subjectToCreate.Id} is created successfully");
 
             return subjectDto;
         }
@@ -81,7 +81,7 @@ namespace Mentors.ApplicationCore.Services.MongoServices
             return subjectDto;
         }
 
-        public async Task DeleteAsync(Guid subjectId, CancellationToken cancellationToken = default)
+        public async Task DeleteAsync(string subjectId, CancellationToken cancellationToken = default)
         {
             await _subjectRepository.DeleteAsync(subjectId, cancellationToken);
 
