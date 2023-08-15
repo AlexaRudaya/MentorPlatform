@@ -5,6 +5,34 @@ networks:
   driver: bridge
  
 services:
+
+ chat_api:
+  build:
+   context: .
+   dockerfile: ./Chat.API/Dockerfile
+  container_name: chat_api
+  ports: 
+   - '7006:7006'
+  depends_on:
+   - chat_db
+  entrypoint: /bin/sh -c "dotnet Chat.API.dll"
+  environment:
+   - ASPNETCORE_ENVIRONMENT=Development
+   - ASPNETCORE_URLS=https://+:7006
+  networks:
+   - deploy-mentor
+
+ chat_db:
+  container_name: chat_db
+  environment:
+   - ACCEPT_EULA=Y
+   - MSSQL_SA_PASSWORD=Chat!pass 
+  image: mcr.microsoft.com/mssql/server:2022-latest
+  ports:
+   - '5001:1433'
+  networks:
+   - deploy-mentor
+
  booking_api:
   build:
    context: .

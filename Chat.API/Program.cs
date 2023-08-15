@@ -1,4 +1,9 @@
+using Chat.API.Configuration;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services
+    .ConfigureInfrastructure(builder.Configuration);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
