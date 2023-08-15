@@ -1,7 +1,4 @@
-﻿using Mentors.ApplicationCore.Interfaces.IMongoService;
-using Mentors.Domain.Entities.MongoDb;
-
-namespace Mentors.API.Controllers
+﻿namespace Mentors.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -53,7 +50,7 @@ namespace Mentors.API.Controllers
         public async Task<IActionResult> UpdateSubject([FromBody] MentorshipSubjectDto subjectDto,
             CancellationToken cancellationToken = default)
         {
-            var subjectToUpdate = await _subjectService.UpdateAsync(subjectDto, cancellationToken);
+            await _subjectService.UpdateAsync(subjectDto, cancellationToken);
 
             return NoContent();
         }

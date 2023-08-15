@@ -1,10 +1,4 @@
-﻿using Mentors.ApplicationCore.Interfaces.IMongoService;
-using Mentors.ApplicationCore.Services.MongoServices;
-using Mentors.Domain.Abstractions.IRepository.IMongoRepository;
-using Mentors.Infrastructure.MongoDb;
-using Mentors.Infrastructure.Repositories.MongoRepository;
-
-namespace Mentors.API.Configuration
+﻿namespace Mentors.API.Configuration
 {
     public static class ConfigureCoreServices
     {

@@ -1,16 +1,11 @@
-﻿using Mentors.Domain.Abstractions.IRepository.IMongoRepository;
-using Mentors.Domain.Entities.MongoDb;
-using Mentors.Infrastructure.MongoDb;
-using Microsoft.Extensions.Options;
-using MongoDB.Driver;
-
-namespace Mentors.Infrastructure.Repositories.MongoRepository
+﻿namespace Mentors.Infrastructure.Repositories.MongoRepository
 {
     public class MongoRepository<T> : IMongoRepository<T> where T : MongoBaseEntity
     {
         private readonly IMongoCollection<T> _mongoCollection;
 
-        public MongoRepository(IOptions<MongoDbSettings> mongoSettings)
+        public MongoRepository(
+            IOptions<MongoDbSettings> mongoSettings)
         {
             var client = new MongoClient(mongoSettings.Value.ConnectionURI);
             var database = client.GetDatabase(mongoSettings.Value.DatabaseName);

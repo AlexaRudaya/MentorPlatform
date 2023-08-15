@@ -1,7 +1,4 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
-using MongoDB.Bson;
-
-namespace Mentors.Domain.Entities.MongoDb
+﻿namespace Mentors.Domain.Entities.MongoDb
 {
     public abstract class MongoBaseEntity
     {

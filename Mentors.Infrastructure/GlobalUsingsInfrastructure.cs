@@ -15,3 +15,8 @@ global using Microsoft.Extensions.Logging;
 global using MentorPlatform.Shared.MessageBus;
 global using Microsoft.Extensions.Caching.Distributed;
 global using Newtonsoft.Json;
+global using Mentors.Domain.Abstractions.IRepository.IMongoRepository;
+global using Mentors.Domain.Entities.MongoDb;
+global using Mentors.Infrastructure.MongoDb;
+global using Microsoft.Extensions.Options;
+global using MongoDB.Driver;

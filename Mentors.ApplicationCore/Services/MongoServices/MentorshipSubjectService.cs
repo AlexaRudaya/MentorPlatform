@@ -1,7 +1,4 @@
-﻿using Mentors.ApplicationCore.Interfaces.IMongoService;
-using Mentors.Domain.Abstractions.IRepository.IMongoRepository;
-
-namespace Mentors.ApplicationCore.Services.MongoServices
+﻿namespace Mentors.ApplicationCore.Services.MongoServices
 {
     public class MentorshipSubjectService : IMentorshipSubjectService
     {
