@@ -1,4 +1,5 @@
 using Chat.API.Configuration;
+using Chat.API.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,5 +23,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapHub<ChatHub>("/chat");
 
 app.Run();

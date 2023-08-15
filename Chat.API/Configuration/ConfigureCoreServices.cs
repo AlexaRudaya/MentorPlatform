@@ -13,5 +13,12 @@ namespace Chat.API.Configuration
 
             return services;
         }
+
+        public static IServiceCollection ConfigureInfrastructure(this IServiceCollection services)
+        { 
+            services.AddSignalR();
+
+            return services;
+        }
     }
 }
