@@ -140,6 +140,7 @@
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IMentorService, MentorService>();
             services.AddScoped<IAvailabilityService, AvailabilityService>();
+            services.AddScoped<IMentorshipSubjectService, MentorshipSubjectService>();
 
             return services;
         }
@@ -197,6 +198,17 @@
 
                 redisOptions.Configuration = connection;
             });
+
+            return services;
+        }
+
+        public static IServiceCollection ConfigureMongoDb(this IServiceCollection services,
+            IConfiguration configuration)
+        {
+            services.Configure<MongoDbSettings>(configuration.GetSection("MongoDb"));
+
+            services.AddScoped(typeof(IMongoRepository<>), typeof(MongoRepository<>));
+            services.AddScoped<IMentorshipSubjectRepository, MentorshipSubjectRepository>();
 
             return services;
         }

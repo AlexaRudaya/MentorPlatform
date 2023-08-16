@@ -10,3 +10,6 @@ global using Microsoft.Extensions.Logging;
 global using FluentValidation;
 global using MentorPlatform.Shared.MassTransitEvents;
 global using MentorPlatform.Shared.MessageBus;
+global using Mentors.Domain.Entities.MongoDb;
+global using Mentors.ApplicationCore.Interfaces.IMongoService;
+global using Mentors.Domain.Abstractions.IRepository.IMongoRepository;
