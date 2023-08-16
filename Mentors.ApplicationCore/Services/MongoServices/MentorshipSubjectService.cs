@@ -20,12 +20,12 @@
         {
             var allSubjects = await _subjectRepository.GetAllAsync(cancellationToken);
 
-            var subjectsDto = _mapper.Map<IEnumerable<MentorshipSubjectDto>>(allSubjects);
-
             if (allSubjects is null)
             {
                 throw new MentorshipSubjectNotFoundException();
             }
+
+            var subjectsDto = _mapper.Map<IEnumerable<MentorshipSubjectDto>>(allSubjects);
 
             _logger.LogInformation("Mentorship subjects are loaded");
 
@@ -36,12 +36,12 @@
         {
             var subject = await _subjectRepository.GetByIdAsync(subjectId, cancellationToken);
 
-            var subjectDto = _mapper.Map<MentorshipSubjectDto>(subject);
-
             if (subject is null)
             {
                 throw new MentorshipSubjectNotFoundException(subjectId);
             }
+
+            var subjectDto = _mapper.Map<MentorshipSubjectDto>(subject);
 
             return subjectDto;
         }
