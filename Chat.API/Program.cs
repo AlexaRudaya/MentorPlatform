@@ -4,7 +4,9 @@ using Chat.API.Hubs;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
-    .ConfigureInfrastructure(builder.Configuration);
+    .ConfigureCorePolicy()
+    .ConfigureInfrastructure(builder.Configuration)
+    .ConfigureSignalR();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -21,6 +23,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseCors();
 
 app.MapControllers();
 

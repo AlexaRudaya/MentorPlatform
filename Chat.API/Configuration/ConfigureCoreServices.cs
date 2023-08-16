@@ -5,6 +5,21 @@ namespace Chat.API.Configuration
 {
     public static class ConfigureCoreServices
     {
+        public static IServiceCollection ConfigureCorePolicy(this IServiceCollection services)
+        {
+            services.AddCors(corsOptions =>
+            {
+                corsOptions.AddDefaultPolicy(corsPolicyBuilder =>
+                {
+                    corsPolicyBuilder.AllowAnyOrigin()
+                                     .AllowAnyMethod()
+                                     .AllowAnyHeader();
+                });
+            });
+
+            return services;
+        }
+
         public static IServiceCollection ConfigureInfrastructure(this IServiceCollection services,
             IConfiguration configuration)
         {
@@ -14,7 +29,7 @@ namespace Chat.API.Configuration
             return services;
         }
 
-        public static IServiceCollection ConfigureInfrastructure(this IServiceCollection services)
+        public static IServiceCollection ConfigureSignalR(this IServiceCollection services)
         { 
             services.AddSignalR();
 
