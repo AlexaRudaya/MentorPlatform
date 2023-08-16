@@ -5,15 +5,24 @@ namespace Chat.API.Configuration
 {
     public static class ConfigureCoreServices
     {
+        public static IServiceCollection ConfigureSignalR(this IServiceCollection services)
+        {
+            services.AddSignalR();
+
+            return services;
+        }
+
         public static IServiceCollection ConfigureCorePolicy(this IServiceCollection services)
         {
             services.AddCors(corsOptions =>
             {
                 corsOptions.AddDefaultPolicy(corsPolicyBuilder =>
                 {
-                    corsPolicyBuilder.AllowAnyOrigin()
-                                     .AllowAnyMethod()
-                                     .AllowAnyHeader();
+                    corsPolicyBuilder.WithOrigins("http://localhost:7006")
+                                     .AllowAnyHeader()
+                                     .WithMethods("GET", "POST")
+                                     .SetIsOriginAllowed((host) => true)
+                                     .AllowCredentials();
                 });
             });
 
@@ -25,13 +34,6 @@ namespace Chat.API.Configuration
         {
             services.AddDbContext<ChatDbContext>(dbContextOptions =>
                 dbContextOptions.UseSqlServer(configuration.GetConnectionString("ChatConnection")));
-
-            return services;
-        }
-
-        public static IServiceCollection ConfigureSignalR(this IServiceCollection services)
-        { 
-            services.AddSignalR();
 
             return services;
         }

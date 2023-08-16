@@ -57,6 +57,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{8DD0A41E-E45
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ChatClient", "ChatClient", "{83345E48-6441-4FAF-8105-A1351B66B833}"
 	ProjectSection(SolutionItems) = preProject
+		chat.js = chat.js
 		index.html = index.html
 		style.css = style.css
 	EndProjectSection
