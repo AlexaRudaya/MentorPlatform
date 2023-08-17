@@ -28,8 +28,6 @@ const joinChat = async (user) => {
     try { 
         const message = `${user} joined`;
         await connection.invoke("JoinChat", user, message);
-        console.log('Joined the chat');
-        alert(message);
     } catch (error) {
         console.log(error);
     }
@@ -37,9 +35,20 @@ const joinChat = async (user) => {
 
 const getUser = () => sessionStorage.getItem('user')
 
+const receiveMessage = async () => {
+    try {
+        await connection.on("ReceiveMessage", (user, message) => {
+        console.log(message);
+        })
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 const startApp = async () => {
     await start();
     await joinUser();
+    await receiveMessage();
 }
 
 startApp();
