@@ -18,22 +18,20 @@ namespace Chat.API.Hubs
             _logger = logger;
         }
 
-        public async Task SendMessage(string content)
+        public async Task SendMessage(string userName, string content)
         {
-            var userId = Guid.Parse(Context.UserIdentifier);
-            var user  = await _context.Users.FindAsync(userId);
+            var user = await _context.Users.FirstOrDefaultAsync(user => user.Name == userName);
 
             var message = new Message
             {
                 Content = content,
-                UserId = userId,
-                User = user 
+                UserId = user.Id
             };
 
             _context.Messages.Add(message);
             await _context.SaveChangesAsync();
 
-            await Clients.All.SendAsync("ReceiveMessage", user, content);
+            await Clients.All.SendAsync("ReceiveMessage", userName, content);
         }
 
         public async Task JoinChat(string userName, string content)
