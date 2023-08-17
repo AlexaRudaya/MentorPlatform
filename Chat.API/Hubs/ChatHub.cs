@@ -1,17 +1,21 @@
 ﻿using Chat.Domain.Entities;
 using Chat.Infrastructure.Data;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Chat.API.Hubs
 {
     public class ChatHub : Hub
     {
         private readonly ChatDbContext _context;
+        private readonly ILogger<ChatHub> _logger;
 
         public ChatHub(
-            ChatDbContext context)
+            ChatDbContext context,
+            ILogger<ChatHub> logger)
         {
             _context = context; 
+            _logger = logger;
         }
 
         public async Task SendMessage(string content)
@@ -32,24 +36,29 @@ namespace Chat.API.Hubs
             await Clients.All.SendAsync("ReceiveMessage", user, content);
         }
 
-        public async Task JoinChat(string content)
+        public async Task JoinChat(string userName, string content)
         {
-            var userId = Guid.Parse(Context.UserIdentifier);
-            var user = await _context.Users.FindAsync(userId);
+            var user = await _context.Users.FirstOrDefaultAsync(user => user.Name == userName);
 
-            await Groups.AddToGroupAsync(Context.ConnectionId, "ChatRoom");
+            if (user is null)
+            {
+                _logger.LogInformation("User is not found");
+
+                user = new User { Name = userName };
+                _context.Users.Add(user);
+                await _context.SaveChangesAsync();
+            }
 
             var message = new Message
             {
                 Content = content,
-                UserId = userId,
-                User = user
+                UserId = user.Id 
             };
 
             _context.Messages.Add(message);
             await _context.SaveChangesAsync();
 
-            await Clients.Others.SendAsync("ReceiveMessage", user, content);
+            await Clients.Others.SendAsync("ReceiveMessage", userName, content);
         }
     }
 }

@@ -4,9 +4,10 @@ using Chat.API.Hubs;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
+    .ConfigureLogging(builder)
+    .ConfigureInfrastructure(builder.Configuration)
     .ConfigureSignalR()
-    .ConfigureCorePolicy()
-    .ConfigureInfrastructure(builder.Configuration);
+    .ConfigureCorePolicy();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
