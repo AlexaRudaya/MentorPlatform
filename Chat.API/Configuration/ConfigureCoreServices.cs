@@ -1,4 +1,6 @@
-﻿using Chat.Infrastructure.Data;
+﻿using Chat.Domain.IRepository;
+using Chat.Infrastructure.Data;
+using Chat.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Serilog.Exceptions;
@@ -63,6 +65,10 @@ namespace Chat.API.Configuration
         {
             services.AddDbContext<ChatDbContext>(dbContextOptions =>
                 dbContextOptions.UseSqlServer(configuration.GetConnectionString("ChatConnection")));
+
+            services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IMessageRepository, MessageRepository>();
 
             return services;
         }
