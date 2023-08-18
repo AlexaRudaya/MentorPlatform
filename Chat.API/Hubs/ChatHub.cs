@@ -38,8 +38,6 @@
 
             if (user is null)
             {
-                _logger.LogInformation("User is not found");
-
                 user = new User { Name = userName };
                 await _userRepository.CreateAsync(user);
 
