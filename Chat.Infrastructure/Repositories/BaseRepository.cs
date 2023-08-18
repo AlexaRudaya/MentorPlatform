@@ -1,11 +1,4 @@
-﻿using Chat.Domain.Entities;
-using Chat.Domain.IRepository;
-using Microsoft.EntityFrameworkCore.Query;
-using Microsoft.EntityFrameworkCore;
-using System.Linq.Expressions;
-using Chat.Infrastructure.Data;
-
-namespace Chat.Infrastructure.Repositories
+﻿namespace Chat.Infrastructure.Repositories
 {
     public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
     {

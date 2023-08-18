@@ -1,8 +1,4 @@
-﻿using Chat.Domain.Entities;
-using Microsoft.EntityFrameworkCore.Query;
-using System.Linq.Expressions;
-
-namespace Chat.Domain.IRepository
+﻿namespace Chat.Domain.IRepository
 {
     public interface IBaseRepository<T> where T : BaseEntity
     {

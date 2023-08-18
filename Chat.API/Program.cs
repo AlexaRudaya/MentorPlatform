@@ -1,6 +1,3 @@
-using Chat.API.Configuration;
-using Chat.API.Hubs;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services

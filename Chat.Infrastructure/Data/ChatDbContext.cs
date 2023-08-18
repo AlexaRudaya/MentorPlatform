@@ -1,8 +1,4 @@
-﻿using Chat.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
-using System.Reflection;
-
-namespace Chat.Infrastructure.Data
+﻿namespace Chat.Infrastructure.Data
 {
     public class ChatDbContext : DbContext
     {

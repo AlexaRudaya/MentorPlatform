@@ -1,13 +1,9 @@
-﻿using Chat.Domain.Entities;
-using Chat.Domain.IRepository;
-using Microsoft.AspNetCore.SignalR;
-
-namespace Chat.API.Hubs
+﻿namespace Chat.API.Hubs
 {
     public class ChatHub : Hub
     {
         private readonly IUserRepository _userRepository;
-        private readonly IMessageRepository _messageRepository; 
+        private readonly IMessageRepository _messageRepository;
         private readonly ILogger<ChatHub> _logger;
         private static readonly Dictionary<string, string> _connectedUsers = new();
 
@@ -31,7 +27,7 @@ namespace Chat.API.Hubs
                 UserId = user.Id
             };
 
-            _messageRepository.CreateAsync(message);
+            await _messageRepository.CreateAsync(message);
 
             await Clients.All.SendAsync("ReceiveMessage", userName, content);
         }
@@ -45,7 +41,9 @@ namespace Chat.API.Hubs
                 _logger.LogInformation("User is not found");
 
                 user = new User { Name = userName };
-                _userRepository.CreateAsync(user);
+                await _userRepository.CreateAsync(user);
+
+                _logger.LogInformation($"User with Id: {user.Id} was created");
             }
 
             var message = new Message
@@ -54,7 +52,7 @@ namespace Chat.API.Hubs
                 UserId = user.Id
             };
 
-            _messageRepository.CreateAsync(message);
+            await _messageRepository.CreateAsync(message);
 
             _connectedUsers[Context.ConnectionId] = userName;
 
@@ -78,7 +76,6 @@ namespace Chat.API.Hubs
         {
             await LeaveChat();
             await base.OnDisconnectedAsync(exception);
-
         }
     }
 }

@@ -1,13 +1,4 @@
-﻿using Chat.Domain.IRepository;
-using Chat.Infrastructure.Data;
-using Chat.Infrastructure.Repositories;
-using Microsoft.EntityFrameworkCore;
-using Serilog;
-using Serilog.Exceptions;
-using Serilog.Sinks.Elasticsearch;
-using System.Reflection;
-
-namespace Chat.API.Configuration
+﻿namespace Chat.API.Configuration
 {
     public static class ConfigureCoreServices
     {
