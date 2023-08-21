@@ -1,6 +1,4 @@
-﻿using Chat.Domain.Entities;
-
-namespace Chat.ApplicationCore.DTO
+﻿namespace Chat.ApplicationCore.DTO
 {
     public class MessageDto : BaseDto
     {
@@ -8,6 +6,6 @@ namespace Chat.ApplicationCore.DTO
 
         public Guid UserId { get; set; }
 
-        public User User { get; set; }
+        public UserDto User { get; set; }
     }
 }

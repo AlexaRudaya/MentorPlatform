@@ -8,6 +8,7 @@ namespace Chat.ApplicationCore.Mapper
         public MapperProfile()
         {
             CreateMap<Message, MessageDto>().ReverseMap();
+            CreateMap<User, UserDto>().ReverseMap();
         }
     }
 }

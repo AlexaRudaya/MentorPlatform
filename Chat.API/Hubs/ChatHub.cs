@@ -23,21 +23,6 @@ namespace Chat.API.Hubs
             _logger = logger;
         }
 
-        //public async Task SendMessage(string userName, string content)
-        //{
-        //    var user = await _userRepository.GetOneByAsync(expression: user => user.Name == userName);
-
-        //    var message = new Message
-        //    {
-        //        Content = content,
-        //        UserId = user.Id
-        //    };
-
-        //    await _messageRepository.CreateAsync(message);
-
-        //    await Clients.All.SendAsync("ReceiveMessage", userName, content);
-        //}
-
         public async Task SendMessage(MessageDto messageDto)
         {
             var user = await _userRepository.GetOneByAsync(expression: user => user.Name == messageDto.User.Name);
@@ -46,32 +31,28 @@ namespace Chat.API.Hubs
 
             await _messageRepository.CreateAsync(message);
 
-            await Clients.All.SendAsync("ReceiveMessage", user.Name, message);
+            await Clients.All.SendAsync("ReceiveMessage", messageDto.User, messageDto.Content);
         }
 
-        public async Task JoinChat(string userName, string content)
+        public async Task JoinChat(MessageDto messageDto)
         {
-            var user = await _userRepository.GetOneByAsync(expression: user => user.Name == userName);
+            var user = await _userRepository.GetOneByAsync(expression: user => user.Name == messageDto.User.Name);
 
             if (user is null)
             {
-                user = new User { Name = userName };
+                user = _mapper.Map<User>(messageDto.User);
                 await _userRepository.CreateAsync(user);
 
                 _logger.LogInformation($"User with Id: {user.Id} was created");
             }
 
-            var message = new Message
-            {
-                Content = content,
-                UserId = user.Id
-            };
+            var message = _mapper.Map<Message>(messageDto);
 
             await _messageRepository.CreateAsync(message);
 
-            _connectedUsers[Context.ConnectionId] = userName;
+            _connectedUsers[Context.ConnectionId] = messageDto.User.Name;
 
-            await Clients.Others.SendAsync("ReceiveMessage", userName, content);
+            await Clients.Others.SendAsync("ReceiveMessage", user, messageDto.Content);
         }
 
         public async Task LeaveChat()
