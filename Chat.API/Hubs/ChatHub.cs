@@ -1,58 +1,60 @@
-﻿using AutoMapper;
-using Chat.ApplicationCore.DTO;
-
-namespace Chat.API.Hubs
+﻿namespace Chat.API.Hubs
 {
     public class ChatHub : Hub
     {
         private readonly IUserRepository _userRepository;
         private readonly IMessageRepository _messageRepository;
-        private readonly IMapper _mapper;
         private readonly ILogger<ChatHub> _logger;
         private static readonly Dictionary<string, string> _connectedUsers = new();
 
         public ChatHub(
             IUserRepository userRepository,
             IMessageRepository messageRepository,
-            IMapper mapper,
             ILogger<ChatHub> logger)
         {
             _userRepository = userRepository; 
             _messageRepository = messageRepository;
-            _mapper = mapper;
             _logger = logger;
         }
 
-        public async Task SendMessage(MessageDto messageDto)
+        public async Task SendMessage(string userName, string content)
         {
-            var user = await _userRepository.GetOneByAsync(expression: user => user.Name == messageDto.User.Name);
+            var user = await _userRepository.GetOneByAsync(expression: user => user.Name == userName);
 
-            var message = _mapper.Map<Message>(messageDto);
+            var message = new Message
+            {
+                Content = content,
+                UserId = user.Id
+            };
 
             await _messageRepository.CreateAsync(message);
 
-            await Clients.All.SendAsync("ReceiveMessage", messageDto.User, messageDto.Content);
+            await Clients.All.SendAsync("ReceiveMessage", userName, content);
         }
 
-        public async Task JoinChat(MessageDto messageDto)
+        public async Task JoinChat(string userName, string content)
         {
-            var user = await _userRepository.GetOneByAsync(expression: user => user.Name == messageDto.User.Name);
+            var user = await _userRepository.GetOneByAsync(expression: user => user.Name == userName);
 
             if (user is null)
             {
-                user = _mapper.Map<User>(messageDto.User);
+                user = new User { Name = userName };
                 await _userRepository.CreateAsync(user);
 
                 _logger.LogInformation($"User with Id: {user.Id} was created");
             }
 
-            var message = _mapper.Map<Message>(messageDto);
+            var message = new Message
+            {
+                Content = content,
+                UserId = user.Id
+            };
 
             await _messageRepository.CreateAsync(message);
 
-            _connectedUsers[Context.ConnectionId] = messageDto.User.Name;
+            _connectedUsers[Context.ConnectionId] = userName;
 
-            await Clients.Others.SendAsync("ReceiveMessage", user, messageDto.Content);
+            await Clients.Others.SendAsync("ReceiveMessage", userName, content);
         }
 
         public async Task LeaveChat()

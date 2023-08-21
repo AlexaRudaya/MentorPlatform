@@ -53,15 +53,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chat.ApplicationCore", "Cha
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chat.Infrastructure", "Chat.Infrastructure\Chat.Infrastructure.csproj", "{A7D5704F-CEB7-43B8-A3E4-DB605F41F3BA}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{8DD0A41E-E456-48E7-B87F-853FA3A7F6C6}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ChatClient", "ChatClient", "{83345E48-6441-4FAF-8105-A1351B66B833}"
-	ProjectSection(SolutionItems) = preProject
-		chat.js = chat.js
-		index.html = index.html
-		style.css = style.css
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -168,8 +159,6 @@ Global
 		{7F16DCA6-4E1C-4696-A3A8-B79BBC847CE9} = {B59E0233-0CF1-402B-8975-40D488CDF69E}
 		{B21743DF-12E8-4E98-8C5E-0F5BB4A213A0} = {B59E0233-0CF1-402B-8975-40D488CDF69E}
 		{A7D5704F-CEB7-43B8-A3E4-DB605F41F3BA} = {B59E0233-0CF1-402B-8975-40D488CDF69E}
-		{8DD0A41E-E456-48E7-B87F-853FA3A7F6C6} = {AB9EF344-467B-4222-B06A-ACE82C0FE302}
-		{83345E48-6441-4FAF-8105-A1351B66B833} = {8DD0A41E-E456-48E7-B87F-853FA3A7F6C6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {856D3D0C-8454-446A-AC27-63ED8EA3DA30}

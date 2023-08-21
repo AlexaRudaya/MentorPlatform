@@ -20,23 +20,16 @@ const joinUser = async () => {
     {
         sessionStorage.setItem('user', name);
 
-        const userDto = {
-            Name: name
-        }
-
-        await joinChat(userDto);
+        await joinChat(name);
     }
 }
 
-const joinChat = async (userDto) => {
-    if(!userDto)
+const joinChat = async (user) => {
+    if(!user)
        return;
     try { 
-        const messageDto = {
-            User: userDto,
-            Content: `${userDto.Name} joined`
-        };
-        await connection.invoke("JoinChat", messageDto);
+        const message = `${user} joined`;
+        await connection.invoke("JoinChat", user, message);
     } catch (error) {
         console.log(error);
     }
@@ -75,21 +68,14 @@ document.getElementById('btnSend').addEventListener('click', async (e) => {
     const txtMessageElement = document.getElementById('txtMessage');
     const message = txtMessageElement.value;
     if(message) {
-        const userDto = {
-            Name: user
-        };
-        const messageDto = {
-            User: userDto,
-            Content: `${user}: ${message}`
-        };
-        await sendMessage(messageDto);
+        await sendMessage(user,`${user}: ${message}`);
         txtMessageElement.value = "";
     }
 })
 
-const sendMessage = async (messageDto) => {
+const sendMessage = async (user, message) => {
     try {
-        await connection.invoke('SendMessage', messageDto);
+        await connection.invoke('SendMessage', user, message);
     } catch (error) {
         console.log(error);
     }

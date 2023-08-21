@@ -23,6 +23,7 @@
             {
                 query = query.Where(expression);
             }
+
             if (include is not null)
             {
                 query = include(query);
