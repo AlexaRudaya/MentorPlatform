@@ -1,4 +1,6 @@
-﻿namespace Chat.API.Configuration
+﻿using Chat.ApplicationCore.Mapper;
+
+namespace Chat.API.Configuration
 {
     public static class ConfigureCoreServices
     {
@@ -60,6 +62,13 @@
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IMessageRepository, MessageRepository>();
+
+            return services;
+        }
+
+        public static IServiceCollection ConfigureApplicationCore(this IServiceCollection services)
+        {
+            services.AddAutoMapper(typeof(MapperProfile));
 
             return services;
         }

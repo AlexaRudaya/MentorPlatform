@@ -1,35 +1,52 @@
-﻿namespace Chat.API.Hubs
+﻿using AutoMapper;
+using Chat.ApplicationCore.DTO;
+
+namespace Chat.API.Hubs
 {
     public class ChatHub : Hub
     {
         private readonly IUserRepository _userRepository;
         private readonly IMessageRepository _messageRepository;
+        private readonly IMapper _mapper;
         private readonly ILogger<ChatHub> _logger;
         private static readonly Dictionary<string, string> _connectedUsers = new();
 
         public ChatHub(
             IUserRepository userRepository,
             IMessageRepository messageRepository,
+            IMapper mapper,
             ILogger<ChatHub> logger)
         {
             _userRepository = userRepository; 
             _messageRepository = messageRepository;
+            _mapper = mapper;
             _logger = logger;
         }
 
-        public async Task SendMessage(string userName, string content)
-        {
-            var user = await _userRepository.GetOneByAsync(expression: user => user.Name == userName);
+        //public async Task SendMessage(string userName, string content)
+        //{
+        //    var user = await _userRepository.GetOneByAsync(expression: user => user.Name == userName);
 
-            var message = new Message
-            {
-                Content = content,
-                UserId = user.Id
-            };
+        //    var message = new Message
+        //    {
+        //        Content = content,
+        //        UserId = user.Id
+        //    };
+
+        //    await _messageRepository.CreateAsync(message);
+
+        //    await Clients.All.SendAsync("ReceiveMessage", userName, content);
+        //}
+
+        public async Task SendMessage(MessageDto messageDto)
+        {
+            var user = await _userRepository.GetOneByAsync(expression: user => user.Name == messageDto.User.Name);
+
+            var message = _mapper.Map<Message>(messageDto);
 
             await _messageRepository.CreateAsync(message);
 
-            await Clients.All.SendAsync("ReceiveMessage", userName, content);
+            await Clients.All.SendAsync("ReceiveMessage", user.Name, message);
         }
 
         public async Task JoinChat(string userName, string content)

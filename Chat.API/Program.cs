@@ -3,6 +3,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services
     .ConfigureLogging(builder)
     .ConfigureInfrastructure(builder.Configuration)
+    .ConfigureApplicationCore()
     .ConfigureSignalR()
     .ConfigureCorePolicy();
 
