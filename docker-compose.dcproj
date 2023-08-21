@@ -14,5 +14,8 @@
     </None>
     <None Include="docker-compose.yml" />
     <None Include=".dockerignore" />
+    <None Include="Web\ChatClient\chat.js" />
+    <None Include="Web\ChatClient\index.html" />
+    <None Include="Web\ChatClient\style.css" />
   </ItemGroup>
 </Project>

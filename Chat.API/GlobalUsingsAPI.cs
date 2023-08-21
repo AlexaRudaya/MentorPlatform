@@ -1,0 +1,12 @@
+﻿global using Chat.Domain.IRepository;
+global using Chat.Infrastructure.Data;
+global using Chat.Infrastructure.Repositories;
+global using Microsoft.EntityFrameworkCore;
+global using Serilog;
+global using Serilog.Exceptions;
+global using Serilog.Sinks.Elasticsearch;
+global using System.Reflection;
+global using Chat.Domain.Entities;
+global using Microsoft.AspNetCore.SignalR;
+global using Chat.API.Configuration;
+global using Chat.API.Hubs;
