@@ -53,6 +53,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chat.ApplicationCore", "Cha
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chat.Infrastructure", "Chat.Infrastructure\Chat.Infrastructure.csproj", "{A7D5704F-CEB7-43B8-A3E4-DB605F41F3BA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MentorPlatform.Gateway", "MentorPlatform.Gateway", "{87CE4CD0-D49F-429E-9AA4-A1D74007944D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MentorPlatform.Gateway", "MentorPlatform.Gateway\MentorPlatform.Gateway.csproj", "{34A4DA6A-5896-4639-AC84-B60E5E81597E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -131,6 +135,10 @@ Global
 		{A7D5704F-CEB7-43B8-A3E4-DB605F41F3BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7D5704F-CEB7-43B8-A3E4-DB605F41F3BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7D5704F-CEB7-43B8-A3E4-DB605F41F3BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34A4DA6A-5896-4639-AC84-B60E5E81597E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34A4DA6A-5896-4639-AC84-B60E5E81597E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34A4DA6A-5896-4639-AC84-B60E5E81597E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34A4DA6A-5896-4639-AC84-B60E5E81597E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -159,6 +167,8 @@ Global
 		{7F16DCA6-4E1C-4696-A3A8-B79BBC847CE9} = {B59E0233-0CF1-402B-8975-40D488CDF69E}
 		{B21743DF-12E8-4E98-8C5E-0F5BB4A213A0} = {B59E0233-0CF1-402B-8975-40D488CDF69E}
 		{A7D5704F-CEB7-43B8-A3E4-DB605F41F3BA} = {B59E0233-0CF1-402B-8975-40D488CDF69E}
+		{87CE4CD0-D49F-429E-9AA4-A1D74007944D} = {AB9EF344-467B-4222-B06A-ACE82C0FE302}
+		{34A4DA6A-5896-4639-AC84-B60E5E81597E} = {87CE4CD0-D49F-429E-9AA4-A1D74007944D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {856D3D0C-8454-446A-AC27-63ED8EA3DA30}
