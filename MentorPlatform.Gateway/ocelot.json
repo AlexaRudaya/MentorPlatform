@@ -1,0 +1,219 @@
+{
+  "Routes": [
+    // Identity Microservice
+    {
+      "UpstreamPathTemplate": "/api/Account/Register",
+      "UpstreamHttpMethod": [ "Post" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "identityserver",
+          "Port": 443
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Account/Register"
+    },
+    {
+      "UpstreamPathTemplate": "/api/Account/Login",
+      "UpstreamHttpMethod": [ "Post" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "identityserver",
+          "Port": 443
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Account/Login"
+    },
+    // Mentors Microservice - Availabilities
+    {
+      "UpstreamPathTemplate": "/api/Availabilities",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "mentor_api",
+          "Port": 7001
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Availabilities"
+    },
+    {
+      "UpstreamPathTemplate": "/api/Availabilities/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "mentor_api",
+          "Port": 7001
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Availabilities/{id}"
+    },
+    // Mentors Microservice - Categories
+    {
+      "UpstreamPathTemplate": "/api/Categories",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "mentor_api",
+          "Port": 7001
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Categories"
+    },
+    {
+      "UpstreamPathTemplate": "/api/Categories/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "mentor_api",
+          "Port": 7001
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Categories/{id}"
+    },
+    // Mentors Microservice - Mentors
+    {
+      "UpstreamPathTemplate": "/api/Mentors",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "mentor_api",
+          "Port": 7001
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Mentors"
+    },
+    {
+      "UpstreamPathTemplate": "/api/Mentors/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "mentor_api",
+          "Port": 7001
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Mentors/{id}"
+    },
+    // MentorshipSubject
+    {
+      "UpstreamPathTemplate": "/api/MentorshipSubject",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "mentor_api",
+          "Port": 7001
+        }
+      ],
+      "DownstreamPathTemplate": "/api/MentorshipSubject"
+    },
+    {
+      "UpstreamPathTemplate": "/api/MentorshipSubject/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "mentor_api",
+          "Port": 7001
+        }
+      ],
+      "DownstreamPathTemplate": "/api/MentorshipSubject/{id}"
+    },
+    // Booking Microservice - Booking
+    {
+      "UpstreamPathTemplate": "/api/Booking",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "booking_api",
+          "Port": 7005
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Booking"
+    },
+    // Getting by Id
+    {
+      "UpstreamPathTemplate": "/api/Booking/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "booking_api",
+          "Port": 7005
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Booking/{id}"
+    },
+    {
+      "UpstreamPathTemplate": "/api/Booking/student/{id}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "booking_api",
+          "Port": 7005
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Booking/student/{id}"
+    },
+    {
+      "UpstreamPathTemplate": "/api/Booking/mentor/{id}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "booking_api",
+          "Port": 7005
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Booking/mentor/{id}"
+    },
+    {
+      "UpstreamPathTemplate": "/api/Booking/mentor/availabilities/{id}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "booking_api",
+          "Port": 7005
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Booking/mentor/availabilities/{id}"
+    },
+    // Booking Microservice - Students
+    {
+      "UpstreamPathTemplate": "/api/Students",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "booking_api",
+          "Port": 7005
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Students"
+    },
+    {
+      "UpstreamPathTemplate": "/api/Students/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "booking_api",
+          "Port": 7005
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Students/{id}"
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:7299"
+  }
+}
