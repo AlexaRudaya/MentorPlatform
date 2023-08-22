@@ -131,6 +131,16 @@ services:
   networks:
    - deploy-mentor
 
+ gateway:
+  container_name: gateway
+  build:
+   context: .
+   dockerfile: MentorPlatform.Gateway/Dockerfile
+  ports: 
+    - '7299:7299'
+  networks:
+    - deploy-mentor
+
  rabbitmq:
   image: rabbitmq:management
   container_name: mentor_queue
