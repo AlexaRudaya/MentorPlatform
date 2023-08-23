@@ -13,6 +13,8 @@ namespace MentorPlatform.Gateway.Configuration
 
             builder.Services.AddOcelot(builder.Configuration);
 
+            builder.Services.AddSwaggerForOcelot(builder.Configuration);
+
             return services;
         }
     }

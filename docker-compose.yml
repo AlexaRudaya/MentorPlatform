@@ -136,8 +136,11 @@ services:
   build:
    context: .
    dockerfile: MentorPlatform.Gateway/Dockerfile
+  environment:
+   - ASPNETCORE_ENVIRONMENT=Development
+   - ASPNETCORE_URLS=https://+:7008
   ports: 
-    - '7299:7299'
+    - 7008:7008
   networks:
     - deploy-mentor
 
