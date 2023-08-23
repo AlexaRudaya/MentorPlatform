@@ -1,6 +1,4 @@
-﻿using Ocelot.DependencyInjection;
-
-namespace MentorPlatform.Gateway.Configuration
+﻿namespace MentorPlatform.Gateway.Configuration
 {
     public static class ConfigureCoreServices
     {
