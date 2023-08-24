@@ -19,4 +19,5 @@ RUN dotnet publish "Identity.API.csproj" -c Release -o /app/publish /p:UseAppHos
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+COPY ../mentorplatform.pfx .
 ENTRYPOINT ["dotnet", "Identity.API.dll"]

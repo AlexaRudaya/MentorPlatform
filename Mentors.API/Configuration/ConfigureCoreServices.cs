@@ -43,9 +43,8 @@
             IConfiguration configuration)
         {
             //var certificate = new X509Certificate2(@"E:\Projects\MentorPlatform\localhost.pfx", "password"); 
-            var certificate = new X509Certificate2("localhost.pfx", "password");
+            //var certificate = new X509Certificate2("localhost.pfx", "password");
             //var key = new X509SecurityKey(certificate);
-            var key = new X509SecurityKey(certificate);
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddJwtBearer(jwtBearerOptions =>
@@ -55,7 +54,7 @@
 
                         jwtBearerOptions.TokenValidationParameters.ValidateIssuer = true;
                         jwtBearerOptions.TokenValidationParameters.ValidIssuer = configuration["Authentication:Authority"];
-                        jwtBearerOptions.TokenValidationParameters.IssuerSigningKey = key;
+                        //jwtBearerOptions.TokenValidationParameters.IssuerSigningKey = key;
 
                         jwtBearerOptions.Configuration = new OpenIdConnectConfiguration();
                         jwtBearerOptions.RequireHttpsMetadata = false;

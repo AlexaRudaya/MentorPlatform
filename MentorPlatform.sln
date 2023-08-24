@@ -6,11 +6,6 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{AB9EF344-467B-4222-B06A-ACE82C0FE302}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microservices", "Microservices", "{D6443AE9-FC93-4C0E-BA42-8C36E09AD7F2}"
-	ProjectSection(SolutionItems) = preProject
-		..\localhost.crt = ..\localhost.crt
-		..\localhost.key = ..\localhost.key
-		..\localhost.pfx = ..\localhost.pfx
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{EB025B56-4462-47E1-9200-3793ECC58820}"
 EndProject
