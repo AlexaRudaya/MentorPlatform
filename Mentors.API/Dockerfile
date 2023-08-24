@@ -20,5 +20,4 @@ RUN dotnet publish "Mentors.API.csproj" -c Release -o /app/publish /p:UseAppHost
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-COPY ../mentorplatform.pfx .
 ENTRYPOINT ["dotnet", "Mentors.API.dll" ]

@@ -57,7 +57,7 @@
         public static IServiceCollection ConfigureIdentityServer(this IServiceCollection services,
             IConfiguration configuration)
         {
-            //var certificate = GetCertificate(configuration);
+            var certificate = GetCertificate(configuration);
 
             var identityServerConfiguration = services.AddIdentityServer()
                 .AddAspNetIdentity<ApplicationUser>()
@@ -76,8 +76,8 @@
                         dbContextOptionsBuilder.UseNpgsql(configuration.GetConnectionString("IdentityServerConnection"),
                             NpgsqlOptionsAction);
                     };
-                });
-                //.AddSigningCredential(certificate);
+                })
+                .AddSigningCredential(certificate);
 
             return services;
         }
@@ -104,7 +104,7 @@
             var certificatePath = configuration["Certificate:Path"];
             var certificatePassword = configuration["Certificate:Password"];
 
-            return new X509Certificate2 (certificatePath!, certificatePassword);
+            return new X509Certificate2 (certificatePath, certificatePassword);
         }
 
         private static ElasticsearchSinkOptions ConfigureElasticsearchSink(IConfigurationRoot configuration,
