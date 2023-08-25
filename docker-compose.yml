@@ -46,6 +46,11 @@ services:
   environment:
    - ASPNETCORE_ENVIRONMENT=Development
    - ASPNETCORE_URLS=https://+:7005
+   - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/mentorplatform.pfx
+   - ASPNETCORE_Kestrel__Certificates__Default__Password=password
+  volumes:
+   - ./mentorplatform.pfx:/https/mentorplatform.pfx:ro
+   - ./mentorplatform.crt:/usr/local/share/ca-certificates/mentorplatform.crt:ro
   networks:
    - deploy-mentor
  
@@ -70,11 +75,16 @@ services:
    - '7002:7002'
   depends_on:
    - mentor_db 
-  entrypoint: /bin/sh -c "dotnet Mentors.API.dll"
+  entrypoint: /bin/sh -c "update-ca-certificates && dotnet Mentors.API.dll"
   environment:
    - ASPNETCORE_ENVIRONMENT=Development
    - ASPNETCORE_URLS=https://+:7001
    - GRPC_DNS_RESOLVER=native
+   - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/mentorplatform.pfx
+   - ASPNETCORE_Kestrel__Certificates__Default__Password=password
+  volumes:
+   - ./mentorplatform.pfx:/https/mentorplatform.pfx:ro
+   - ./mentorplatform.crt:/usr/local/share/ca-certificates/mentorplatform.crt:ro
   networks:
    - deploy-mentor
 
@@ -126,8 +136,13 @@ services:
   environment:
    - ASPNETCORE_ENVIRONMENT=Development
    - ASPNETCORE_URLS=https://+:443
+   - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/mentorplatform.pfx
+   - ASPNETCORE_Kestrel__Certificates__Default__Password=password
   ports:
    - '443:443'
+  volumes:
+   - ./mentorplatform.pfx:/https/mentorplatform.pfx:ro
+   - ./mentorplatform.crt:/usr/local/share/ca-certificates/mentorplatform.crt:ro
   networks:
    - deploy-mentor
 

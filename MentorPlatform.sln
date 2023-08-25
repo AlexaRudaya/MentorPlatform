@@ -55,7 +55,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chat.Infrastructure", "Chat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MentorPlatform.Gateway", "MentorPlatform.Gateway", "{87CE4CD0-D49F-429E-9AA4-A1D74007944D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MentorPlatform.Gateway", "MentorPlatform.Gateway\MentorPlatform.Gateway.csproj", "{34A4DA6A-5896-4639-AC84-B60E5E81597E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MentorPlatform.Gateway", "MentorPlatform.Gateway\MentorPlatform.Gateway.csproj", "{34A4DA6A-5896-4639-AC84-B60E5E81597E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

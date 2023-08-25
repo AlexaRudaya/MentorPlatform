@@ -44,7 +44,7 @@
                 {
                     Name = Guid.NewGuid().ToString(),
                     DisplayName = "API",
-                    Scopes = new List<string> { "https://www.example.com/api" }
+                    Scopes = new List<string> { "IdentityServerApi" }
                 }.ToEntity());
 
                 await configurationDbContext.SaveChangesAsync();
@@ -57,7 +57,7 @@
             {
                 await configurationDbContext.ApiScopes.AddAsync(new ApiScope
                 {
-                    Name = "https://www.example.com/api",
+                    Name = "IdentityServerApi",
                     DisplayName = "API"
                 }.ToEntity());
 
@@ -74,10 +74,10 @@
                     {
                         ClientId = Guid.NewGuid().ToString(),
                         ClientSecrets = new List<Secret> { new("secret".Sha512()) },
-                        ClientName = "Console App",
+                        ClientName = "Microservice",
                         AllowedGrantTypes = GrantTypes.ClientCredentials,
-                        AllowedScopes = new List<string> { "https://www/example.com/api" },
-                        AllowedCorsOrigins = new List<string> { "https://localhost:7001" }
+                        AllowedScopes = new List<string> { "IdentityServerApi" },
+                        AllowedCorsOrigins = new List<string> { "https://localhost:443" }
                     }.ToEntity(),
                     new Client
                     {
@@ -85,7 +85,7 @@
                         ClientSecrets = new List<Secret> { new("secret".Sha512()) },
                         ClientName = "Web App",
                         AllowedGrantTypes = GrantTypes.Code,
-                        AllowedScopes = new List<string> { "openid", "profile", "email", "https://www/example.com/api" },
+                        AllowedScopes = new List<string> { "openid", "profile", "email", "IdentityServerApi" },
                         RedirectUris = new List<string> { "https://webapplication:7002/signin-oidc" },
                         PostLogoutRedirectUris = new List<string> { "https://webapplication:7002/signout-callback-oidc" }
                     }.ToEntity());
