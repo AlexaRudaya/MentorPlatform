@@ -2,16 +2,16 @@
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AccountController : ControllerBase
+    public class AccountsController : ControllerBase
     {
         private readonly IAccountService _accountService;
 
-        public AccountController(IAccountService accountServic)
+        public AccountsController(IAccountService accountServic)
         {
             _accountService = accountServic;
         }
 
-        [HttpPost("Register")]
+        [HttpPost("registration")]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
         public async Task<IActionResult> Register([FromBody] RegisterDto registerDto,
@@ -22,7 +22,7 @@
             return Ok();
         }
 
-        [HttpPost("Login")]
+        [HttpPost("login")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
 

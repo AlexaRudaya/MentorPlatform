@@ -2,11 +2,11 @@
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MentorshipSubjectController : ControllerBase
+    public class MentorshipSubjectsController : ControllerBase
     {
         private readonly IMentorshipSubjectService _subjectService;
 
-        public MentorshipSubjectController(
+        public MentorshipSubjectsController(
             IMentorshipSubjectService subjectService)
         {
             _subjectService = subjectService;

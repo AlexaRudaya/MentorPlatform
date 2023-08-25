@@ -2,12 +2,12 @@
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BookingController : ControllerBase
+    public class BookingsController : ControllerBase
     {
         private readonly IBookingService _bookingService;
         private readonly IBookingForMentorService _bookingForMentorService;
 
-        public BookingController(
+        public BookingsController(
              IBookingService bookingService,
              IBookingForMentorService bookingForMentorService)
         {
@@ -36,7 +36,7 @@
             return Ok(booking);
         }
 
-        [HttpGet("student/{id:Guid}")]
+        [HttpGet("students/{id:Guid}")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<MentorBooking>))]
         [ProducesResponseType(404)]
         public async Task<IActionResult> GetBookingsForStudent([FromRoute] Guid id,
@@ -47,7 +47,7 @@
             return Ok(bookingsForStudent);
         }
 
-        [HttpGet("mentor/{id:Guid}")]
+        [HttpGet("mentors/{id:Guid}")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<MentorBooking>))]
         [ProducesResponseType(404)]
         public async Task<IActionResult> GetBookingsForMentor([FromRoute] string id,
