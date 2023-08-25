@@ -1,0 +1,271 @@
+{
+  "Routes": [
+    // Identity Microservice
+    {
+      "UpstreamPathTemplate": "/api/accounts/{everything}",
+      "UpstreamHttpMethod": [ "Post" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "identity_server",
+          "Port": 443
+        }
+      ],
+      "DownstreamPathTemplate": "/api/accounts/{everything}",
+      "SwaggerKey": "accounts",
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    // Mentors Microservice - Availabilities
+    {
+      "UpstreamPathTemplate": "/api/availabilities",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "mentor_api",
+          "Port": 7001
+        }
+      ],
+      "DownstreamPathTemplate": "/api/availabilities",
+      "SwaggerKey": "mentors",
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    {
+      "UpstreamPathTemplate": "/api/availabilities/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "mentor_api",
+          "Port": 7001
+        }
+      ],
+      "DownstreamPathTemplate": "/api/availabilities/{id}",
+      "SwaggerKey": "mentors",
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    // Mentors Microservice - Categories
+    {
+      "UpstreamPathTemplate": "/api/categories",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "mentor_api",
+          "Port": 7001
+        }
+      ],
+      "DownstreamPathTemplate": "/api/categories",
+      "SwaggerKey": "mentors",
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    {
+      "UpstreamPathTemplate": "/api/categories/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "mentor_api",
+          "Port": 7001
+        }
+      ],
+      "DownstreamPathTemplate": "/api/categories/{id}",
+      "SwaggerKey": "mentors",
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    // Mentors Microservice - Mentors
+    {
+      "UpstreamPathTemplate": "/api/mentors",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "mentor_api",
+          "Port": 7001
+        }
+      ],
+      "DownstreamPathTemplate": "/api/mentors",
+      "SwaggerKey": "mentors",
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    {
+      "UpstreamPathTemplate": "/api/mentors/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "mentor_api",
+          "Port": 7001
+        }
+      ],
+      "DownstreamPathTemplate": "/api/mentors/{id}",
+      "SwaggerKey": "mentors",
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    // MentorshipSubject
+    {
+      "UpstreamPathTemplate": "/api/mentorshipSubjects",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "mentor_api",
+          "Port": 7001
+        }
+      ],
+      "DownstreamPathTemplate": "/api/mentorshipSubjects",
+      "SwaggerKey": "mentors",
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    {
+      "UpstreamPathTemplate": "/api/mentorshipSubjects/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "mentor_api",
+          "Port": 7001
+        }
+      ],
+      "DownstreamPathTemplate": "/api/mentorshipSubjects/{id}",
+      "SwaggerKey": "mentors",
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    // Booking Microservice - Booking
+    {
+      "UpstreamPathTemplate": "/api/bookings",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "booking_api",
+          "Port": 7005
+        }
+      ],
+      "DownstreamPathTemplate": "/api/bookings",
+      "SwaggerKey": "bookings",
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    // Getting by Id
+    {
+      "UpstreamPathTemplate": "/api/bookings/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "booking_api",
+          "Port": 7005
+        }
+      ],
+      "DownstreamPathTemplate": "/api/bookings/{id}",
+      "SwaggerKey": "bookings",
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    {
+      "UpstreamPathTemplate": "/api/bookings/students/{id}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "booking_api",
+          "Port": 7005
+        }
+      ],
+      "DownstreamPathTemplate": "/api/bookings/students/{id}",
+      "SwaggerKey": "bookings",
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    {
+      "UpstreamPathTemplate": "/api/bookings/mentors/{id}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "booking_api",
+          "Port": 7005
+        }
+      ],
+      "DownstreamPathTemplate": "/api/bookings/mentors/{id}",
+      "SwaggerKey": "bookings",
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    {
+      "UpstreamPathTemplate": "/api/bookings/mentor/availabilities/{id}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "booking_api",
+          "Port": 7005
+        }
+      ],
+      "DownstreamPathTemplate": "/api/bookings/mentor/availabilities/{id}",
+      "SwaggerKey": "bookings",
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    // Booking Microservice - Students
+    {
+      "UpstreamPathTemplate": "/api/students",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "booking_api",
+          "Port": 7005
+        }
+      ],
+      "DownstreamPathTemplate": "/api/students",
+      "SwaggerKey": "bookings",
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    {
+      "UpstreamPathTemplate": "/api/students/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "booking_api",
+          "Port": 7005
+        }
+      ],
+      "DownstreamPathTemplate": "/api/students/{id}",
+      "SwaggerKey": "bookings",
+      "DangerousAcceptAnyServerCertificateValidator": true
+    }
+  ],
+  "SwaggerEndPoints": [
+    {
+      "Key": "accounts",
+      "Config": [
+        {
+          "Name": "Identity API",
+          "Version": "v1",
+          "Url": "https://identityserver:443/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "mentors",
+      "Config": [
+        {
+          "Name": "Mentors API",
+          "Version": "v1",
+          "Url": "https://mentor_api:7001/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "bookings",
+      "Config": [
+        {
+          "Name": "Booking API",
+          "Version": "v1",
+          "Url": "https://booking_api:7005/swagger/v1/swagger.json"
+        }
+      ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:7008"
+  }
+}

@@ -131,6 +131,19 @@ services:
   networks:
    - deploy-mentor
 
+ gateway:
+  container_name: gateway
+  build:
+   context: .
+   dockerfile: MentorPlatform.Gateway/Dockerfile
+  environment:
+   - ASPNETCORE_ENVIRONMENT=Development
+   - ASPNETCORE_URLS=https://+:7008
+  ports: 
+    - 7008:7008
+  networks:
+    - deploy-mentor
+
  rabbitmq:
   image: rabbitmq:management
   container_name: mentor_queue
