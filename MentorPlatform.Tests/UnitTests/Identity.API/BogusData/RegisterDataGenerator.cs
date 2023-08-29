@@ -10,10 +10,10 @@ namespace MentorPlatform.Tests.UnitTests.Identity.API.BogusData
         public RegisterDataGenerator()
         {
             _fakerRegisterDto = new Faker<RegisterDto>()
-                .RuleFor(registerDto => registerDto.FirstName, registerDto => registerDto.Person.FirstName)
-                .RuleFor(registerDto => registerDto.LastName, registerDto => registerDto.Person.LastName)
-                .RuleFor(registerDto => registerDto.Email, registerDto => registerDto.Internet.Email())
-                .RuleFor(registerDto => registerDto.Password, registerDto => registerDto.Internet.Password(5, false, @"(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}"));
+                .RuleFor(registerDto => registerDto.FirstName, faker => faker.Person.FirstName)
+                .RuleFor(registerDto => registerDto.LastName, faker => faker.Person.LastName)
+                .RuleFor(registerDto => registerDto.Email, faker => faker.Person.Email)
+                .RuleFor(registerDto => registerDto.Password, faker => faker.Internet.GenerateCustomPassword());
         }
 
         public RegisterDto GenerateFakeData()
