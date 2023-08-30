@@ -1,10 +1,4 @@
-﻿using FluentAssertions;
-using Identity.API.Controllers;
-using MentorPlatform.Tests.UnitTests.Identity.API.BogusData;
-using Microsoft.AspNetCore.Mvc;
-using NSubstitute;
-
-namespace MentorPlatform.Tests.UnitTests.Identity.API.Controllers
+﻿namespace MentorPlatform.Tests.UnitTests.Identity.API.Controllers
 {
     public class AccountsControllerTests
     {

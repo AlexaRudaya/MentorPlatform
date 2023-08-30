@@ -1,11 +1,8 @@
-﻿using Bogus;
-using Identity.ApplicationCore.DTO;
-
-namespace MentorPlatform.Tests.UnitTests.Identity.API.BogusData
+﻿namespace MentorPlatform.Tests.UnitTests.Identity.API.BogusData
 {
     public class RegisterDataGenerator
     {
-        private Faker<RegisterDto> _fakerRegisterDto;
+        private readonly Faker<RegisterDto> _fakerRegisterDto;
 
         public RegisterDataGenerator()
         {

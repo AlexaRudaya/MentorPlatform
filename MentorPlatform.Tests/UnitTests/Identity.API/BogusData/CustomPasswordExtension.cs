@@ -1,6 +1,4 @@
-﻿using Bogus.DataSets;
-
-namespace MentorPlatform.Tests.UnitTests.Identity.API.BogusData
+﻿namespace MentorPlatform.Tests.UnitTests.Identity.API.BogusData
 {
     public static class CustomPasswordExtension
     {

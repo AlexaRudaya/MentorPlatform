@@ -1,8 +1,4 @@
-﻿using FluentValidation.TestHelper;
-using Identity.ApplicationCore.Validator;
-using MentorPlatform.Tests.UnitTests.Identity.API.BogusData;
-
-namespace MentorPlatform.Tests.UnitTests.Identity.API.Validators
+﻿namespace MentorPlatform.Tests.UnitTests.Identity.API.Validators
 {
     public class RegisterValidatorTests
     {
@@ -146,7 +142,7 @@ namespace MentorPlatform.Tests.UnitTests.Identity.API.Validators
         }
 
         [Fact]
-        public async Task ValidateRegisterDto_When_Password_HasNoSpecialChars__ShouldFailValidation()
+        public async Task ValidateRegisterDto_When_Password_HasNoSpecialChars_ShouldFailValidation()
         {
             // Arrange
             var registerDto = _registerData.GenerateFakeData();
@@ -160,7 +156,7 @@ namespace MentorPlatform.Tests.UnitTests.Identity.API.Validators
         }
 
         [Fact]
-        public async Task ValidateRegisterDto_When_Password_HasNoNumber__ShouldFailValidation()
+        public async Task ValidateRegisterDto_When_Password_HasNoNumber_ShouldFailValidation()
         {
             // Arrange
             var registerDto = _registerData.GenerateFakeData();
@@ -174,7 +170,7 @@ namespace MentorPlatform.Tests.UnitTests.Identity.API.Validators
         }
 
         [Fact]
-        public async Task ValidateRegisterDto_When_Password_HasNoUppercase__ShouldFailValidation()
+        public async Task ValidateRegisterDto_When_Password_HasNoUppercase_ShouldFailValidation()
         {
             // Arrange
             var registerDto = _registerData.GenerateFakeData();
@@ -188,7 +184,7 @@ namespace MentorPlatform.Tests.UnitTests.Identity.API.Validators
         }
 
         [Fact]
-        public async Task ValidateRegisterDto_When_Password_HasNoLowercase__ShouldFailValidation()
+        public async Task ValidateRegisterDto_When_Password_HasNoLowercase_ShouldFailValidation()
         {
             // Arrange
             var registerDto = _registerData.GenerateFakeData();

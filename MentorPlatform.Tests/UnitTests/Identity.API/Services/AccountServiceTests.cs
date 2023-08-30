@@ -1,10 +1,4 @@
-﻿using FluentAssertions;
-using Identity.ApplicationCore.Exceptions;
-using Identity.ApplicationCore.Services;
-using MentorPlatform.Tests.UnitTests.Identity.API.BogusData;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
-using NSubstitute;
+﻿using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
 namespace MentorPlatform.Tests.UnitTests.Identity.API.Services
 {
@@ -15,6 +9,7 @@ namespace MentorPlatform.Tests.UnitTests.Identity.API.Services
         private readonly IMapper _mockMapper;
         private readonly ILogger<AccountService> _mockLogger;
         private readonly IAccountService _accountService;
+        private readonly AccountServiceTestsHelper _helper;
         private readonly RegisterDataGenerator _registerData;
         private readonly LoginDataGenerator _loginData;
 
@@ -32,6 +27,7 @@ namespace MentorPlatform.Tests.UnitTests.Identity.API.Services
 
             _mockMapper = Substitute.For<IMapper>();
             _mockLogger = Substitute.For<ILogger<AccountService>>();
+            _helper = new AccountServiceTestsHelper(_mockUserManager, _mockSignInManager, _mockMapper);
             _registerData = new RegisterDataGenerator();
             _loginData = new LoginDataGenerator();
 
@@ -51,19 +47,7 @@ namespace MentorPlatform.Tests.UnitTests.Identity.API.Services
 
             var applicationUser = new ApplicationUser();
 
-            _mockMapper
-                .Map<ApplicationUser>(registerDto)
-                .Returns(applicationUser);
-
-            _mockUserManager
-                .CreateAsync(Arg.Any<ApplicationUser>(), Arg.Any<string>())
-                .Returns(IdentityResult.Success);
-
-            _mockUserManager
-                .FindByEmailAsync(registerDto.Email)
-                .Returns(applicationUser);
-            _mockSignInManager.CheckPasswordSignInAsync(applicationUser, registerDto.Password, Arg.Any<bool>())
-                .Returns(SignInResult.Success);
+            _helper.SetUpValidUserForRegister(applicationUser, registerDto);
 
             // Act
             await _accountService.RegisterAsync(registerDto, cancellationToken);
@@ -83,18 +67,7 @@ namespace MentorPlatform.Tests.UnitTests.Identity.API.Services
 
             var applicationUser = new ApplicationUser();
 
-            _mockMapper
-                .Map<ApplicationUser>(registerDto)
-                .Returns(applicationUser);
-
-            _mockUserManager
-                .CreateAsync(Arg.Any<ApplicationUser>(), Arg.Any<string>())
-                .Returns(IdentityResult.Success);
-
-            _mockUserManager.FindByEmailAsync(registerDto.Email)
-                .Returns(applicationUser);
-            _mockSignInManager.CheckPasswordSignInAsync(applicationUser, registerDto.Password, Arg.Any<bool>())
-                .Returns(SignInResult.Success);
+            _helper.SetUpValidUserForRegister(applicationUser, registerDto);
 
             // Act
             await _accountService.RegisterAsync(registerDto, cancellationToken);
@@ -115,13 +88,13 @@ namespace MentorPlatform.Tests.UnitTests.Identity.API.Services
             var applicationUser = new ApplicationUser();
 
             _mockMapper
-               .Map<ApplicationUser>(registerDto)
-               .Returns(applicationUser);
+                .Map<ApplicationUser>(registerDto)
+                .Returns(applicationUser);
 
             _mockUserManager
-              .CreateAsync(Arg.Any<ApplicationUser>(), Arg.Any<string>())
-              .Returns(IdentityResult.Failed(new IdentityError { Description = "Password is invalid, not unique enough" }));
-
+               .CreateAsync(Arg.Any<ApplicationUser>(), Arg.Any<string>())
+               .Returns(IdentityResult.Failed(new IdentityError { Description = "Password is invalid, not unique enough" }));
+             
             // Act
             await _accountService.RegisterAsync(registerDto, cancellationToken);
 
@@ -142,11 +115,8 @@ namespace MentorPlatform.Tests.UnitTests.Identity.API.Services
             var loginDto = _loginData.GenerateFakeData();
             var cancellationToken = CancellationToken.None;
 
-            var applicationUser = new ApplicationUser { Email = loginDto.Email };
+            var applicationUser = _helper.SetUpValidUserForLogin(loginDto);
 
-            _mockUserManager
-                .FindByEmailAsync(loginDto.Email)
-                .Returns(applicationUser);
             _mockSignInManager
                 .CheckPasswordSignInAsync(applicationUser, loginDto.Password, false)
                 .Returns(SignInResult.Success);
@@ -194,11 +164,8 @@ namespace MentorPlatform.Tests.UnitTests.Identity.API.Services
             var loginDto = _loginData.GenerateFakeData();
             var cancellationToken = CancellationToken.None;
 
-            var applicationUser = new ApplicationUser { Email = loginDto.Email };
+            var applicationUser = _helper.SetUpValidUserForLogin(loginDto);
 
-            _mockUserManager
-                .FindByEmailAsync(loginDto.Email)
-                .Returns(applicationUser);
             _mockSignInManager
                 .CheckPasswordSignInAsync(applicationUser, loginDto.Password, false)
                 .Returns(SignInResult.Failed);
