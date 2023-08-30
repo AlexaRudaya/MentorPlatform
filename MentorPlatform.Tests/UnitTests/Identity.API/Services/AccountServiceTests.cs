@@ -1,4 +1,6 @@
-﻿using Identity.ApplicationCore.Services;
+﻿using FluentAssertions;
+using Identity.ApplicationCore.Exceptions;
+using Identity.ApplicationCore.Services;
 using MentorPlatform.Tests.UnitTests.Identity.API.BogusData;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
@@ -14,6 +16,7 @@ namespace MentorPlatform.Tests.UnitTests.Identity.API.Services
         private readonly ILogger<AccountService> _mockLogger;
         private readonly IAccountService _accountService;
         private readonly RegisterDataGenerator _registerData;
+        private readonly LoginDataGenerator _loginData;
 
         public AccountServiceTests()
         {
@@ -30,6 +33,7 @@ namespace MentorPlatform.Tests.UnitTests.Identity.API.Services
             _mockMapper = Substitute.For<IMapper>();
             _mockLogger = Substitute.For<ILogger<AccountService>>();
             _registerData = new RegisterDataGenerator();
+            _loginData = new LoginDataGenerator();
 
             _accountService = new AccountService(
                 _mockUserManager,
@@ -39,7 +43,7 @@ namespace MentorPlatform.Tests.UnitTests.Identity.API.Services
         }
 
         [Fact]
-        public async Task RegisterAsync_ValidInput_ReturnsSuccess()
+        public async Task RegisterAsync_ValidInput_ShouldReturnSuccess()
         {
             // Arrange
             var registerDto = _registerData.GenerateFakeData();
@@ -68,6 +72,147 @@ namespace MentorPlatform.Tests.UnitTests.Identity.API.Services
             await _mockUserManager
                 .Received(1)
                 .CreateAsync(applicationUser, registerDto.Password);
+        }
+
+        [Fact]
+        public async Task RegisterAsync_ShouldLoginUser()
+        {
+            // Arrange
+            var registerDto = _registerData.GenerateFakeData();
+            var cancellationToken = CancellationToken.None;
+
+            var applicationUser = new ApplicationUser();
+
+            _mockMapper
+                .Map<ApplicationUser>(registerDto)
+                .Returns(applicationUser);
+
+            _mockUserManager
+                .CreateAsync(Arg.Any<ApplicationUser>(), Arg.Any<string>())
+                .Returns(IdentityResult.Success);
+
+            _mockUserManager.FindByEmailAsync(registerDto.Email)
+                .Returns(applicationUser);
+            _mockSignInManager.CheckPasswordSignInAsync(applicationUser, registerDto.Password, Arg.Any<bool>())
+                .Returns(SignInResult.Success);
+
+            // Act
+            await _accountService.RegisterAsync(registerDto, cancellationToken);
+
+            // Assert
+            await _mockSignInManager
+                .Received(1)
+                .SignInAsync(Arg.Any<ApplicationUser>(), Arg.Any<bool>());
+        }
+
+        [Fact]
+        public async Task RegisterAsync_NotValidPassword_ShouldLogError()
+        {
+            // Arrange
+            var registerDto = _registerData.GenerateFakeData();
+            var cancellationToken = CancellationToken.None;
+
+            var applicationUser = new ApplicationUser();
+
+            _mockMapper
+               .Map<ApplicationUser>(registerDto)
+               .Returns(applicationUser);
+
+            _mockUserManager
+              .CreateAsync(Arg.Any<ApplicationUser>(), Arg.Any<string>())
+              .Returns(IdentityResult.Failed(new IdentityError { Description = "Password is invalid, not unique enough" }));
+
+            // Act
+            await _accountService.RegisterAsync(registerDto, cancellationToken);
+
+            // Assert
+            _mockLogger
+                .Received(1)
+                .LogError($"Invalid register attempt: User {applicationUser.Email} entered the password that is not unique enough.");
+
+            await _mockSignInManager
+                .DidNotReceive()
+                .CheckPasswordSignInAsync(Arg.Any<ApplicationUser>(), Arg.Any<string>(), Arg.Any<bool>());
+        }
+
+        [Fact]
+        public async Task LoginAsync_ValidAttempt_ShouldReturnSuccess()
+        {
+            // Arrange
+            var loginDto = _loginData.GenerateFakeData();
+            var cancellationToken = CancellationToken.None;
+
+            var applicationUser = new ApplicationUser { Email = loginDto.Email };
+
+            _mockUserManager
+                .FindByEmailAsync(loginDto.Email)
+                .Returns(applicationUser);
+            _mockSignInManager
+                .CheckPasswordSignInAsync(applicationUser, loginDto.Password, false)
+                .Returns(SignInResult.Success);
+
+            // Act
+            await _accountService.LoginAsync(loginDto, cancellationToken);
+
+            // Assert
+            _mockLogger
+                .Received(1)
+                .LogInformation($"User {applicationUser.Email} logged in successfully.");
+
+            await _mockSignInManager
+                .Received(1)
+                .SignInAsync(applicationUser, true);
+        }
+
+        [Fact]
+        public async Task LoginAsync_InvalidEmail_ShouldThrowUserNotFoundException()
+        {
+            // Arrange
+            var loginDto = _loginData.GenerateFakeData();
+            var cancellationToken = CancellationToken.None;
+
+            _mockUserManager
+                .FindByEmailAsync(loginDto.Email)
+                .Returns((ApplicationUser)null);
+
+            // Act
+            var result = async() => await _accountService.LoginAsync(loginDto, cancellationToken);
+
+            // Assert
+            await result
+                .Should().ThrowAsync<UserNotFoundException>();
+
+            _mockLogger
+                .Received(1)
+                .LogError($"User {loginDto.Email} was not found.");
+        }
+
+        [Fact]
+        public async Task LoginAsync_InvalidPassword_ShouldThrowInvalidPasswordException()
+        {
+            // Arrange
+            var loginDto = _loginData.GenerateFakeData();
+            var cancellationToken = CancellationToken.None;
+
+            var applicationUser = new ApplicationUser { Email = loginDto.Email };
+
+            _mockUserManager
+                .FindByEmailAsync(loginDto.Email)
+                .Returns(applicationUser);
+            _mockSignInManager
+                .CheckPasswordSignInAsync(applicationUser, loginDto.Password, false)
+                .Returns(SignInResult.Failed);
+
+            // Act
+            var result = async() => await _accountService.LoginAsync(loginDto, cancellationToken);
+
+            // Assert
+            await result
+                .Should().ThrowAsync<InvalidPasswordException>();
+
+            _mockLogger
+                .Received(1)
+                .LogError($"Invalid login attempt: User {applicationUser.Email} password is invalid.");
         }
     }
 }
