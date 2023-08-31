@@ -241,7 +241,7 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
                 .ReturnsAsync((Category)null);
 
             // Act
-            var result = async () => await _categoryService.UpdateAsync(categoryDto, cancellationToken);
+            var result = async() => await _categoryService.UpdateAsync(categoryDto, cancellationToken);
 
             // Assert
             await result
@@ -306,7 +306,7 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
                 .ReturnsAsync((Category)null);
 
             // Act
-            var result = async () => await _categoryService.DeleteAsync(category.Id, cancellationToken);
+            var result = async() => await _categoryService.DeleteAsync(category.Id, cancellationToken);
 
             // Assert
             await result
