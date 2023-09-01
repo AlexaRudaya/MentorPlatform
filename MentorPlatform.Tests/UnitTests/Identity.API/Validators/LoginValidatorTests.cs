@@ -24,118 +24,26 @@
             result.ShouldNotHaveAnyValidationErrors();
         }
 
-        // Testing Email
-        [Fact]
-        public async Task ValidateLoginDto_When_Email_IsEmpty_ShouldFailValidation()
+        [Theory]
+        [InlineData("", "Email")]
+        [InlineData("emailWithoutAddressSign", "Email")]
+        [InlineData("abc", "Password")]
+        [InlineData("aBcdf127", "Password")]
+        [InlineData("aBcdfKl!", "Password")]
+        [InlineData("abcdfk2l!", "Password")]
+        [InlineData("ABCDFG9!", "Password")]
+        public async Task ValidateLoginDto_InvalidValues_ShouldFailValidation(string value, string propertyName)
         {
             // Arrange
             var loginDto = _loginData.GenerateFakeData();
-            loginDto.Email = "";
+            typeof(LoginDto).GetProperty(propertyName).SetValue(loginDto, value);
 
             // Act
             var result = await _loginValidator.TestValidateAsync(loginDto);
 
             // Assert
-            result.ShouldHaveValidationErrorFor(loginDto => loginDto.Email);
-        }
-
-        [Fact]
-        public async Task ValidateLoginDto_When_Email_IsInvalid_ShouldFailValidation()
-        {
-            // Arrange
-            var loginDto = _loginData.GenerateFakeData();
-            loginDto.Email = "emailWithoutAddressSign";
-
-            // Act
-            var result = await _loginValidator.TestValidateAsync(loginDto);
-
-            // Assert
-            result.ShouldHaveValidationErrorFor(loginDto => loginDto.Email);
-        }
-
-        // Testing Password
-        [Fact]
-        public async Task ValidateLoginDto_When_Password_IsEmpty_ShouldFailValidation()
-        {
-            // Arrange
-            var loginDto = _loginData.GenerateFakeData();
-            loginDto.Password = "";
-
-            // Act
-            var result = await _loginValidator.TestValidateAsync(loginDto);
-
-            // Assert
-            result.ShouldHaveValidationErrorFor(loginDto => loginDto.Password);
-        }
-
-        [Fact]
-        public async Task ValidateLoginDto_When_Password_IsShort_ShouldFailValidation()
-        {
-            // Arrange
-            var loginDto = _loginData.GenerateFakeData();
-            loginDto.Password = "abc";
-
-            // Act
-            var result = await _loginValidator.TestValidateAsync(loginDto);
-
-            // Assert
-            result.ShouldHaveValidationErrorFor(loginDto => loginDto.Password);
-        }
-
-        [Fact]
-        public async Task ValidateLoginDto_When_Password_HasNoSpecialChars_ShouldFailValidation()
-        {
-            // Arrange
-            var loginDto = _loginData.GenerateFakeData();
-            loginDto.Password = "aBcdf127";
-
-            // Act
-            var result = await _loginValidator.TestValidateAsync(loginDto);
-
-            // Assert
-            result.ShouldHaveValidationErrorFor(loginDto => loginDto.Password);
-        }
-
-        [Fact]
-        public async Task ValidateLoginDto_When_Password_HasNoNumber_ShouldFailValidation()
-        {
-            // Arrange
-            var loginDto = _loginData.GenerateFakeData();
-            loginDto.Password = "aBcdfKl!";
-
-            // Act
-            var result = await _loginValidator.TestValidateAsync(loginDto);
-
-            // Assert
-            result.ShouldHaveValidationErrorFor(loginDto => loginDto.Password);
-        }
-
-        [Fact]
-        public async Task ValidateLoginDto_When_Password_HasNoUppercase_ShouldFailValidation()
-        {
-            // Arrange
-            var loginDto = _loginData.GenerateFakeData();
-            loginDto.Password = "abcdfk2l!";
-
-            // Act
-            var result = await _loginValidator.TestValidateAsync(loginDto);
-
-            // Assert
-            result.ShouldHaveValidationErrorFor(loginDto => loginDto.Password);
-        }
-
-        [Fact]
-        public async Task ValidateLoginDto_When_Password_HasNoLowercase_ShouldFailValidation()
-        {
-            // Arrange
-            var loginDto = _loginData.GenerateFakeData();
-            loginDto.Password = "ABCDFG9!";
-
-            // Act
-            var result = await _loginValidator.TestValidateAsync(loginDto);
-
-            // Assert
-            result.ShouldHaveValidationErrorFor(loginDto => loginDto.Password);
+            result
+                .ShouldHaveValidationErrorFor(propertyName);
         }
     }
 }

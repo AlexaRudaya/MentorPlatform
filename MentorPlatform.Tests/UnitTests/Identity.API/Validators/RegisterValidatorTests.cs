@@ -24,177 +24,30 @@
             result.ShouldNotHaveAnyValidationErrors();
         }
 
-        // Testing FirstName
-        [Fact]
-        public async Task ValidateRegisterDto_When_FirstName_IsEmpty_ShouldFailValidation()
+        [Theory]
+        [InlineData("", "FirstName")]
+        [InlineData("L", "FirstName")]
+        [InlineData("", "LastName")]
+        [InlineData("W", "LastName")]
+        [InlineData("", "Email")]
+        [InlineData("emailWithoutAddressSign", "Email")]
+        [InlineData("abc", "Password")]
+        [InlineData("aBcdf127", "Password")]
+        [InlineData("aBcdfKl!", "Password")]
+        [InlineData("abcdfk2l!", "Password")]
+        [InlineData("ABCDFG9!", "Password")]
+        public async Task ValidateRegisterDto_InvalidValues_ShouldFailValidation(string value, string propertyName)
         {
             // Arrange
             var registerDto = _registerData.GenerateFakeData();
-            registerDto.FirstName = "";
+            typeof(RegisterDto).GetProperty(propertyName).SetValue(registerDto, value);
 
             // Act
             var result = await _registerValidator.TestValidateAsync(registerDto);
 
             // Assert
-            result.ShouldHaveValidationErrorFor(registerDto => registerDto.FirstName);
-        }
-
-        [Fact]
-        public async Task ValidateRegisterDto_When_FirstName_IsNotLongEnough_ShouldFailValidation()
-        {
-            // Arrange
-            var registerDto = _registerData.GenerateFakeData();
-            registerDto.FirstName = "L";
-
-            // Act
-            var result = await _registerValidator.TestValidateAsync(registerDto);
-
-            // Assert
-            result.ShouldHaveValidationErrorFor(registerDto => registerDto.FirstName);
-        }
-
-        // Testing LastName
-        [Fact]
-        public async Task ValidateRegisterDto_When_LastName_IsEmpty_ShouldFailValidation()
-        {
-            // Arrange
-            var registerDto = _registerData.GenerateFakeData();
-            registerDto.LastName = "";
-
-            // Act
-            var result = await _registerValidator.TestValidateAsync(registerDto);
-
-            // Assert
-            result.ShouldHaveValidationErrorFor(registerDto => registerDto.LastName);
-        }
-
-
-        [Fact]
-        public async Task ValidateRegisterDto_When_LastName_IsNotLongEnough_ShouldFailValidation()
-        {
-            // Arrange
-            var registerDto = _registerData.GenerateFakeData();
-            registerDto.LastName = "W";
-
-            // Act
-            var result = await _registerValidator.TestValidateAsync(registerDto);
-
-            // Assert
-            result.ShouldHaveValidationErrorFor(registerDto => registerDto.LastName);
-        }
-
-        // Testing Email
-        [Fact]
-        public async Task ValidateRegisterDto_When_Email_IsEmpty_ShouldFailValidation()
-        {
-            // Arrange
-            var registerDto = _registerData.GenerateFakeData();
-            registerDto.Email = "";
-
-            // Act
-            var result = await _registerValidator.TestValidateAsync(registerDto);
-
-            // Assert
-            result.ShouldHaveValidationErrorFor(registerDto => registerDto.Email);
-        }
-
-        [Fact]
-        public async Task ValidateRegisterDto_When_Email_IsInvalid_ShouldFailValidation()
-        {
-            // Arrange
-            var registerDto = _registerData.GenerateFakeData();
-            registerDto.Email = "emailWithoutAddressSign";
-
-            // Act
-            var result = await _registerValidator.TestValidateAsync(registerDto);
-
-            // Assert
-            result.ShouldHaveValidationErrorFor(registerDto => registerDto.Email);
-        }
-
-        // Testing Password
-        [Fact]
-        public async Task ValidateRegisterDto_When_Password_IsEmpty_ShouldFailValidation()
-        {
-            // Arrange
-            var registerDto = _registerData.GenerateFakeData();
-            registerDto.Password = "";
-
-            // Act
-            var result = await _registerValidator.TestValidateAsync(registerDto);
-
-            // Assert
-            result.ShouldHaveValidationErrorFor(registerDto => registerDto.Password);
-        }
-
-        [Fact]
-        public async Task ValidateRegisterDto_When_Password_IsShort_ShouldFailValidation()
-        {
-            // Arrange
-            var registerDto = _registerData.GenerateFakeData();
-            registerDto.Password = "abc";
-
-            // Act
-            var result = await _registerValidator.TestValidateAsync(registerDto);
-
-            // Assert
-            result.ShouldHaveValidationErrorFor(registerDto => registerDto.Password);
-        }
-
-        [Fact]
-        public async Task ValidateRegisterDto_When_Password_HasNoSpecialChars_ShouldFailValidation()
-        {
-            // Arrange
-            var registerDto = _registerData.GenerateFakeData();
-            registerDto.Password = "aBcdf127";
-
-            // Act
-            var result = await _registerValidator.TestValidateAsync(registerDto);
-
-            // Assert
-            result.ShouldHaveValidationErrorFor(registerDto => registerDto.Password);
-        }
-
-        [Fact]
-        public async Task ValidateRegisterDto_When_Password_HasNoNumber_ShouldFailValidation()
-        {
-            // Arrange
-            var registerDto = _registerData.GenerateFakeData();
-            registerDto.Password = "aBcdfKl!";
-
-            // Act
-            var result = await _registerValidator.TestValidateAsync(registerDto);
-
-            // Assert
-            result.ShouldHaveValidationErrorFor(registerDto => registerDto.Password);
-        }
-
-        [Fact]
-        public async Task ValidateRegisterDto_When_Password_HasNoUppercase_ShouldFailValidation()
-        {
-            // Arrange
-            var registerDto = _registerData.GenerateFakeData();
-            registerDto.Password = "abcdfk2l!";
-
-            // Act
-            var result = await _registerValidator.TestValidateAsync(registerDto);
-
-            // Assert
-            result.ShouldHaveValidationErrorFor(registerDto => registerDto.Password);
-        }
-
-        [Fact]
-        public async Task ValidateRegisterDto_When_Password_HasNoLowercase_ShouldFailValidation()
-        {
-            // Arrange
-            var registerDto = _registerData.GenerateFakeData();
-            registerDto.Password = "ABCDFG9!";
-
-            // Act
-            var result = await _registerValidator.TestValidateAsync(registerDto);
-
-            // Assert
-            result.ShouldHaveValidationErrorFor(registerDto => registerDto.Password);
+            result
+                .ShouldHaveValidationErrorFor(propertyName);
         }
     }
 }
