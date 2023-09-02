@@ -44,7 +44,7 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
             {
                 _availabilityGenerator.GenerateFakeAvailability(),
                 _availabilityGenerator.GenerateFakeAvailability(),
-                _availabilityGenerator.GenerateFakeAvailability(),
+                _availabilityGenerator.GenerateFakeAvailability()
             };
             var cancellationToken = CancellationToken.None;
 
@@ -201,7 +201,7 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
             _mockAvailabilityRepository
                 .Verify(repository => repository
                     .CreateAsync(availability, cancellationToken),
-                    Times.Once);
+                Times.Once);
         }
 
         [Fact]
@@ -287,7 +287,7 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
             _mockAvailabilityRepository
                 .Verify(repository => repository
                     .UpdateAsync(availability, cancellationToken),
-                    Times.Once);
+                Times.Once);
         }
 
         [Fact]
@@ -360,7 +360,7 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
             _mockAvailabilityRepository
                 .Verify(repository => repository
                     .DeleteAsync(availability, cancellationToken),
-                    Times.Once);
+                Times.Once);
         }
 
         [Fact]

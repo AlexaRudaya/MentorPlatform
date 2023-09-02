@@ -46,7 +46,7 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
             {
                 _mentorGenerator.GenerateFakeMentor(),
                 _mentorGenerator.GenerateFakeMentor(),
-                _mentorGenerator.GenerateFakeMentor(),
+                _mentorGenerator.GenerateFakeMentor()
             };
             var cancellationToken = CancellationToken.None;
 
@@ -266,7 +266,7 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
             _mockMentorRepository
                 .Verify(repository => repository
                    .UpdateAsync(mentor, cancellationToken),
-                   Times.Once);
+                Times.Once);
         }
 
         [Fact]
@@ -331,7 +331,7 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
             _mockMentorRepository
                 .Verify(repository => repository
                    .DeleteAsync(mentor, cancellationToken),
-                   Times.Once);
+                Times.Once);
         }
 
         [Fact]

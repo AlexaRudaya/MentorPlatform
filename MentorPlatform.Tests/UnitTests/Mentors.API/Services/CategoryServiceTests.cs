@@ -39,7 +39,7 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
             {
                 _categoryGenerator.GenerateFakeCategory(),
                 _categoryGenerator.GenerateFakeCategory(),
-                _categoryGenerator.GenerateFakeCategory(),
+                _categoryGenerator.GenerateFakeCategory()
             };
             var cancellationToken = CancellationToken.None;
 
@@ -180,7 +180,7 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
             _mockCategoryRepository
                 .Verify(repository => repository
                     .CreateAsync(category, cancellationToken),
-                    Times.Once);
+                Times.Once);
         }
 
         [Fact]
@@ -217,7 +217,7 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
             _mockCategoryRepository
                .Verify(repository => repository
                    .UpdateAsync(category, cancellationToken),
-                   Times.Once);
+               Times.Once);
         }
 
         [Fact]
@@ -282,7 +282,7 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
             _mockCategoryRepository
                .Verify(repository => repository
                    .DeleteAsync(category, cancellationToken),
-                   Times.Once);
+               Times.Once);
         }
 
         [Fact]
