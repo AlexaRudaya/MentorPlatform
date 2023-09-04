@@ -1,4 +1,5 @@
-﻿using Mentors.Domain.Entities;
+﻿using Mentors.ApplicationCore.DTO;
+using Mentors.Domain.Entities;
 
 namespace MentorPlatform.Tests.UnitTests.Mentors.API.BogusData
 {
@@ -18,6 +19,13 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.BogusData
             return new Faker<Mentor>()
                 .RuleFor(mentor => mentor.Id, faker => Guid.NewGuid())
                 .RuleFor(mentor => mentor.Name, faker => faker.Person.FullName)
+                .Generate();
+        }
+
+        public CategoryDto GenerateFakeDto()
+        {
+            return new Faker<CategoryDto>()
+                .RuleFor(category => category.Name, faker => faker.Commerce.Department())
                 .Generate();
         }
 
