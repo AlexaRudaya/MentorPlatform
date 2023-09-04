@@ -42,6 +42,17 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.BogusData
                 .Generate();
         }
 
+        public MentorDto GenerateFakeMentorDto()
+        {
+            return new Faker<MentorDto>()
+                .RuleFor(mentor => mentor.Name, faker => faker.Person.FullName)
+                .RuleFor(mentor => mentor.Biography, faker => faker.Lorem.Paragraph())
+                .RuleFor(mentor => mentor.HourlyRate, faker => (double)faker.Finance.Amount(50, 150))
+                .RuleFor(mentor => mentor.MeetingDuration, faker => faker.Random.Int(30, 90))
+                .RuleFor(mentor => mentor.CategoryId, faker => Guid.NewGuid())
+                .Generate();
+        }
+
         private List<Availability> GenerateFakeAvailabilitiesList()
         {
             var availabilitiesCount = new Random().Next(1, 5);

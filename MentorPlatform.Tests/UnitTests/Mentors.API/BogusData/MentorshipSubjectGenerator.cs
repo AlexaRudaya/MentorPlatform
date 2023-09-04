@@ -16,7 +16,7 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.BogusData
         public MentorshipSubjectDto GenerateFakeDto()
         {
             return new Faker<MentorshipSubjectDto>()
-                .RuleFor(subject => subject.Name, faker => faker.Commerce.Department())
+                .RuleFor(subject => subject.Name, faker => faker.Lorem.Sentence(5, 15))
                 .Generate();
         }
     }
