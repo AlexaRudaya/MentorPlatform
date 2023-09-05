@@ -1,22 +1,20 @@
-﻿using MentorPlatform.Tests.UnitTests.Mentors.API.BogusData;
-using Mentors.API.Controllers;
-using Mentors.ApplicationCore.DTO;
-using Mentors.ApplicationCore.Interfaces.IService;
-using Moq;
-
-namespace MentorPlatform.Tests.UnitTests.Mentors.API.Controllers
+﻿namespace MentorPlatform.Tests.UnitTests.Mentors.API.Controllers
 {
     public class AvailabilitiesControllerTests
     {
         private readonly Mock<IAvailabilityService> _mockAvailabilityService;
         private readonly AvailabilitiesController _controller;
         private readonly AvailabilityGenerator _availabilityData;
+        private readonly AvailabilitiesControllerHelper _helper;
+        private readonly CancellationToken _cancellationToken;
 
         public AvailabilitiesControllerTests()
         {
             _mockAvailabilityService = new Mock<IAvailabilityService>();
             _controller = new AvailabilitiesController(_mockAvailabilityService.Object);
             _availabilityData = new AvailabilityGenerator();
+            _helper = new AvailabilitiesControllerHelper(_mockAvailabilityService);
+            _cancellationToken = CancellationToken.None;
         }
 
         [Fact]
@@ -29,15 +27,11 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Controllers
                 _availabilityData.GenerateFakeDto(),
                 _availabilityData.GenerateFakeDto()
             };
-            var cancellationToken = CancellationToken.None;
 
-            _mockAvailabilityService
-                .Setup(service => service
-                .GetAllAsync(It.IsAny<CancellationToken>()))
-                .ReturnsAsync(availabilities);
+            _helper.SetupGetAllAsync(availabilities);
 
             // Act
-            var result = await _controller.GetAvailabilities(cancellationToken);
+            var result = await _controller.GetAvailabilities(_cancellationToken);
 
             // Assert
             var okResult = result
@@ -52,15 +46,11 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Controllers
         {
             // Arrange
             var availability = _availabilityData.GenerateFakeDto();
-            var cancellationToken = CancellationToken.None;
 
-            _mockAvailabilityService
-                .Setup(service => service
-                .GetByIdAsync(availability.Id, It.IsAny<CancellationToken>()))
-                .ReturnsAsync(availability);
+            _helper.SetupGetByIdAsync(availability);
 
             // Act
-            var result = await _controller.GetAvailability(availability.Id, cancellationToken);
+            var result = await _controller.GetAvailability(availability.Id, _cancellationToken);
 
             // Assert
             var okResult = result
@@ -75,15 +65,11 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Controllers
         {
             // Arrange
             var availability = _availabilityData.GenerateFakeDto();
-            var cancellationToken = CancellationToken.None;
 
-            _mockAvailabilityService
-               .Setup(service => service.CreateAsync(
-                    availability, It.IsAny<CancellationToken>()))
-               .ReturnsAsync(availability);
+            _helper.SetupCreateAsync(availability);
 
             // Act
-            var result = await _controller.CreateAvailability(availability, cancellationToken);
+            var result = await _controller.CreateAvailability(availability, _cancellationToken);
 
             // Assert
             var createdAtResult = result
@@ -98,15 +84,11 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Controllers
         {
             // Arrange
             var availability = _availabilityData.GenerateFakeDto();
-            var cancellationToken = CancellationToken.None;
 
-            _mockAvailabilityService
-                .Setup(service => service.UpdateAsync(
-                    availability, It.IsAny<CancellationToken>()))
-                .ReturnsAsync(availability);
+            _helper.SetupUpdateAsync(availability);
 
             // Act
-            var result = await _controller.UpdateAvailability(availability, cancellationToken);
+            var result = await _controller.UpdateAvailability(availability, _cancellationToken);
 
             // Assert
             result
@@ -118,15 +100,11 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Controllers
         {
             // Arrange
             var availability = _availabilityData.GenerateFakeDto();
-            var cancellationToken = CancellationToken.None;
 
-            _mockAvailabilityService
-                .Setup(service => service.DeleteAsync(
-                    availability.Id, It.IsAny<CancellationToken>()))
-                .ReturnsAsync(availability);
+            _helper.SetupUpdateAsync(availability);
 
             // Act
-            var result = await _controller.DeleteAvailability(availability.Id, cancellationToken);
+            var result = await _controller.DeleteAvailability(availability.Id, _cancellationToken);
 
             // Assert
             result

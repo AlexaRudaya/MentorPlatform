@@ -1,15 +1,4 @@
-﻿using MentorPlatform.Tests.UnitTests.Mentors.API.BogusData;
-using Mentors.ApplicationCore.DTO;
-using Mentors.ApplicationCore.Exceptions;
-using Mentors.ApplicationCore.Interfaces.IService;
-using Mentors.ApplicationCore.Services;
-using Mentors.Domain.Abstractions.IRepository;
-using Mentors.Domain.Entities;
-using Microsoft.EntityFrameworkCore.Query;
-using Moq;
-using System.Linq.Expressions;
-
-namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
+﻿namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
 {
     public class CategoryServiceTests
     {
@@ -18,6 +7,8 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
         private readonly Mock<ILogger<CategoryService>> _mockLogger;
         private readonly ICategoryService _categoryService;
         private readonly CategoryGenerator _categoryGenerator;
+        private readonly CategoryServiceHelper _helper;
+        private readonly CancellationToken _cancellationToken;
 
         public CategoryServiceTests()
         {
@@ -29,6 +20,9 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
                 _mockCategoryRepository.Object,
                 _mockMapper.Object,
                 _mockLogger.Object);
+            _helper = new CategoryServiceHelper(_mockCategoryRepository,
+                _mockMapper);
+            _cancellationToken = CancellationToken.None;
         }
 
         [Fact]
@@ -41,27 +35,17 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
                 _categoryGenerator.GenerateFakeCategory(),
                 _categoryGenerator.GenerateFakeCategory()
             };
-            var cancellationToken = CancellationToken.None;
 
-            _mockCategoryRepository
-                .Setup(repository => repository.GetAllByAsync(
-                    It.IsAny<Func<IQueryable<Category>, IIncludableQueryable<Category, object>>>(),
-                    null, 
-                    It.IsAny<CancellationToken>()))
-                .ReturnsAsync(categories);
+            _helper.SetupGetAllAsync(categories);
 
-            var categoriesDto = categories.Select(category => new CategoryDto
-            {
-                Id = category.Id,
-                Name = category.Name
-            }).ToList();
+            var categoriesDto = _helper.GenerateDtoList(categories);
 
             _mockMapper
                 .Setup(mapper =>mapper.Map<IEnumerable<CategoryDto>>(categories))
                 .Returns(categoriesDto);
 
             // Act
-            var result = await _categoryService.GetAllAsync(cancellationToken);
+            var result = await _categoryService.GetAllAsync(_cancellationToken);
 
             // Assert
             result
@@ -74,17 +58,10 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
         public async Task GetAllAsync_WhenCategoriesAreNull_ShouldThrowCategoryNotFoundException()
         {
             // Arrange
-            var cancellationToken = CancellationToken.None;
-
-            _mockCategoryRepository
-                .Setup(repository => repository.GetAllByAsync(
-                    It.IsAny<Func<IQueryable<Category>, IIncludableQueryable<Category, object>>>(),
-                    null,
-                    It.IsAny<CancellationToken>()))
-                .ReturnsAsync((IEnumerable<Category>)null);
+            _helper.SetupGetAllAsyncWhenNull();
 
             // Act
-            var result = async() => await _categoryService.GetAllAsync(cancellationToken);
+            var result = async() => await _categoryService.GetAllAsync(_cancellationToken);
 
             // Assert
             await result
@@ -96,27 +73,15 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
         {
             // Arrange
             var category = _categoryGenerator.GenerateFakeCategory();
-            var cancellationToken = CancellationToken.None;
 
-            _mockCategoryRepository
-                .Setup(repository => repository.GetOneByAsync(
-                    null,
-                    It.IsAny<Expression<Func<Category, bool>>>(),
-                    It.IsAny<CancellationToken>()))
-                .ReturnsAsync(category);
+            _helper.SetupGetByIdAsync(category);
 
-            var categoryDto = new CategoryDto
-            {
-                Id = category.Id,
-                Name = category.Name
-            };
+            var categoryDto = _helper.GenerateDtoFromCategory(category);
 
-            _mockMapper
-                .Setup(mapper => mapper.Map<CategoryDto>(category))
-                .Returns(categoryDto);
+            _helper.SetupMapperForCategoryToDto(category, categoryDto);
 
             // Act
-            var result = await _categoryService.GetByIdAsync(category.Id, cancellationToken);
+            var result = await _categoryService.GetByIdAsync(category.Id, _cancellationToken);
 
             // Assert
             result
@@ -130,17 +95,11 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
         {
             // Arrange
             var categoryId = _categoryGenerator.GenerateFakeCategory().Id;
-            var cancellationToken = CancellationToken.None;
-
-            _mockCategoryRepository
-                .Setup(repository => repository.GetOneByAsync(
-                    null,
-                    It.IsAny<Expression<Func<Category, bool>>>(),
-                    It.IsAny<CancellationToken>()))
-                .ReturnsAsync((Category)null);
+           
+            _helper.SetupGetByIdAsyncWhenNull();
 
             // Act
-            var result = async() => await _categoryService.GetByIdAsync(categoryId, cancellationToken);
+            var result = async() => await _categoryService.GetByIdAsync(categoryId, _cancellationToken);
 
             // Assert
             await result
@@ -152,24 +111,15 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
         {
             // Arrange
             var category = _categoryGenerator.GenerateFakeCategory();
-            var cancellationToken = CancellationToken.None;
 
-            var categoryDto = new CategoryDto
-            { 
-                Id = category.Id,
-                Name = category.Name
-            };
+            var categoryDto = _helper.GenerateDtoFromCategory(category);
 
-            _mockMapper
-                .Setup(mapper => mapper.Map<Category>(categoryDto))
-                .Returns(category);
+            _helper.SetupMapperForDtoToCategory(category, categoryDto);
 
-            _mockCategoryRepository
-                .Setup(repository => repository.CreateAsync(category, cancellationToken))
-                .Returns(Task.CompletedTask);
+            _helper.SetupCreateAsync(category);
 
             // Act
-            var result = await _categoryService.CreateAsync(categoryDto, cancellationToken);
+            var result = await _categoryService.CreateAsync(categoryDto, _cancellationToken);
 
             // Assert
             result
@@ -179,7 +129,7 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
 
             _mockCategoryRepository
                 .Verify(repository => repository
-                    .CreateAsync(category, cancellationToken),
+                    .CreateAsync(category, _cancellationToken),
                 Times.Once);
         }
 
@@ -188,27 +138,15 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
         {
             // Arrange
             var category = _categoryGenerator.GenerateFakeCategory();
-            var cancellationToken = CancellationToken.None;
 
-            var categoryDto = new CategoryDto
-            { 
-                Id= category.Id,
-                Name = category.Name
-            };
+            var categoryDto = _helper.GenerateDtoFromCategory(category);
 
-            _mockCategoryRepository
-               .Setup(repository => repository.GetOneByAsync(
-                   null,
-                   It.IsAny<Expression<Func<Category, bool>>>(),
-                   It.IsAny<CancellationToken>()))
-               .ReturnsAsync(category);
+            _helper.SetupGetByIdAsync(category);
 
-            _mockMapper
-                .Setup(mapper => mapper.Map<Category>(categoryDto))
-                .Returns(category);
+            _helper.SetupMapperForDtoToCategory(category, categoryDto);
 
             // Act
-            var result = await _categoryService.UpdateAsync(categoryDto, cancellationToken);
+            var result = await _categoryService.UpdateAsync(categoryDto, _cancellationToken);
 
             // Assert
             result
@@ -216,7 +154,7 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
 
             _mockCategoryRepository
                .Verify(repository => repository
-                   .UpdateAsync(category, cancellationToken),
+                   .UpdateAsync(category, _cancellationToken),
                Times.Once);
         }
 
@@ -225,23 +163,13 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
         {
             // Arrange
             var category = _categoryGenerator.GenerateFakeCategory();
-            var cancellationToken = CancellationToken.None;
 
-            var categoryDto = new CategoryDto
-            {
-                Id = category.Id,
-                Name = category.Name
-            };
+            var categoryDto = _helper.GenerateDtoFromCategory(category);
 
-            _mockCategoryRepository
-                .Setup(repository => repository.GetOneByAsync(
-                    null,
-                    It.IsAny<Expression<Func<Category, bool>>>(),
-                    It.IsAny<CancellationToken>()))
-                .ReturnsAsync((Category)null);
+            _helper.SetupGetByIdAsyncWhenNull();
 
             // Act
-            var result = async() => await _categoryService.UpdateAsync(categoryDto, cancellationToken);
+            var result = async() => await _categoryService.UpdateAsync(categoryDto, _cancellationToken);
 
             // Assert
             await result
@@ -253,24 +181,12 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
         {
             // Arrange
             var category = _categoryGenerator.GenerateFakeCategory();
-            var cancellationToken = CancellationToken.None;
 
-            var categoryDto = new CategoryDto
-            {
-                Id = category.Id,
-                Name = category.Name
-            };
+            var categoryDto = _helper.GenerateDtoFromCategory(category);
 
-            _mockCategoryRepository
-                .Setup(repository => repository.GetOneByAsync(
-                    null,
-                    It.IsAny<Expression<Func<Category, bool>>>(),
-                    It.IsAny<CancellationToken>()))
-                .ReturnsAsync(category);
+            _helper.SetupGetByIdAsync(category);
 
-            _mockMapper
-                .Setup(mapper => mapper.Map<CategoryDto>(category))
-                .Returns(categoryDto);
+            _helper.SetupMapperForCategoryToDto(category, categoryDto);
 
             // Act
             var result = await _categoryService.DeleteAsync(category.Id);
@@ -281,7 +197,7 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
 
             _mockCategoryRepository
                .Verify(repository => repository
-                   .DeleteAsync(category, cancellationToken),
+                   .DeleteAsync(category, _cancellationToken),
                Times.Once);
         }
 
@@ -290,23 +206,13 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
         {
             // Arrange
             var category = _categoryGenerator.GenerateFakeCategory();
-            var cancellationToken = CancellationToken.None;
 
-            var categoryDto = new CategoryDto
-            {
-                Id = category.Id,
-                Name = category.Name
-            };
+            var categoryDto = _helper.GenerateDtoFromCategory(category);
 
-            _mockCategoryRepository
-                .Setup(repository => repository.GetOneByAsync(
-                    null,
-                    It.IsAny<Expression<Func<Category, bool>>>(),
-                    It.IsAny<CancellationToken>()))
-                .ReturnsAsync((Category)null);
+            _helper.SetupGetByIdAsyncWhenNull();
 
             // Act
-            var result = async() => await _categoryService.DeleteAsync(category.Id, cancellationToken);
+            var result = async() => await _categoryService.DeleteAsync(category.Id, _cancellationToken);
 
             // Assert
             await result

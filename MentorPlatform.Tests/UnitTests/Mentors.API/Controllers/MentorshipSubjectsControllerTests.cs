@@ -1,21 +1,20 @@
-﻿using MentorPlatform.Tests.UnitTests.Mentors.API.BogusData;
-using Mentors.API.Controllers;
-using Mentors.ApplicationCore.DTO;
-using Mentors.ApplicationCore.Interfaces.IMongoService;
-using Moq;
-
-namespace MentorPlatform.Tests.UnitTests.Mentors.API.Controllers
+﻿namespace MentorPlatform.Tests.UnitTests.Mentors.API.Controllers
 {
     public class MentorshipSubjectsControllerTests
     {
         private readonly Mock<IMentorshipSubjectService> _mockSubjectService;
         private readonly MentorshipSubjectsController _controller;
         private readonly MentorshipSubjectGenerator _subjectData;
+        private readonly SubjectsControllerHelper _helper;
+        private readonly CancellationToken _cancellationToken;
+
         public MentorshipSubjectsControllerTests()
         {
             _mockSubjectService = new Mock<IMentorshipSubjectService>();
             _controller = new MentorshipSubjectsController(_mockSubjectService.Object);
             _subjectData = new MentorshipSubjectGenerator();
+            _helper = new SubjectsControllerHelper(_mockSubjectService);
+            _cancellationToken = CancellationToken.None;
         }
 
         [Fact]
@@ -28,15 +27,11 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Controllers
                 _subjectData.GenerateFakeDto(),
                 _subjectData.GenerateFakeDto(),
             };
-            var cancellationToken = CancellationToken.None;
 
-            _mockSubjectService
-                .Setup(service => service
-                .GetAllAsync(It.IsAny<CancellationToken>()))
-                .ReturnsAsync(subjects);
+            _helper.SetupGetAllAsync(subjects);
 
             // Act
-            var result = await _controller.GetSubjects(cancellationToken);
+            var result = await _controller.GetSubjects(_cancellationToken);
 
             // Assert
             var okResult = result
@@ -51,15 +46,11 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Controllers
         {
             // Arrange
             var subject = _subjectData.GenerateFakeDto();
-            var cancellationToken = CancellationToken.None;
 
-            _mockSubjectService
-                .Setup(service => service
-                .GetByIdAsync(subject.Id, It.IsAny<CancellationToken>()))
-                .ReturnsAsync(subject);
+            _helper.SetupGetByIdAsync(subject);
 
             // Act
-            var result = await _controller.GetSubject(subject.Id, cancellationToken);
+            var result = await _controller.GetSubject(subject.Id, _cancellationToken);
 
             // Assert
             var okResult = result
@@ -74,15 +65,11 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Controllers
         {
             // Arrange
             var subject = _subjectData.GenerateFakeDto();
-            var cancellationToken = CancellationToken.None;
 
-            _mockSubjectService
-                .Setup(service => service.CreateAsync(
-                    subject, It.IsAny<CancellationToken>()))
-                .ReturnsAsync(subject);
+            _helper.SetupCreateAsync(subject);
 
             // Act
-            var result = await _controller.CreateSubject(subject, cancellationToken);
+            var result = await _controller.CreateSubject(subject, _cancellationToken);
 
             // Assert
             var createdAtResult = result
@@ -97,15 +84,11 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Controllers
         {
             // Arrange
             var subject = _subjectData.GenerateFakeDto();
-            var cancellationToken = CancellationToken.None;
 
-            _mockSubjectService
-                .Setup(service => service.UpdateAsync(
-                    subject, It.IsAny<CancellationToken>()))
-                .ReturnsAsync(subject);
+            _helper.SetupUpdateAsync(subject);
 
             // Act
-            var result = await _controller.UpdateSubject(subject, cancellationToken);
+            var result = await _controller.UpdateSubject(subject, _cancellationToken);
 
             // Assert
             result
@@ -117,15 +100,11 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Controllers
         {
             // Arrange
             var subject = _subjectData.GenerateFakeDto();
-            var cancellationToken = CancellationToken.None;
 
-            _mockSubjectService
-                .Setup(service => service.DeleteAsync(
-                    subject.Id, It.IsAny<CancellationToken>()))
-                .Returns(Task.CompletedTask);
+            _helper.SetupDeleteAsync(subject);
 
             // Act
-            var result = await _controller.DeleteSubject(subject.Id, cancellationToken);
+            var result = await _controller.DeleteSubject(subject.Id, _cancellationToken);
 
             // Assert
             result

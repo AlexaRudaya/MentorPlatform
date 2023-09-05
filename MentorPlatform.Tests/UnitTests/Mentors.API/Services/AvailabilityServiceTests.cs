@@ -1,17 +1,4 @@
-﻿using MentorPlatform.Shared.MassTransitEvents;
-using MentorPlatform.Shared.MessageBus;
-using MentorPlatform.Tests.UnitTests.Mentors.API.BogusData;
-using Mentors.ApplicationCore.DTO;
-using Mentors.ApplicationCore.Exceptions;
-using Mentors.ApplicationCore.Interfaces.IService;
-using Mentors.ApplicationCore.Services;
-using Mentors.Domain.Abstractions.IRepository;
-using Mentors.Domain.Entities;
-using Microsoft.EntityFrameworkCore.Query;
-using Moq;
-using System.Linq.Expressions;
-
-namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
+﻿namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
 {
     public class AvailabilityServiceTests
     {
@@ -21,6 +8,8 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
         private readonly Mock<IProducer> _mockProducer;
         private readonly IAvailabilityService _availabilityService;
         private readonly AvailabilityGenerator _availabilityGenerator;
+        private readonly AvailabilityServiceHelper _helper;
+        private readonly CancellationToken _cancellationToken;
 
         public AvailabilityServiceTests()
         {
@@ -34,6 +23,10 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
                 _mockMapper.Object,
                 _mockLogger.Object,
                 _mockProducer.Object);
+            _helper = new AvailabilityServiceHelper(_mockAvailabilityRepository,
+                _mockProducer,
+                _mockMapper);
+            _cancellationToken = CancellationToken.None;
         }
 
         [Fact]
@@ -44,33 +37,19 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
             {
                 _availabilityGenerator.GenerateFakeAvailability(),
                 _availabilityGenerator.GenerateFakeAvailability(),
-                _availabilityGenerator.GenerateFakeAvailability()
+                _availabilityGenerator.GenerateFakeAvailability(),
             };
-            var cancellationToken = CancellationToken.None;
 
-            _mockAvailabilityRepository
-                .Setup(repository => repository.GetAllByAsync(
-                    It.IsAny<Func<IQueryable<Availability>, IIncludableQueryable<Availability, object>>>(),
-                    null,
-                    It.IsAny<CancellationToken>()))
-                .ReturnsAsync(availabilities);
+            _helper.SetupGetAllAsync(availabilities);
 
-            var availabilitiesDto = availabilities.Select(availability => new AvailabilityDto
-            {
-                Id = availability.Id,
-                Date = availability.Date,
-                IsAvailable = availability.IsAvailable,
-                StartTime = availability.StartTime,
-                EndTime = availability.EndTime,
-                MentorId = availability.MentorId
-            }).ToList();
+            var availabilitiesDto = _helper.GenerateDtoList(availabilities);
 
             _mockMapper
                 .Setup(mapper => mapper.Map<IEnumerable<AvailabilityDto>>(availabilities))
                 .Returns(availabilitiesDto);
 
             // Act
-            var result = await _availabilityService.GetAllAsync(cancellationToken);
+            var result = await _availabilityService.GetAllAsync(_cancellationToken);
 
             // Assert
             result
@@ -83,17 +62,10 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
         public async Task GetAllAsync_WhenAvailabilitiesAreNull_ShouldThrowAvailabilityNotFoundException()
         {
             // Arrange
-            var cancellationToken = CancellationToken.None;
-
-            _mockAvailabilityRepository
-                .Setup(repository => repository.GetAllByAsync(
-                    It.IsAny<Func<IQueryable<Availability>, IIncludableQueryable<Availability, object>>>(),
-                    null,
-                    It.IsAny<CancellationToken>()))
-                .ReturnsAsync((IEnumerable<Availability>)null);
+            _helper.SetupGetAllAsyncWhenNull();
 
             // Act
-            var result = async() => await _availabilityService.GetAllAsync(cancellationToken);
+            var result = async() => await _availabilityService.GetAllAsync(_cancellationToken);
 
             // Assert
             await result
@@ -105,31 +77,15 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
         {
             // Arrange
             var availability = _availabilityGenerator.GenerateFakeAvailability();
-            var cancellationToken = CancellationToken.None;
 
-            _mockAvailabilityRepository
-                .Setup(repository => repository.GetOneByAsync(
-                    null,
-                    It.IsAny<Expression<Func<Availability, bool>>>(),
-                    It.IsAny<CancellationToken>()))
-                .ReturnsAsync(availability);
+            _helper.SetupGetByIdAsync(availability);
 
-            var availabilityDto = new AvailabilityDto
-            {
-                Id = availability.Id,
-                Date = availability.Date,
-                IsAvailable = availability.IsAvailable,
-                StartTime = availability.StartTime,
-                EndTime = availability.EndTime,
-                MentorId = availability.MentorId
-            };
+            var availabilityDto = _helper.GenerateDtoFromAvailability(availability);
 
-            _mockMapper
-                .Setup(mapper => mapper.Map<AvailabilityDto>(availability))
-                .Returns(availabilityDto);
+            _helper.SetupMapperForAvailabilityToDto(availability, availabilityDto);
 
             // Act
-            var result = await _availabilityService.GetByIdAsync(availability.Id, cancellationToken);
+            var result = await _availabilityService.GetByIdAsync(availability.Id, _cancellationToken);
 
             // Assert
             result
@@ -143,17 +99,11 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
         {
             // Arrange
             var availabilityId = _availabilityGenerator.GenerateFakeAvailability().Id;
-            var cancellationToken = CancellationToken.None;
 
-            _mockAvailabilityRepository
-                .Setup(repository => repository.GetOneByAsync(
-                    null,
-                    It.IsAny<Expression<Func<Availability, bool>>>(),
-                    It.IsAny<CancellationToken>()))
-                .ReturnsAsync((Availability)null);
+            _helper.SetupGetByIdAsyncWhenNull();
 
             // Act
-            var result = async() => await _availabilityService.GetByIdAsync(availabilityId, cancellationToken);
+            var result = async() => await _availabilityService.GetByIdAsync(availabilityId, _cancellationToken);
 
             // Assert
             await result
@@ -165,32 +115,17 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
         {
             // Arrange
             var availability = _availabilityGenerator.GenerateFakeAvailability();
-            var cancellationToken = CancellationToken.None;
 
-            var availabilityDto = new AvailabilityDto
-            {
-                Id = availability.Id,
-                Date = availability.Date,
-                IsAvailable = availability.IsAvailable,
-                StartTime = availability.StartTime,
-                EndTime = availability.EndTime,
-                MentorId = availability.MentorId
-            };
+            var availabilityDto = _helper.GenerateDtoFromAvailability(availability);
 
-            _mockMapper
-                .Setup(mapper => mapper.Map<Availability>(availabilityDto))
-                .Returns(availability);
+            _helper.SetupMapperForDtoToAvailability(availability, availabilityDto);
 
-            _mockAvailabilityRepository
-                .Setup(repository => repository.CreateAsync(availability, cancellationToken))
-                .Returns(Task.CompletedTask);
+            _helper.SetupCreateAsync(availability);
 
-            _mockMapper
-                .Setup(mapper => mapper.Map<AvailabilityDto>(availability))
-                .Returns(availabilityDto);
+            _helper.SetupMapperForAvailabilityToDto(availability, availabilityDto);
 
             // Act
-            var result = await _availabilityService.CreateAsync(availabilityDto, cancellationToken);
+            var result = await _availabilityService.CreateAsync(availabilityDto, _cancellationToken);
 
             // Assert
             result
@@ -200,7 +135,7 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
 
             _mockAvailabilityRepository
                 .Verify(repository => repository
-                    .CreateAsync(availability, cancellationToken),
+                    .CreateAsync(availability, _cancellationToken),
                 Times.Once);
         }
 
@@ -209,33 +144,20 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
         {
             // Arrange
             var availability = _availabilityGenerator.GenerateFakeAvailability();
-            var cancellationToken = CancellationToken.None;
 
-            var availabilityDto = new AvailabilityDto
-            {
-                Id = availability.Id,
-                Date = availability.Date,
-                IsAvailable = availability.IsAvailable,
-                StartTime = availability.StartTime,
-                EndTime = availability.EndTime,
-                MentorId = availability.MentorId
-            };
+            var availabilityDto = _helper.GenerateDtoFromAvailability(availability);
 
             var eventToPublish = new AvailabilityOfMentorEvent();
 
-            _mockMapper
-                .Setup(mapper => mapper.Map<Availability>(availabilityDto))
-                .Returns(availability);
-            _mockMapper
-                .Setup(mapper => mapper.Map<AvailabilityDto>(availability))
-                .Returns(availabilityDto);
+            _helper.SetupMapperForDtoToAvailability(availability, availabilityDto);
+
+            _helper.SetupMapperForAvailabilityToDto(availability, availabilityDto);
+
             _mockMapper
                 .Setup(mapper => mapper.Map<AvailabilityOfMentorEvent>(availability))
                 .Returns(eventToPublish);
 
-            _mockProducer
-                .Setup(producer => producer.PublishAsync(eventToPublish, cancellationToken))
-                .Returns(Task.CompletedTask);
+            _helper.SetupPublishAvailabilityEvent(eventToPublish);
 
             // Act
             var result = await _availabilityService.CreateAsync(availabilityDto);
@@ -245,7 +167,7 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
 
             _mockProducer
                 .Verify(producer => producer
-                    .PublishAsync(eventToPublish, cancellationToken),
+                    .PublishAsync(eventToPublish, _cancellationToken),
                 Times.Once());
         }
 
@@ -254,31 +176,15 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
         {
             // Arrange
             var availability = _availabilityGenerator.GenerateFakeAvailability();
-            var cancellationToken = CancellationToken.None;
 
-            var availabilityDto = new AvailabilityDto
-            {
-                Id = availability.Id,
-                Date = availability.Date,
-                IsAvailable = availability.IsAvailable,
-                StartTime = availability.StartTime,
-                EndTime = availability.EndTime,
-                MentorId = availability.MentorId
-            };
+            var availabilityDto = _helper.GenerateDtoFromAvailability(availability);
 
-            _mockAvailabilityRepository
-                .Setup(repository => repository.GetOneByAsync(
-                    null,
-                    It.IsAny<Expression<Func<Availability, bool>>>(),
-                    It.IsAny<CancellationToken>()))
-                .ReturnsAsync(availability);
+            _helper.SetupGetByIdAsync(availability);
 
-            _mockMapper
-                .Setup(mapper => mapper.Map<Availability>(availabilityDto))
-                .Returns(availability);
+            _helper.SetupMapperForDtoToAvailability(availability, availabilityDto);
 
             // Act
-            var result = await _availabilityService.UpdateAsync(availabilityDto, cancellationToken);
+            var result = await _availabilityService.UpdateAsync(availabilityDto, _cancellationToken);
 
             // Assert
             result
@@ -286,7 +192,7 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
 
             _mockAvailabilityRepository
                 .Verify(repository => repository
-                    .UpdateAsync(availability, cancellationToken),
+                    .UpdateAsync(availability, _cancellationToken),
                 Times.Once);
         }
 
@@ -295,27 +201,13 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
         {
             // Arrange
             var availability = _availabilityGenerator.GenerateFakeAvailability();
-            var cancellationToken = CancellationToken.None;
 
-            var availabilityDto = new AvailabilityDto
-            {
-                Id = availability.Id,
-                Date = availability.Date,
-                IsAvailable = availability.IsAvailable,
-                StartTime = availability.StartTime,
-                EndTime = availability.EndTime,
-                MentorId = availability.MentorId
-            };
+            var availabilityDto = _helper.GenerateDtoFromAvailability(availability);
 
-            _mockAvailabilityRepository
-                .Setup(repository => repository.GetOneByAsync(
-                    null,
-                    It.IsAny<Expression<Func<Availability, bool>>>(),
-                    It.IsAny<CancellationToken>()))
-                .ReturnsAsync((Availability)null);
+            _helper.SetupGetByIdAsyncWhenNull();
 
             // Act
-            var result = async() => await _availabilityService.UpdateAsync(availabilityDto, cancellationToken);
+            var result = async() => await _availabilityService.UpdateAsync(availabilityDto, _cancellationToken);
 
             // Assert
             await result
@@ -327,28 +219,12 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
         {
             // Arrange
             var availability = _availabilityGenerator.GenerateFakeAvailability();
-            var cancellationToken = CancellationToken.None;
 
-            var availabilityDto = new AvailabilityDto
-            {
-                Id = availability.Id,
-                Date = availability.Date,
-                IsAvailable = availability.IsAvailable,
-                StartTime = availability.StartTime,
-                EndTime = availability.EndTime,
-                MentorId = availability.MentorId
-            };
+            var availabilityDto = _helper.GenerateDtoFromAvailability(availability);
 
-            _mockAvailabilityRepository
-                .Setup(repository => repository.GetOneByAsync(
-                    null,
-                    It.IsAny<Expression<Func<Availability, bool>>>(),
-                    It.IsAny<CancellationToken>()))
-                .ReturnsAsync(availability);
+            _helper.SetupDeleteAsync(availability);
 
-            _mockMapper
-                .Setup(mapper => mapper.Map<AvailabilityDto>(availability))
-                .Returns(availabilityDto);
+            _helper.SetupMapperForAvailabilityToDto(availability, availabilityDto);
 
             // Act
             var result = await _availabilityService.DeleteAsync(availability.Id);
@@ -359,7 +235,7 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
 
             _mockAvailabilityRepository
                 .Verify(repository => repository
-                    .DeleteAsync(availability, cancellationToken),
+                    .DeleteAsync(availability, _cancellationToken),
                 Times.Once);
         }
 
@@ -368,27 +244,13 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
         {
             // Arrange
             var availability = _availabilityGenerator.GenerateFakeAvailability();
-            var cancellationToken = CancellationToken.None;
 
-            var availabilityDto = new AvailabilityDto
-            {
-                Id = availability.Id,
-                Date = availability.Date,
-                IsAvailable = availability.IsAvailable,
-                StartTime = availability.StartTime,
-                EndTime = availability.EndTime,
-                MentorId = availability.MentorId
-            };
+            var availabilityDto = _helper.GenerateDtoFromAvailability(availability);
 
-            _mockAvailabilityRepository
-                .Setup(repository => repository.GetOneByAsync(
-                    null,
-                    It.IsAny<Expression<Func<Availability, bool>>>(),
-                    It.IsAny<CancellationToken>()))
-                .ReturnsAsync((Availability)null);
+            _helper.SetupGetAllAsyncWhenNull();
 
             // Act
-            var result = async() => await _availabilityService.DeleteAsync(availability.Id, cancellationToken);
+            var result = async() => await _availabilityService.DeleteAsync(availability.Id, _cancellationToken);
 
             // Assert
             await result

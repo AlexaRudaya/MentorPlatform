@@ -1,7 +1,4 @@
-﻿using MentorPlatform.Tests.UnitTests.Mentors.API.BogusData;
-using Mentors.ApplicationCore.Validators;
-
-namespace MentorPlatform.Tests.UnitTests.Mentors.API.Validators
+﻿namespace MentorPlatform.Tests.UnitTests.Mentors.API.Validators
 {
     public class CategoryValidatorTests
     {

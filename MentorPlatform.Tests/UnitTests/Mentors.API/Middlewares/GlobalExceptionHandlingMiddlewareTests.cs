@@ -1,8 +1,4 @@
-﻿using Mentors.API.Middlewares;
-using Mentors.ApplicationCore.Exceptions;
-using Moq;
-using System.Net;
-using InvalidValueException = Mentors.ApplicationCore.Exceptions.InvalidValueException;
+﻿using InvalidValueException = Mentors.ApplicationCore.Exceptions.InvalidValueException;
 
 namespace MentorPlatform.Tests.UnitTests.Mentors.API.Middlewares
 {
@@ -17,55 +13,32 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Middlewares
             _middleware = new GlobalExceptionHandlingMiddleware(_mockLogger.Object);
         }
 
-        [Fact]
-        public async Task InvokeAsync_ObjectNotFoundException_ShouldReturnNotFound()
+
+        [Theory]
+        [InlineData(typeof(ObjectNotFoundException), (int)HttpStatusCode.NotFound)]
+        [InlineData(typeof(InvalidValueException), (int)HttpStatusCode.BadRequest)]
+        [InlineData(typeof(Exception), (int)HttpStatusCode.InternalServerError)]
+        public async Task InvokeAsync_ExceptionType_ShouldReturnExpectedStatusCode(Type exceptionType, int statusCode)
         {
             // Arrange
             var context = new DefaultHttpContext();
             var response = context.Response;
 
-            RequestDelegate next = (innerContext) => throw new ObjectNotFoundException("No entity was found");
+            RequestDelegate next = (innerContext) =>
+            {
+                if (exceptionType == typeof(ObjectNotFoundException))
+                    throw new ObjectNotFoundException("No entity was found");
+                if (exceptionType == typeof(InvalidValueException))
+                    throw new InvalidValueException("Invalid data");
+                throw new Exception();
+            };
 
             // Act
             await _middleware.InvokeAsync(context, next);
 
             // Assert
             response.StatusCode
-                .Should().Be((int)HttpStatusCode.NotFound);
-        }
-
-        [Fact]
-        public async Task InvokeAsync_InvalidValueException_ShouldReturnBadRequest()
-        {
-            // Arrange
-            var context = new DefaultHttpContext();
-            var response = context.Response;
-
-            RequestDelegate next = (innerContext) => throw new InvalidValueException("Invalid data");
-
-            // Act
-            await _middleware.InvokeAsync(context, next);
-
-            // Assert
-            response.StatusCode
-                .Should().Be((int)HttpStatusCode.BadRequest);
-        }
-
-        [Fact]
-        public async Task InvokeAsync_GeneralException_ShouldReturnInternalServerError()
-        {
-            // Arrange
-            var context = new DefaultHttpContext();
-            var response = context.Response;
-
-            RequestDelegate next = (innerContext) => throw new Exception();
-
-            // Act
-            await _middleware.InvokeAsync(context, next);
-
-            // Assert
-            response.StatusCode
-                .Should().Be((int)HttpStatusCode.InternalServerError);
+                .Should().Be(statusCode);
         }
     }
 }

@@ -1,13 +1,4 @@
-﻿using MentorPlatform.Tests.UnitTests.Mentors.API.BogusData;
-using Mentors.ApplicationCore.DTO;
-using Mentors.ApplicationCore.Exceptions;
-using Mentors.ApplicationCore.Interfaces.IMongoService;
-using Mentors.ApplicationCore.Services.MongoServices;
-using Mentors.Domain.Abstractions.IRepository.IMongoRepository;
-using Mentors.Domain.Entities.MongoDb;
-using Moq;
-
-namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
+﻿namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
 {
     public class MentorshipSubjectServiceTests
     {
@@ -16,6 +7,8 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
         private readonly Mock<ILogger<MentorshipSubjectService>> _mockLogger;
         private readonly IMentorshipSubjectService _subjectService;
         private readonly MentorshipSubjectGenerator _subjectGenerator;
+        private readonly SubjectServiceHelper _helper;
+        private readonly CancellationToken _cancellationToken;
 
         public MentorshipSubjectServiceTests()
         {
@@ -27,6 +20,9 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
                 _mockRepository.Object,
                 _mockMapper.Object,
                 _mockLogger.Object);
+            _helper = new SubjectServiceHelper(_mockRepository,
+                _mockMapper);
+            _cancellationToken = CancellationToken.None;
         }
 
         [Fact]
@@ -39,24 +35,17 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
                 _subjectGenerator.GenerateFakeMentorshipSubject(),
                 _subjectGenerator.GenerateFakeMentorshipSubject()
             };
-            var cancellationToken = CancellationToken.None;
 
-            _mockRepository
-                .Setup(repository => repository.GetAllAsync(It.IsAny<CancellationToken>()))
-                .ReturnsAsync(subjects);
+            _helper.SetupGetAllAsync(subjects);
 
-            var subjectsDto = subjects.Select(subject => new MentorshipSubjectDto
-            {
-                Id = subject.Id,
-                Name = subject.Name
-            }).ToList();
+            var subjectsDto =_helper.GenerateDtoList(subjects);
 
             _mockMapper
                 .Setup(mapper => mapper.Map<IEnumerable<MentorshipSubjectDto>>(subjects))
                 .Returns(subjectsDto);
 
             // Act
-            var result = await _subjectService.GetAllAsync(cancellationToken);
+            var result = await _subjectService.GetAllAsync(_cancellationToken);
 
             // Assert
             result
@@ -69,14 +58,10 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
         public async Task GetAllAsync_WhenSubjectsAreNull_ShouldThrowMentorshipSubjectNotFoundException()
         {
             // Arrange
-            var cancellationToken = CancellationToken.None;
-
-            _mockRepository
-                .Setup(repository => repository.GetAllAsync(It.IsAny<CancellationToken>()))
-                .ReturnsAsync((IEnumerable<MentorshipSubject>)null);
+            _helper.SetupGetAllAsyncWhenNull();
 
             // Act
-            var result = async() => await _subjectService.GetAllAsync(cancellationToken);
+            var result = async() => await _subjectService.GetAllAsync(_cancellationToken);
 
             // Assert
             await result
@@ -88,26 +73,15 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
         {
             // Arrange
             var subject = _subjectGenerator.GenerateFakeMentorshipSubject();
-            var cancellationToken = CancellationToken.None;
 
-            _mockRepository
-                .Setup(repository => repository.GetByIdAsync(
-                    It.IsAny<string>(),
-                    It.IsAny<CancellationToken>()))
-                .ReturnsAsync(subject);
+            _helper.SetupGetByIdAsync(subject);
 
-            var subjectDto = new MentorshipSubjectDto
-            {
-                Id = subject.Id,
-                Name = subject.Name
-            };
+            var subjectDto = _helper.GenerateDtoFromSubject(subject);
 
-            _mockMapper
-                .Setup(mapper => mapper.Map<MentorshipSubjectDto>(subject))
-                .Returns(subjectDto);
+            _helper.SetupMapperForSubjectToDto(subject, subjectDto);
 
             // Act
-            var result = await _subjectService.GetByIdAsync(subject.Id, cancellationToken);
+            var result = await _subjectService.GetByIdAsync(subject.Id, _cancellationToken);
 
             // Assert
             result
@@ -121,16 +95,11 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
         {
             // Arrange
             var subjectId = _subjectGenerator.GenerateFakeMentorshipSubject().Id;
-            var cancellationToken = CancellationToken.None;
 
-            _mockRepository
-                .Setup(repository => repository.GetByIdAsync(
-                    It.IsAny<string>(),
-                    It.IsAny<CancellationToken>()))
-                .ReturnsAsync((MentorshipSubject)null);
+            _helper.SetupGetByIdAsyncWhenNull();
 
             // Act
-            var result = async() => await _subjectService.GetByIdAsync(subjectId, cancellationToken);
+            var result = async() => await _subjectService.GetByIdAsync(subjectId, _cancellationToken);
 
             // Assert
             await result
@@ -142,24 +111,15 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
         {
             // Arrange
             var subject = _subjectGenerator.GenerateFakeMentorshipSubject();
-            var cancellationToken = CancellationToken.None;
 
-            var subjectDto = new MentorshipSubjectDto
-            {
-                Id = subject.Id,
-                Name = subject.Name
-            };
+            var subjectDto = _helper.GenerateDtoFromSubject(subject);
 
-            _mockMapper
-                .Setup(mapper => mapper.Map<MentorshipSubject>(subjectDto))
-                .Returns(subject);
+            _helper.SetupMapperForDtoToSubject(subject, subjectDto);
 
-            _mockRepository
-                .Setup(repository => repository.CreateAsync(subject, cancellationToken))
-                .Returns(Task.CompletedTask);
+            _helper.SetupCreateAsync(subject);
 
             // Act
-            var result = await _subjectService.CreateAsync(subjectDto, cancellationToken);
+            var result = await _subjectService.CreateAsync(subjectDto, _cancellationToken);
 
             // Assert
             result
@@ -169,7 +129,7 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
 
             _mockRepository
                 .Verify(repository => repository
-                    .CreateAsync(subject, cancellationToken),
+                    .CreateAsync(subject, _cancellationToken),
                 Times.Once);
         }
 
@@ -178,26 +138,15 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
         {
             // Arrange
             var subject = _subjectGenerator.GenerateFakeMentorshipSubject();
-            var cancellationToken = CancellationToken.None;
 
-            var subjectDto = new MentorshipSubjectDto
-            {
-                Id = subject.Id,
-                Name = subject.Name
-            };
+            var subjectDto = _helper.GenerateDtoFromSubject(subject);
 
-            _mockRepository
-                .Setup(repository => repository.GetByIdAsync(
-                   It.IsAny<string>(),
-                   It.IsAny<CancellationToken>()))
-                .ReturnsAsync(subject);
+            _helper.SetupGetByIdAsync(subject);
 
-            _mockMapper
-                .Setup(mapper => mapper.Map<MentorshipSubject>(subjectDto))
-                .Returns(subject);
+            _helper.SetupMapperForDtoToSubject(subject, subjectDto);
 
             // Act
-            var result = await _subjectService.UpdateAsync(subjectDto, cancellationToken);
+            var result = await _subjectService.UpdateAsync(subjectDto, _cancellationToken);
 
             // Assert
             result
@@ -205,7 +154,7 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
 
             _mockRepository
                .Verify(repository => repository
-                   .UpdateAsync(subject, cancellationToken),
+                   .UpdateAsync(subject, _cancellationToken),
                Times.Once);
         }
 
@@ -215,22 +164,13 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
         {
             // Arrange
             var subject = _subjectGenerator.GenerateFakeMentorshipSubject();
-            var cancellationToken = CancellationToken.None;
 
-            var subjectDto = new MentorshipSubjectDto
-            {
-                Id = subject.Id,
-                Name = subject.Name
-            };
+            var subjectDto = _helper.GenerateDtoFromSubject(subject);
 
-            _mockRepository
-                .Setup(repository => repository.GetByIdAsync(
-                    It.IsAny<string>(),
-                    It.IsAny<CancellationToken>()))
-                .ReturnsAsync((MentorshipSubject)null);
+            _helper.SetupGetByIdAsyncWhenNull();
 
             // Act
-            var result = async() => await _subjectService.UpdateAsync(subjectDto, cancellationToken);
+            var result = async() => await _subjectService.UpdateAsync(subjectDto, _cancellationToken);
 
             // Assert
             await result
@@ -242,15 +182,14 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Services
         {
             // Arrange
             var subjectId = _subjectGenerator.GenerateFakeMentorshipSubject().Id;
-            var cancellationToken = CancellationToken.None;
 
             // Act
-            await _subjectService.DeleteAsync(subjectId, cancellationToken);
+            await _subjectService.DeleteAsync(subjectId, _cancellationToken);
 
             // Assert
             _mockRepository
                 .Verify(repository => repository
-                    .DeleteAsync(subjectId, cancellationToken),
+                    .DeleteAsync(subjectId, _cancellationToken),
                 Times.Once);
         }
     }

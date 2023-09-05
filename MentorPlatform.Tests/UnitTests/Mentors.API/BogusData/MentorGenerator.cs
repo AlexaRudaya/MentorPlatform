@@ -1,7 +1,4 @@
-﻿using Mentors.ApplicationCore.DTO;
-using Mentors.Domain.Entities;
-
-namespace MentorPlatform.Tests.UnitTests.Mentors.API.BogusData
+﻿namespace MentorPlatform.Tests.UnitTests.Mentors.API.BogusData
 {
     public class MentorGenerator
     {
