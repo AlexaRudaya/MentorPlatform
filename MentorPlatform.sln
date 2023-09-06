@@ -57,6 +57,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MentorPlatform.Gateway", "M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MentorPlatform.Gateway", "MentorPlatform.Gateway\MentorPlatform.Gateway.csproj", "{34A4DA6A-5896-4639-AC84-B60E5E81597E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MentorPlatform.Tests", "MentorPlatform.Tests", "{EDE6D6F4-6B86-4638-9440-449FF24BB68D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MentorPlatform.Tests", "MentorPlatform.Tests\MentorPlatform.Tests.csproj", "{A700DED8-FE31-497D-8308-A3273CD592E4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -139,6 +143,10 @@ Global
 		{34A4DA6A-5896-4639-AC84-B60E5E81597E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34A4DA6A-5896-4639-AC84-B60E5E81597E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34A4DA6A-5896-4639-AC84-B60E5E81597E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A700DED8-FE31-497D-8308-A3273CD592E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A700DED8-FE31-497D-8308-A3273CD592E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A700DED8-FE31-497D-8308-A3273CD592E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A700DED8-FE31-497D-8308-A3273CD592E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -169,6 +177,8 @@ Global
 		{A7D5704F-CEB7-43B8-A3E4-DB605F41F3BA} = {B59E0233-0CF1-402B-8975-40D488CDF69E}
 		{87CE4CD0-D49F-429E-9AA4-A1D74007944D} = {AB9EF344-467B-4222-B06A-ACE82C0FE302}
 		{34A4DA6A-5896-4639-AC84-B60E5E81597E} = {87CE4CD0-D49F-429E-9AA4-A1D74007944D}
+		{EDE6D6F4-6B86-4638-9440-449FF24BB68D} = {AB9EF344-467B-4222-B06A-ACE82C0FE302}
+		{A700DED8-FE31-497D-8308-A3273CD592E4} = {EDE6D6F4-6B86-4638-9440-449FF24BB68D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {856D3D0C-8454-446A-AC27-63ED8EA3DA30}
