@@ -1,0 +1,11 @@
+﻿global using NSubstitute;
+global using Identity.ApplicationCore.Interfaces.IService;
+global using Identity.Domain.Entities;
+global using Identity.ApplicationCore.DTO;
+global using Identity.API.Controllers;
+global using MentorPlatform.Tests.UnitTests.Identity.API.BogusData;
+global using Identity.ApplicationCore.Exceptions;
+global using Identity.ApplicationCore.Services;
+global using Microsoft.AspNetCore.Identity;
+global using Identity.ApplicationCore.Validator;
+global using MentorPlatform.Tests.UnitTests.Identity.API.Helpers;
