@@ -16,7 +16,7 @@
         }
 
         [Fact]
-        public async Task Register_ShouldReturnOk()
+        public async Task Register_WhenModelIsValid_ShouldReturnOk()
         {
             // Arrange
             var registerDto = _registerData.GenerateFakeData();
@@ -33,7 +33,7 @@
         }
 
         [Fact]
-        public async Task Login_ShouldReturnNoContent()
+        public async Task Login_WhenModelIsValid_ShouldReturnNoContent()
         { 
             // Arrange
             var loginDto = _loginData.GenerateFakeData();

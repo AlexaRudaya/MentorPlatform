@@ -39,7 +39,7 @@ namespace MentorPlatform.Tests.UnitTests.Identity.API.Services
         }
 
         [Fact]
-        public async Task RegisterAsync_ValidInput_ShouldReturnSuccess()
+        public async Task RegisterAsync_WhenInputIsValid_ShouldReturnSuccess()
         {
             // Arrange
             var registerDto = _registerData.GenerateFakeData();
@@ -59,7 +59,7 @@ namespace MentorPlatform.Tests.UnitTests.Identity.API.Services
         }
 
         [Fact]
-        public async Task RegisterAsync_ShouldLoginUser()
+        public async Task RegisterAsync_WhenRegistrationWasSuccessful_ShouldLoginUser()
         {
             // Arrange
             var registerDto = _registerData.GenerateFakeData();
@@ -79,7 +79,7 @@ namespace MentorPlatform.Tests.UnitTests.Identity.API.Services
         }
 
         [Fact]
-        public async Task RegisterAsync_NotValidPassword_ShouldLogError()
+        public async Task RegisterAsync_WhenPasswordIsNotValid_ShouldLogError()
         {
             // Arrange
             var registerDto = _registerData.GenerateFakeData();
@@ -109,7 +109,7 @@ namespace MentorPlatform.Tests.UnitTests.Identity.API.Services
         }
 
         [Fact]
-        public async Task LoginAsync_ValidAttempt_ShouldReturnSuccess()
+        public async Task LoginAsync_WhenAttemptIsValid_ShouldReturnSuccess()
         {
             // Arrange
             var loginDto = _loginData.GenerateFakeData();
@@ -135,7 +135,7 @@ namespace MentorPlatform.Tests.UnitTests.Identity.API.Services
         }
 
         [Fact]
-        public async Task LoginAsync_InvalidEmail_ShouldThrowUserNotFoundException()
+        public async Task LoginAsync_WhenEmailIsInvalid_ShouldThrowUserNotFoundException()
         {
             // Arrange
             var loginDto = _loginData.GenerateFakeData();
@@ -158,7 +158,7 @@ namespace MentorPlatform.Tests.UnitTests.Identity.API.Services
         }
 
         [Fact]
-        public async Task LoginAsync_InvalidPassword_ShouldThrowInvalidPasswordException()
+        public async Task LoginAsync_WhenPasswordIsInvalid_ShouldThrowInvalidPasswordException()
         {
             // Arrange
             var loginDto = _loginData.GenerateFakeData();
