@@ -26,7 +26,7 @@
         }
 
         [Fact]
-        public async Task GetAllAsync_ShouldReturnListOfCategoryDto()
+        public async Task GetAllAsync_WhenCategoriesAreFound_ShouldReturnListOfCategoryDto()
         {
             // Arrange
             var categories = new List<Category>
@@ -35,11 +35,9 @@
                 _categoryGenerator.GenerateFakeCategory(),
                 _categoryGenerator.GenerateFakeCategory()
             };
-
-            _helper.SetupGetAllAsync(categories);
-
             var categoriesDto = _helper.GenerateDtoList(categories);
 
+            _helper.SetupGetAllAsync(categories);
             _mockMapper
                 .Setup(mapper =>mapper.Map<IEnumerable<CategoryDto>>(categories))
                 .Returns(categoriesDto);
@@ -69,15 +67,13 @@
         }
 
         [Fact]
-        public async Task GetByIdAsync_ShouldReturnCategoryDto()
+        public async Task GetByIdAsync_WhenCategoryIsFound_ShouldReturnCategoryDto()
         {
             // Arrange
             var category = _categoryGenerator.GenerateFakeCategory();
-
-            _helper.SetupGetByIdAsync(category);
-
             var categoryDto = _helper.GenerateDtoFromCategory(category);
 
+            _helper.SetupGetByIdAsync(category);
             _helper.SetupMapperForCategoryToDto(category, categoryDto);
 
             // Act
@@ -95,7 +91,7 @@
         {
             // Arrange
             var categoryId = _categoryGenerator.GenerateFakeCategory().Id;
-           
+    
             _helper.SetupGetByIdAsyncWhenNull();
 
             // Act
@@ -107,15 +103,13 @@
         }
 
         [Fact]
-        public async Task CreateAsync_ShouldReturnCreatedCategoryDto()
+        public async Task CreateAsync_WhenModelIsValid_ShouldReturnCreatedCategoryDto()
         {
             // Arrange
             var category = _categoryGenerator.GenerateFakeCategory();
-
             var categoryDto = _helper.GenerateDtoFromCategory(category);
 
             _helper.SetupMapperForDtoToCategory(category, categoryDto);
-
             _helper.SetupCreateAsync(category);
 
             // Act
@@ -134,15 +128,13 @@
         }
 
         [Fact]
-        public async Task UpdateAsync_ShouldReturnUpdatedCategoryDto()
+        public async Task UpdateAsync_WhenCategoryIsFound_ShouldReturnUpdatedCategoryDto()
         {
             // Arrange
             var category = _categoryGenerator.GenerateFakeCategory();
-
             var categoryDto = _helper.GenerateDtoFromCategory(category);
 
             _helper.SetupGetByIdAsync(category);
-
             _helper.SetupMapperForDtoToCategory(category, categoryDto);
 
             // Act
@@ -163,7 +155,6 @@
         {
             // Arrange
             var category = _categoryGenerator.GenerateFakeCategory();
-
             var categoryDto = _helper.GenerateDtoFromCategory(category);
 
             _helper.SetupGetByIdAsyncWhenNull();
@@ -177,15 +168,13 @@
         }
 
         [Fact]
-        public async Task DeleteAsync_ShouldDeleteCategory()
+        public async Task DeleteAsync_WhenCategoryIsFound_ShouldDeleteCategory()
         {
             // Arrange
             var category = _categoryGenerator.GenerateFakeCategory();
-
             var categoryDto = _helper.GenerateDtoFromCategory(category);
 
             _helper.SetupGetByIdAsync(category);
-
             _helper.SetupMapperForCategoryToDto(category, categoryDto);
 
             // Act
@@ -206,7 +195,6 @@
         {
             // Arrange
             var category = _categoryGenerator.GenerateFakeCategory();
-
             var categoryDto = _helper.GenerateDtoFromCategory(category);
 
             _helper.SetupGetByIdAsyncWhenNull();

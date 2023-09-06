@@ -30,7 +30,7 @@
         }
 
         [Fact]
-        public async Task GetAllAsync_ShouldReturnListOfAvailabilityDto()
+        public async Task GetAllAsync_WhenAvailabilitiesAreFound_ShouldReturnListOfAvailabilityDto()
         {
             // Arrange
             var availabilities = new List<Availability>
@@ -39,11 +39,9 @@
                 _availabilityGenerator.GenerateFakeAvailability(),
                 _availabilityGenerator.GenerateFakeAvailability(),
             };
-
-            _helper.SetupGetAllAsync(availabilities);
-
             var availabilitiesDto = _helper.GenerateDtoList(availabilities);
 
+            _helper.SetupGetAllAsync(availabilities);
             _mockMapper
                 .Setup(mapper => mapper.Map<IEnumerable<AvailabilityDto>>(availabilities))
                 .Returns(availabilitiesDto);
@@ -73,15 +71,13 @@
         }
 
         [Fact]
-        public async Task GetByIdAsync_ShouldReturnAvailabilityDto()
+        public async Task GetByIdAsync_WhenAvailabilityIsFound_ShouldReturnAvailabilityDto()
         {
             // Arrange
             var availability = _availabilityGenerator.GenerateFakeAvailability();
-
-            _helper.SetupGetByIdAsync(availability);
-
             var availabilityDto = _helper.GenerateDtoFromAvailability(availability);
 
+            _helper.SetupGetByIdAsync(availability);
             _helper.SetupMapperForAvailabilityToDto(availability, availabilityDto);
 
             // Act
@@ -111,17 +107,14 @@
         }
 
         [Fact]
-        public async Task CreateAsync_ShouldReturnCreatedAvailabilityDto()
+        public async Task CreateAsync_WhenModelIsValid_ShouldReturnCreatedAvailabilityDto()
         {
             // Arrange
             var availability = _availabilityGenerator.GenerateFakeAvailability();
-
             var availabilityDto = _helper.GenerateDtoFromAvailability(availability);
 
             _helper.SetupMapperForDtoToAvailability(availability, availabilityDto);
-
             _helper.SetupCreateAsync(availability);
-
             _helper.SetupMapperForAvailabilityToDto(availability, availabilityDto);
 
             // Act
@@ -140,23 +133,18 @@
         }
 
         [Fact]
-        public async Task CreateAsync_ShouldPubishAvailabilityEvent()
+        public async Task CreateAsync_WhenAvailabilityIsCreated_ShouldPubishAvailabilityEvent()
         {
             // Arrange
             var availability = _availabilityGenerator.GenerateFakeAvailability();
-
             var availabilityDto = _helper.GenerateDtoFromAvailability(availability);
-
             var eventToPublish = new AvailabilityOfMentorEvent();
 
             _helper.SetupMapperForDtoToAvailability(availability, availabilityDto);
-
             _helper.SetupMapperForAvailabilityToDto(availability, availabilityDto);
-
             _mockMapper
                 .Setup(mapper => mapper.Map<AvailabilityOfMentorEvent>(availability))
                 .Returns(eventToPublish);
-
             _helper.SetupPublishAvailabilityEvent(eventToPublish);
 
             // Act
@@ -172,15 +160,13 @@
         }
 
         [Fact]
-        public async Task UpdateAsync_ShouldReturnUpdatedAvailability()
+        public async Task UpdateAsync_WhenAvailabilityIsFound_ShouldReturnUpdatedAvailability()
         {
             // Arrange
             var availability = _availabilityGenerator.GenerateFakeAvailability();
-
             var availabilityDto = _helper.GenerateDtoFromAvailability(availability);
 
             _helper.SetupGetByIdAsync(availability);
-
             _helper.SetupMapperForDtoToAvailability(availability, availabilityDto);
 
             // Act
@@ -201,7 +187,6 @@
         {
             // Arrange
             var availability = _availabilityGenerator.GenerateFakeAvailability();
-
             var availabilityDto = _helper.GenerateDtoFromAvailability(availability);
 
             _helper.SetupGetByIdAsyncWhenNull();
@@ -215,15 +200,13 @@
         }
 
         [Fact]
-        public async Task DeleteAsync_ShouldDeleteAvailability()
+        public async Task DeleteAsync_WhenAvailabilityIsFound_ShouldDeleteAvailability()
         {
             // Arrange
             var availability = _availabilityGenerator.GenerateFakeAvailability();
-
             var availabilityDto = _helper.GenerateDtoFromAvailability(availability);
 
             _helper.SetupDeleteAsync(availability);
-
             _helper.SetupMapperForAvailabilityToDto(availability, availabilityDto);
 
             // Act
@@ -244,7 +227,6 @@
         {
             // Arrange
             var availability = _availabilityGenerator.GenerateFakeAvailability();
-
             var availabilityDto = _helper.GenerateDtoFromAvailability(availability);
 
             _helper.SetupGetAllAsyncWhenNull();

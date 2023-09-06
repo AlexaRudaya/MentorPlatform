@@ -26,7 +26,7 @@
         }
 
         [Fact]
-        public async Task GetAllAsync_ShouldReturnListOfMentorshipSubjectDto()
+        public async Task GetAllAsync_WhenSubjectsAreFound_ShouldReturnListOfMentorshipSubjectDto()
         {
             // Arrange
             var subjects = new List<MentorshipSubject>
@@ -35,11 +35,9 @@
                 _subjectGenerator.GenerateFakeMentorshipSubject(),
                 _subjectGenerator.GenerateFakeMentorshipSubject()
             };
+            var subjectsDto = _helper.GenerateDtoList(subjects);
 
             _helper.SetupGetAllAsync(subjects);
-
-            var subjectsDto =_helper.GenerateDtoList(subjects);
-
             _mockMapper
                 .Setup(mapper => mapper.Map<IEnumerable<MentorshipSubjectDto>>(subjects))
                 .Returns(subjectsDto);
@@ -69,15 +67,13 @@
         }
 
         [Fact]
-        public async Task GetByIdAsync_ShouldReturnMentorshipSubjectDto()
+        public async Task GetByIdAsync_WhenSubjectIsFound_ShouldReturnMentorshipSubjectDto()
         {
             // Arrange
             var subject = _subjectGenerator.GenerateFakeMentorshipSubject();
-
-            _helper.SetupGetByIdAsync(subject);
-
             var subjectDto = _helper.GenerateDtoFromSubject(subject);
 
+            _helper.SetupGetByIdAsync(subject);
             _helper.SetupMapperForSubjectToDto(subject, subjectDto);
 
             // Act
@@ -107,15 +103,13 @@
         }
 
         [Fact]
-        public async Task CreateAsync_ShouldReturnCreatedMentorshipSubjectDto()
+        public async Task CreateAsync_WhenModelIsValid_ShouldReturnCreatedMentorshipSubjectDto()
         {
             // Arrange
             var subject = _subjectGenerator.GenerateFakeMentorshipSubject();
-
             var subjectDto = _helper.GenerateDtoFromSubject(subject);
 
             _helper.SetupMapperForDtoToSubject(subject, subjectDto);
-
             _helper.SetupCreateAsync(subject);
 
             // Act
@@ -134,15 +128,13 @@
         }
 
         [Fact]
-        public async Task UpdateAsync_ShouldReturnUpdatedMentorshipSubjectDto()
+        public async Task UpdateAsync_WhenSubjectIsFound_ShouldReturnUpdatedMentorshipSubjectDto()
         {
             // Arrange
             var subject = _subjectGenerator.GenerateFakeMentorshipSubject();
-
             var subjectDto = _helper.GenerateDtoFromSubject(subject);
 
             _helper.SetupGetByIdAsync(subject);
-
             _helper.SetupMapperForDtoToSubject(subject, subjectDto);
 
             // Act
@@ -164,7 +156,6 @@
         {
             // Arrange
             var subject = _subjectGenerator.GenerateFakeMentorshipSubject();
-
             var subjectDto = _helper.GenerateDtoFromSubject(subject);
 
             _helper.SetupGetByIdAsyncWhenNull();
@@ -178,7 +169,7 @@
         }
 
         [Fact]
-        public async Task DeleteAsync_ShouldDeleteMentorshipSubject()
+        public async Task DeleteAsync_WhenSubjectIsFound_ShouldDeleteMentorshipSubject()
         {
             // Arrange
             var subjectId = _subjectGenerator.GenerateFakeMentorshipSubject().Id;

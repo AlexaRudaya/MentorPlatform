@@ -18,7 +18,7 @@
         }
 
         [Fact]
-        public async Task GetCategories_ShouldReturnOkWithCategories()
+        public async Task GetCategories_WhenModelsAreFound_ShouldReturnOkWithCategories()
         {
             // Arrange
             var categories = new List<CategoryDto>
@@ -27,7 +27,6 @@
                 _categoryData.GenerateFakeDto(),
                 _categoryData.GenerateFakeDto()
             };
-
             _helper.SetupGetAllAsync(categories);
 
             // Act
@@ -42,11 +41,10 @@
         }
 
         [Fact]
-        public async Task GetCategory_ShouldReturnOkWithCategory()
+        public async Task GetCategory_WhenModelIsFound_ShouldReturnOkWithCategory()
         {
             // Arrange
             var category = _categoryData.GenerateFakeDto();
-
             _helper.SetupGetByIdAsync(category);
 
             // Act
@@ -61,11 +59,10 @@
         }
 
         [Fact]
-        public async Task CreateCategory_ShouldReturnCreatedAtAction()
+        public async Task CreateCategory_WhenModelIsValid_ShouldReturnCreatedAtAction()
         {
             // Arrange
             var category = _categoryData.GenerateFakeDto();
-
             _helper.SetupCreateAsync(category);
 
             // Act
@@ -80,11 +77,10 @@
         }
 
         [Fact]
-        public async Task UpdateCategory_ShouldReturnNoContent()
+        public async Task UpdateCategory_WhenModelIsFound_ShouldReturnNoContent()
         {
             // Arrange
             var category = _categoryData.GenerateFakeDto();
-
             _helper.SetupUpdateAsync(category);
 
             // Act
@@ -96,11 +92,10 @@
         }
 
         [Fact]
-        public async Task DeleteCategory_ShouldReturnNoContent()
+        public async Task DeleteCategory_WhenModelIsFound_ShouldReturnNoContent()
         {
             // Arrange
             var category = _categoryData.GenerateFakeDto();
-
             _helper.SetupDeleteAsync(category);
 
             // Act

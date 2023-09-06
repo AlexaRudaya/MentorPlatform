@@ -15,7 +15,7 @@
         }
 
         [Fact]
-        public async Task ValidateMentorDto_ShouldBeSuccessfulValidation()
+        public async Task ValidateMentorDto_WhenModelIsValid_ShouldBeSuccessfulValidation()
         {
             // Arrange
             var mentorDto = _mentorData.GenerateFakeDto();
@@ -35,7 +35,7 @@
         [InlineData("This is really too much characters for the Name property. There should be less than this amount.", "Name")]
         [InlineData("", "Biography")]
         [InlineData("Short biography", "Biography")]
-        public async Task ValidateMentorCreateDto_InvalidStringValues_ShouldFailValidation(string value, string propertyName)
+        public async Task ValidateMentorCreateDto_WhenStringValuesAreInvalid_ShouldFailValidation(string value, string propertyName)
         {
             // Arrange
             var mentorDto = _mentorData.GenerateFakeDto();
@@ -54,7 +54,7 @@
         [InlineData(-1, "HourlyRate")]
         [InlineData(0, "MeetingDuration")]
         [InlineData(10, "MeetingDuration")]
-        public async Task ValidateMentorCreateDto_InvalidNumericValues_ShouldFailValidation(int value, string propertyName)
+        public async Task ValidateMentorCreateDto_WhenNumericValuesAreInvalid_ShouldFailValidation(int value, string propertyName)
         {
             // Arrange
             var mentorDto = _mentorData.GenerateFakeDto();

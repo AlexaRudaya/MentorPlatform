@@ -12,7 +12,7 @@
         }
 
         [Fact]
-        public async Task ValidateAvailabilityDto_ShouldBeSuccessfulValidation()
+        public async Task ValidateAvailabilityDto_WhenModelIsValid_ShouldBeSuccessfulValidation()
         {
             // Arrange
             var availabilityDto = _availabilityData.GenerateFakeDto();
@@ -29,7 +29,7 @@
         [InlineData("2023-02-02", "Date")]
         [InlineData("2023-02-02T12:00:00", "StartTime")]
         [InlineData("2023-02-02T09:00:00", "EndTime")]
-        public async Task ValidateAvailabilityDto_InvalidValues_ShouldFailValidation(DateTime value, string propertyName)
+        public async Task ValidateAvailabilityDto_WhenValuesAreInvalid_ShouldFailValidation(DateTime value, string propertyName)
         {
             // Arrange
             var availabilityDto = _availabilityData.GenerateFakeDto();

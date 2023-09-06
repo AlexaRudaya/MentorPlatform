@@ -18,7 +18,7 @@
         }
 
         [Fact]
-        public async Task GetSubjects_ShouldReturnOkWithSubjects()
+        public async Task GetSubjects_WhenModelsAreFound_ShouldReturnOkWithSubjects()
         {
             // Arrange
             var subjects = new List<MentorshipSubjectDto>
@@ -27,7 +27,6 @@
                 _subjectData.GenerateFakeDto(),
                 _subjectData.GenerateFakeDto(),
             };
-
             _helper.SetupGetAllAsync(subjects);
 
             // Act
@@ -42,11 +41,10 @@
         }
 
         [Fact]
-        public async Task GetSubject_ShouldReturnOkWithSubject()
+        public async Task GetSubject_WhenModelIsFound_ShouldReturnOkWithSubject()
         {
             // Arrange
             var subject = _subjectData.GenerateFakeDto();
-
             _helper.SetupGetByIdAsync(subject);
 
             // Act
@@ -61,11 +59,10 @@
         }
 
         [Fact]
-        public async Task CreateSubject_ShouldReturnCreatedAtAction()
+        public async Task CreateSubject_WhenModelIsValid_ShouldReturnCreatedAtAction()
         {
             // Arrange
             var subject = _subjectData.GenerateFakeDto();
-
             _helper.SetupCreateAsync(subject);
 
             // Act
@@ -80,11 +77,10 @@
         }
 
         [Fact]
-        public async Task UpdateSubject_ShouldReturnNoContent()
+        public async Task UpdateSubject_WhenModelIsFound_ShouldReturnNoContent()
         {
             // Arrange
             var subject = _subjectData.GenerateFakeDto();
-
             _helper.SetupUpdateAsync(subject);
 
             // Act
@@ -96,11 +92,10 @@
         }
 
         [Fact]
-        public async Task DeleteSubject_ShouldReturnNoContent()
+        public async Task DeleteSubject_WhenModelIsFound_ShouldReturnNoContent()
         {
             // Arrange
             var subject = _subjectData.GenerateFakeDto();
-
             _helper.SetupDeleteAsync(subject);
 
             // Act

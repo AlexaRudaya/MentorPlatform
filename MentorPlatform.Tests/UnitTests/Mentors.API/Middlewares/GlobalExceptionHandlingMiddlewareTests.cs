@@ -27,9 +27,13 @@ namespace MentorPlatform.Tests.UnitTests.Mentors.API.Middlewares
             RequestDelegate next = (innerContext) =>
             {
                 if (exceptionType == typeof(ObjectNotFoundException))
+                {
                     throw new ObjectNotFoundException("No entity was found");
+                }
                 if (exceptionType == typeof(InvalidValueException))
+                {
                     throw new InvalidValueException("Invalid data");
+                } 
                 throw new Exception();
             };
 

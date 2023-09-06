@@ -23,11 +23,9 @@
                 _mockCategoryRepository.Object,
                 _mockMapper.Object,
                 _mockLogger.Object);
-
             var categoryGenerator = new CategoryGenerator();
             var availabilityGenerator = new AvailabilityGenerator();
             _mentorGenerator = new MentorGenerator(categoryGenerator, availabilityGenerator);
-
             _helper = new MentorServiceHelper(_mockMentorRepository,
                 _mockMapper);
             _categoryHelper = new CategoryServiceHelper(_mockCategoryRepository,
@@ -36,7 +34,7 @@
         }
 
         [Fact]
-        public async Task GetAllAsync_ShouldReturnListOfMentorsDto()
+        public async Task GetAllAsync_WhenMentorsAreFound_ShouldReturnListOfMentorsDto()
         {
             // Arrange
             var mentors = new List<Mentor>
@@ -45,11 +43,9 @@
                 _mentorGenerator.GenerateFakeMentor(),
                 _mentorGenerator.GenerateFakeMentor()
             };
-
-            _helper.SetupGetAllAsync(mentors);
-
             var mentorsDto = _helper.GenerateDtoList(mentors);
 
+            _helper.SetupGetAllAsync(mentors);
             _mockMapper
                 .Setup(mapper => mapper.Map<IEnumerable<MentorDto>>(mentors))
                 .Returns(mentorsDto);
@@ -79,15 +75,13 @@
         }
 
         [Fact]
-        public async Task GetByIdAsync_ShouldReturnMentorDto()
+        public async Task GetByIdAsync_WhenMentorIsFound_ShouldReturnMentorDto()
         {
             // Arrange
             var mentor = _mentorGenerator.GenerateFakeMentor();
-
-            _helper.SetupGetByIdAsync(mentor);
-
             var mentorDto = _helper.GenerateDtoFromMentor(mentor);
 
+            _helper.SetupGetByIdAsync(mentor);
             _helper.SetupMapperForMentorToDto(mentor, mentorDto);
 
             // Act
@@ -117,20 +111,16 @@
         }
 
         [Fact]
-        public async Task CreateAsync_ShouldReturnCreatedMentorDto()
+        public async Task CreateAsync_WhenModelIsValid_ShouldReturnCreatedMentorDto()
         {
             // Arrange
             var mentor = _mentorGenerator.GenerateFakeMentor();
             var category = mentor.Category;
-
             var mentorDto = _helper.GenerateCreateDtoFromMentor(mentor);
 
             _categoryHelper.SetupGetByIdAsync(category);
-
             _helper.SetupMapperForCreateDtoToMentor(mentor, mentorDto);
-
             _helper.SetupCreateAsync(mentor);
-
             _helper.SetupMapperForMentorToCreateDto(mentor, mentorDto);
 
             // Act
@@ -153,7 +143,6 @@
         {
             // Arrange
             var mentor = _mentorGenerator.GenerateFakeMentor();
-
             var mentorDto = _helper.GenerateCreateDtoFromMentor(mentor);
 
             _helper.SetupGetByIdAsyncWhenNull();
@@ -167,15 +156,13 @@
         }
 
         [Fact]
-        public async Task UpdateAsync_ShouldReturnUpdatedMentorDto()
+        public async Task UpdateAsync_WhenMentorIsFound_ShouldReturnUpdatedMentorDto()
         {
             // Arrange
             var mentor = _mentorGenerator.GenerateFakeMentor();
-
             var mentorDto = _helper.GenerateDtoFromMentor(mentor);
 
             _helper.SetupGetByIdAsync(mentor);
-
             _helper.SetupMapperForDtoToMentor(mentor, mentorDto);
 
             // Act
@@ -196,7 +183,6 @@
         {
             // Arrange
             var mentor = _mentorGenerator.GenerateFakeMentor();
-
             var mentorDto = _helper.GenerateDtoFromMentor(mentor);
 
             _helper.SetupGetByIdAsyncWhenNull();
@@ -210,15 +196,13 @@
         }
 
         [Fact]
-        public async Task DeleteAsync_ShouldDeleteMentor()
+        public async Task DeleteAsync_WhenMentorIsFound_ShouldDeleteMentor()
         {
             // Arrange
             var mentor = _mentorGenerator.GenerateFakeMentor();
-
             var mentorDto = _helper.GenerateDtoFromMentor(mentor);
 
             _helper.SetupGetByIdAsync(mentor);
-
             _helper.SetupMapperForMentorToDto(mentor, mentorDto);
 
             // Act
@@ -239,7 +223,6 @@
         {
             // Arrange
             var mentor = _mentorGenerator.GenerateFakeMentor();
-
             var mentorDto = _helper.GenerateDtoFromMentor(mentor);
 
             _helper.SetupGetByIdAsyncWhenNull();

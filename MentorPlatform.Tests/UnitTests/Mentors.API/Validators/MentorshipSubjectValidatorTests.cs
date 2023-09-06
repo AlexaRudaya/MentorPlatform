@@ -12,7 +12,7 @@
         }
 
         [Fact]
-        public async Task ValidateMentorshipSubjectDto_ShouldBeSuccessfulValidation()
+        public async Task ValidateMentorshipSubjectDto_WhenModelIsValid_ShouldBeSuccessfulValidation()
         {
             // Arrange
             var subjectDto = _subjectData.GenerateFakeDto();
@@ -29,7 +29,7 @@
         [InlineData("")]
         [InlineData(null)]
         [InlineData("CV")]
-        public async Task ValidateMentorshipSubjectDto_InvalidValues_ShouldFailValidation(string invalidName)
+        public async Task ValidateMentorshipSubjectDto_WhenValuesAreInvalid_ShouldFailValidation(string invalidName)
         {
             // Arrange
             var subjectDto = _subjectData.GenerateFakeDto();

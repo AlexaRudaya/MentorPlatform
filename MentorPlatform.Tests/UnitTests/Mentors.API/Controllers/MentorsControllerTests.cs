@@ -12,17 +12,15 @@
         {
             _mockMentorService = new Mock<IMentorService>();
             _controller = new MentorsController(_mockMentorService.Object);
-
             var categoryGenerator = new CategoryGenerator();
             var availabilityGenerator = new AvailabilityGenerator();
             _mentorData = new MentorGenerator(categoryGenerator, availabilityGenerator);
-
             _helper = new MentorsControllerHelper(_mockMentorService);
             _cancellationToken = CancellationToken.None;
         }
 
         [Fact]
-        public async Task GetMentors_ShouldReturnOkWithMentors()
+        public async Task GetMentors_WhenModelsAreFound_ShouldReturnOkWithMentors()
         {
             // Arrange
             var mentors = new List<MentorDto>
@@ -31,7 +29,6 @@
                 _mentorData.GenerateFakeMentorDto(),
                 _mentorData.GenerateFakeMentorDto(),
             };
-
             _helper.SetupGetAllAsync(mentors);
 
             // Act
@@ -46,11 +43,10 @@
         }
 
         [Fact]
-        public async Task GetMentor_ShouldReturnOkWithMentor()
+        public async Task GetMentor_WhenModelIsFound_ShouldReturnOkWithMentor()
         {
             // Arrange
             var mentor = _mentorData.GenerateFakeMentorDto();
-
             _helper.SetupGetByIdAsync(mentor);
 
             // Act
@@ -65,11 +61,10 @@
         }
 
         [Fact]
-        public async Task CreateMentor_ShouldReturnCreatedAtAction()
+        public async Task CreateMentor_WhenModelIsValid_ShouldReturnCreatedAtAction()
         {
             // Arrange
             var mentor = _mentorData.GenerateFakeDto();
-            
             _helper.SetupCreateAsync(mentor);
 
             // Act
@@ -84,11 +79,10 @@
         }
 
         [Fact]
-        public async Task UpdateMentor_ShouldReturnNoContent()
+        public async Task UpdateMentor_WhenModelIsFound_ShouldReturnNoContent()
         {
             // Arrange
             var mentor = _mentorData.GenerateFakeMentorDto();
-
             _helper.SetupUpdateAsync(mentor);
 
             // Act
@@ -100,11 +94,10 @@
         }
 
         [Fact]
-        public async Task DeleteMentor_ShouldReturnNoContent()
+        public async Task DeleteMentor_WhenModelIsFound_ShouldReturnNoContent()
         {
             // Arrange
             var mentor = _mentorData.GenerateFakeMentorDto();
-
             _helper.SetupDeleteAsync(mentor);
 
             // Act

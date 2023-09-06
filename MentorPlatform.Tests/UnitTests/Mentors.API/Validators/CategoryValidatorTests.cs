@@ -12,7 +12,7 @@
         }
 
         [Fact]
-        public async Task ValidateCategoryDto_ShouldBeSuccessfulValidation()
+        public async Task ValidateCategoryDto_WhenModelIsValid_ShouldBeSuccessfulValidation()
         {
             // Arrange
             var categoryDto = _categoryData.GenerateFakeDto();
@@ -29,7 +29,7 @@
         [InlineData("")]
         [InlineData(null)]
         [InlineData("P")]
-        public async Task ValidateCategoryDto_InvalidValues_ShouldFailValidation(string invalidName)
+        public async Task ValidateCategoryDto_WhenValuesAreInvalid_ShouldFailValidation(string invalidName)
         {
             // Arrange
             var categoryDto = _categoryData.GenerateFakeDto();
