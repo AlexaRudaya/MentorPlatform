@@ -18,6 +18,16 @@ namespace MentorPlatform.Tests.UnitTests.Booking.API.BogusData
                 .Generate();
         }
 
+        public BookingDto GenerateFakeBookingDto()
+        {
+            return new Faker<BookingDto>()
+                   .RuleFor(booking => booking.StartTimeBooking, faker => faker.Date.Future().Date.AddHours(faker.Random.Int(7, 10)))
+                   .RuleFor(booking => booking.EndTimeBooking, (faker, booking) => booking.StartTimeBooking.AddHours(faker.Random.Int(3, 4)))
+                   .RuleFor(booking => booking.StudentId, faker => Guid.NewGuid())
+                   .RuleFor(booking => booking.MentorId, faker => faker.Random.String2(36))
+                   .Generate();
+        }
+
         public AvailabilityDto GenerateAvailabilityDto()
         {
             return new Faker<AvailabilityDto>()

@@ -9,6 +9,7 @@ namespace MentorPlatform.Tests.UnitTests.Booking.API.BogusData
         {
             return new Faker<Student>()
                 .RuleFor(student => student.Id, faker => Guid.NewGuid())
+                .RuleFor(student => student.Name, faker => faker.Person.FullName)
                 .RuleFor(student => student.Email, faker => faker.Person.Email)
                 .RuleFor(student => student.Bookings, faker => GenerateFakeBookingsList())
                 .Generate();
@@ -18,17 +19,19 @@ namespace MentorPlatform.Tests.UnitTests.Booking.API.BogusData
         {
             return new Faker<StudentDto>()
                 .RuleFor(student => student.Id, faker => Guid.NewGuid())
+                .RuleFor(student => student.Name, faker => faker.Person.FullName)
                 .RuleFor(student => student.Email, faker => faker.Person.Email)
                 .Generate();
         }
 
-        //public StudentCreateDto GenerateFakeStudentCreateDto()
-        //{
-        //    return new Faker<StudentCreateDto>()
-        //        .RuleFor(student => student.Id, faker => Guid.NewGuid())
-        //        .RuleFor(student => student.Email, faker => faker.Person.Email)
-        //        .Generate();
-        //}
+        public StudentCreateDto GenerateFakeStudentCreateDto()
+        {
+            return new Faker<StudentCreateDto>()
+                .RuleFor(student => student.Id, faker => Guid.NewGuid())
+                .RuleFor(student => student.Name, faker => faker.Person.FullName)
+                .RuleFor(student => student.Email, faker => faker.Person.Email)
+                .Generate();
+        }
 
         public MentorBooking GenerateFakeBooking()
         {
