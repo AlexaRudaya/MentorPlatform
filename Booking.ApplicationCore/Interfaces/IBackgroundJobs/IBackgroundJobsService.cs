@@ -7,5 +7,7 @@
         Task<IEnumerable<AvailabilityDto>> GetMentorAvailabilitiesFromMentorApi(string mentorId, CancellationToken cancellationToken = default);
 
         void EnqueueJob(Expression<Action> methodCall);
+
+        void ScheduleRecurringJob<T>(string jobId, Expression<Action<T>> methodCall, string cronExpression);
     }
 }

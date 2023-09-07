@@ -118,6 +118,28 @@ namespace MentorPlatform.Tests.UnitTests.Booking.API.Helpers.Bookings
                 .ReturnsAsync((MentorDto)null);
         }
 
+        public void SetupGetBookingsForMentorAsync(List<MentorBooking> bookings)
+        {
+            _mockBookingRepository
+                .Setup(repository => repository.GetAllByAsync(
+                    It.IsAny<Func<IQueryable<MentorBooking>,
+                    IIncludableQueryable<MentorBooking, object>>>(),
+                    It.IsAny<Expression<Func<MentorBooking, bool>>>(),
+                    It.IsAny<CancellationToken>()))
+                .ReturnsAsync(bookings);
+        }
+
+        public void SetupGetBookingsForMentorAsync()
+        {
+            _mockBookingRepository
+                .Setup(repository => repository.GetAllByAsync(
+                    It.IsAny<Func<IQueryable<MentorBooking>,
+                    IIncludableQueryable<MentorBooking, object>>>(),
+                    It.IsAny<Expression<Func<MentorBooking, bool>>>(),
+                    It.IsAny<CancellationToken>()))
+                .ReturnsAsync((IEnumerable<MentorBooking>)null);
+        }
+
         public List<BookingDto> GenerateDtoList(IEnumerable<MentorBooking> bookings)
         {
             return bookings.Select(booking => new BookingDto

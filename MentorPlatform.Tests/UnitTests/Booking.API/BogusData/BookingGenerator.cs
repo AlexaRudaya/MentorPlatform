@@ -1,4 +1,6 @@
-﻿using Booking.Domain.Entities;
+﻿using Booking.ApplicationCore.DTO;
+using Booking.Domain.Entities;
+using Booking.Infrastracture.Protos;
 
 namespace MentorPlatform.Tests.UnitTests.Booking.API.BogusData
 {
@@ -14,6 +16,17 @@ namespace MentorPlatform.Tests.UnitTests.Booking.API.BogusData
                 .RuleFor(booking => booking.Student, faker => GenerateFakeStudent())
                 .RuleFor(booking => booking.MentorId, faker => faker.Random.String2(36))
                 .Generate();
+        }
+
+        public AvailabilityDto GenerateAvailabilityDto()
+        {
+            return new Faker<AvailabilityDto>()
+               .RuleFor(availability => availability.Date, faker => faker.Date.Soon())
+               .RuleFor(availability => availability.IsAvailable, faker => true)
+               .RuleFor(availability => availability.StartTime, faker => faker.Date.Future().Date.AddHours(faker.Random.Int(9, 11)))
+               .RuleFor(availability => availability.EndTime, (faker, availability) => availability.StartTime.AddHours(faker.Random.Int(2, 5)))
+               .RuleFor(availability => availability.MentorId, faker => faker.Random.String2(36))
+               .Generate();
         }
 
         private Student GenerateFakeStudent()

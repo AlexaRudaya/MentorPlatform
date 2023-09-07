@@ -45,5 +45,12 @@
         {
             BackgroundJob.Enqueue(methodCall);
         }
+
+        public void ScheduleRecurringJob<T>(string jobId, 
+            Expression<Action<T>> methodCall, 
+            string cronExpression)
+        {
+            RecurringJob.AddOrUpdate<T>(jobId, methodCall, cronExpression);
+        }
     }
 }
