@@ -104,7 +104,7 @@
 
             var eventToPublish = _mapper.Map<MeetingBookingEvent>(bookingToCreate);
 
-            BackgroundJob.Enqueue(() => _backgroundJobsService.PublishBookingEvent(eventToPublish, cancellationToken));
+            _backgroundJobsService.EnqueueJob(() => _backgroundJobsService.PublishBookingEvent(eventToPublish, cancellationToken));
 
             return bookingDto;
         }

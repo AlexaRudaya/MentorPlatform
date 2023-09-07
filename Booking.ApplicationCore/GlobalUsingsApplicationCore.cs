@@ -12,3 +12,4 @@ global using FluentValidation;
 global using MentorPlatform.Shared.MassTransitEvents;
 global using Booking.ApplicationCore.Interfaces.IBackgroundJobs;
 global using Hangfire;
+global using System.Linq.Expressions;

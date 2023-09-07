@@ -5,5 +5,7 @@
         Task PublishBookingEvent(MeetingBookingEvent bookingEventToPublish, CancellationToken cancellationToken = default);
 
         Task<IEnumerable<AvailabilityDto>> GetMentorAvailabilitiesFromMentorApi(string mentorId, CancellationToken cancellationToken = default);
+
+        void EnqueueJob(Expression<Action> methodCall);
     }
 }

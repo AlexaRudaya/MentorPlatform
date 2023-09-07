@@ -19,6 +19,7 @@ namespace MentorPlatform.Tests.UnitTests.Booking.API.Services
         private readonly StudentGenerator _studentGenerator;
         private readonly StudentServiceHelper _helper;
         private readonly CancellationToken _cancellationToken;
+
         public StudentServiceTests()
         {
             _mockMapper = new Mock<IMapper>();  

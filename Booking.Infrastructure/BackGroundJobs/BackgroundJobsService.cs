@@ -40,5 +40,10 @@
 
             return availabilities;
         }
+
+        public void EnqueueJob(Expression<Action> methodCall)
+        {
+            BackgroundJob.Enqueue(methodCall);
+        }
     }
 }
