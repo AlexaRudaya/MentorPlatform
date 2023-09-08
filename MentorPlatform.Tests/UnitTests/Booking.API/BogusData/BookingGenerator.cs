@@ -1,6 +1,5 @@
 ﻿using Booking.ApplicationCore.DTO;
 using Booking.Domain.Entities;
-using Booking.Infrastracture.Protos;
 
 namespace MentorPlatform.Tests.UnitTests.Booking.API.BogusData
 {
