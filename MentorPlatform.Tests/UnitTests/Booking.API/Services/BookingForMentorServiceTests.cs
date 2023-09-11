@@ -1,15 +1,4 @@
-﻿using Booking.ApplicationCore.DTO;
-using Booking.ApplicationCore.Exceptions;
-using Booking.ApplicationCore.Interfaces.IBackgroundJobs;
-using Booking.ApplicationCore.Interfaces.IGrpcService;
-using Booking.ApplicationCore.Services;
-using Booking.Domain.Abstractions.IRepository;
-using Booking.Domain.Entities;
-using MentorPlatform.Tests.UnitTests.Booking.API.BogusData;
-using MentorPlatform.Tests.UnitTests.Booking.API.Helpers.Bookings;
-using Moq;
-
-namespace MentorPlatform.Tests.UnitTests.Booking.API.Services
+﻿namespace MentorPlatform.Tests.UnitTests.Booking.API.Services
 {
     public class BookingForMentorServiceTests
     {
@@ -36,7 +25,8 @@ namespace MentorPlatform.Tests.UnitTests.Booking.API.Services
                 _mockBackgroundJobsService.Object);
             _bookingGenerator = new BookingGenerator();
             _mockMentorClient = new Mock<IGetMentorClient>();
-            _bookingHelper = new BookingServiceHelper(_mockMapper,
+            _bookingHelper = new BookingServiceHelper(
+                _mockMapper,
                 _mockBookingRepository,
                 _mockMentorClient);
             _cancellationToken = CancellationToken.None;

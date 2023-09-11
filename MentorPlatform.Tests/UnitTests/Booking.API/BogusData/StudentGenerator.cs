@@ -1,7 +1,4 @@
-﻿using Booking.ApplicationCore.DTO;
-using Booking.Domain.Entities;
-
-namespace MentorPlatform.Tests.UnitTests.Booking.API.BogusData
+﻿namespace MentorPlatform.Tests.UnitTests.Booking.API.BogusData
 {
     public class StudentGenerator
     {

@@ -28,6 +28,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Booking.API\Booking.API.csproj" />
+    <ProjectReference Include="..\Chat.API\Chat.API.csproj" />
     <ProjectReference Include="..\Identity.API\Identity.API.csproj" />
   </ItemGroup>
 

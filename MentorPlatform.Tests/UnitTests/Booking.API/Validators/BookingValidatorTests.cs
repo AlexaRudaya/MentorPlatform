@@ -1,8 +1,4 @@
-﻿using Booking.ApplicationCore.DTO;
-using Booking.ApplicationCore.Validators;
-using MentorPlatform.Tests.UnitTests.Booking.API.BogusData;
-
-namespace MentorPlatform.Tests.UnitTests.Booking.API.Validators
+﻿namespace MentorPlatform.Tests.UnitTests.Booking.API.Validators
 {
     public class BookingValidatorTests
     {

@@ -1,13 +1,4 @@
-﻿using Booking.ApplicationCore.DTO;
-using Booking.ApplicationCore.Interfaces.IGrpcService;
-using Booking.Domain.Abstractions.IRepository;
-using Booking.Domain.Entities;
-using MentorPlatform.Shared.MassTransitEvents;
-using Microsoft.EntityFrameworkCore.Query;
-using Moq;
-using System.Linq.Expressions;
-
-namespace MentorPlatform.Tests.UnitTests.Booking.API.Helpers.Bookings
+﻿namespace MentorPlatform.Tests.UnitTests.Booking.API.Helpers.Bookings
 {
     public class BookingServiceHelper
     {

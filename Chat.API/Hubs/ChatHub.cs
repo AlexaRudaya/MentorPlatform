@@ -1,6 +1,8 @@
-﻿namespace Chat.API.Hubs
+﻿using Chat.API.Interfaces;
+
+namespace Chat.API.Hubs
 {
-    public class ChatHub : Hub
+    public class ChatHub : Hub<IChatClient>
     {
         private readonly IUserRepository _userRepository;
         private readonly IMessageRepository _messageRepository;
@@ -29,7 +31,7 @@
 
             await _messageRepository.CreateAsync(message);
 
-            await Clients.All.SendAsync("ReceiveMessage", userName, content);
+            await Clients.All.ReceiveMessage(userName, content);
         }
 
         public async Task JoinChat(string userName, string content)
@@ -54,7 +56,7 @@
 
             _connectedUsers[Context.ConnectionId] = userName;
 
-            await Clients.Others.SendAsync("ReceiveMessage", userName, content);
+            await Clients.Others.ReceiveMessage(userName, content);
         }
 
         public async Task LeaveChat()
@@ -62,7 +64,7 @@
             if (_connectedUsers.TryGetValue(Context.ConnectionId, out string userName))
             {
                 var message = $"{userName} left the chat";
-                await Clients.Others.SendAsync("ReceiveMessage", userName, message);
+                await Clients.Others.ReceiveMessage(userName, message);
 
                 _logger.LogInformation($"User {userName} is leaving the chat.");
 

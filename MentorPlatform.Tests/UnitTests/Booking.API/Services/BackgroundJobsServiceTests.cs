@@ -1,15 +1,4 @@
-﻿using Booking.ApplicationCore.DTO;
-using Booking.ApplicationCore.Exceptions;
-using Booking.ApplicationCore.Interfaces.IGrpcService;
-using Booking.Domain.Abstractions.IRepository;
-using Booking.Infrastructure.BackGroundJobs;
-using MentorPlatform.Shared.MassTransitEvents;
-using MentorPlatform.Shared.MessageBus;
-using MentorPlatform.Tests.UnitTests.Booking.API.BogusData;
-using MentorPlatform.Tests.UnitTests.Booking.API.Helpers.Bookings;
-using Moq;
-
-namespace MentorPlatform.Tests.UnitTests.Booking.API.Services
+﻿namespace MentorPlatform.Tests.UnitTests.Booking.API.Services
 {
     public class BackgroundJobsServiceTests
     {
@@ -75,7 +64,7 @@ namespace MentorPlatform.Tests.UnitTests.Booking.API.Services
             };
 
             _mockMentorClient
-               .Setup(client => client.GetMentorAsync(
+                .Setup(client => client.GetMentorAsync(
                    mentorId,
                    It.IsAny<CancellationToken>()))
                .ReturnsAsync(mentorReply);

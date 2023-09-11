@@ -1,11 +1,4 @@
-﻿using Booking.ApplicationCore.DTO;
-using Booking.Domain.Abstractions.IRepository;
-using Booking.Domain.Entities;
-using Microsoft.EntityFrameworkCore.Query;
-using Moq;
-using System.Linq.Expressions;
-
-namespace MentorPlatform.Tests.UnitTests.Booking.API.Helpers.Students
+﻿namespace MentorPlatform.Tests.UnitTests.Booking.API.Helpers.Students
 {
     public class StudentServiceHelper
     {

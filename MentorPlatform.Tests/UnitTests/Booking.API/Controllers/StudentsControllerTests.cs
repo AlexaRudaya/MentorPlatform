@@ -1,11 +1,4 @@
-﻿using Booking.API.Controllers;
-using Booking.ApplicationCore.DTO;
-using Booking.ApplicationCore.Interfaces.IService;
-using MentorPlatform.Tests.UnitTests.Booking.API.BogusData;
-using MentorPlatform.Tests.UnitTests.Booking.API.Helpers.Students;
-using Moq;
-
-namespace MentorPlatform.Tests.UnitTests.Booking.API.Controllers
+﻿namespace MentorPlatform.Tests.UnitTests.Booking.API.Controllers
 {
     public class StudentsControllerTests
     {

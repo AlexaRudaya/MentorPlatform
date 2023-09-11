@@ -1,14 +1,4 @@
-﻿using Booking.ApplicationCore.DTO;
-using Booking.ApplicationCore.Exceptions;
-using Booking.ApplicationCore.Interfaces.IService;
-using Booking.ApplicationCore.Services;
-using Booking.Domain.Abstractions.IRepository;
-using Booking.Domain.Entities;
-using MentorPlatform.Tests.UnitTests.Booking.API.BogusData;
-using MentorPlatform.Tests.UnitTests.Booking.API.Helpers.Students;
-using Moq;
-
-namespace MentorPlatform.Tests.UnitTests.Booking.API.Services
+﻿namespace MentorPlatform.Tests.UnitTests.Booking.API.Services
 {
     public class StudentServiceTests
     {

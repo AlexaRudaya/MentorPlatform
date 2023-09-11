@@ -1,8 +1,4 @@
-﻿using Booking.ApplicationCore.DTO;
-using Booking.ApplicationCore.Interfaces.IService;
-using Moq;
-
-namespace MentorPlatform.Tests.UnitTests.Booking.API.Helpers.Bookings
+﻿namespace MentorPlatform.Tests.UnitTests.Booking.API.Helpers.Bookings
 {
     public class BookingsControllerHelper
     {

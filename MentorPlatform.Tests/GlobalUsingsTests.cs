@@ -18,3 +18,6 @@ global using Microsoft.Extensions.Logging;
 global using FluentValidation.TestHelper;
 global using Identity.ApplicationCore.Validator;
 global using MentorPlatform.Tests.UnitTests.Identity.API.Helpers;
+global using Moq;
+global using Microsoft.EntityFrameworkCore.Query;
+global using System.Linq.Expressions;
