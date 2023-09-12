@@ -1,4 +1,6 @@
-﻿namespace MentorPlatform.Tests.UnitTests.Booking.API.Helpers.Bookings
+﻿using MentorDto = Booking.ApplicationCore.DTO.MentorDto;
+
+namespace MentorPlatform.Tests.UnitTests.Booking.API.Helpers.Bookings
 {
     public class BookingServiceHelper
     {

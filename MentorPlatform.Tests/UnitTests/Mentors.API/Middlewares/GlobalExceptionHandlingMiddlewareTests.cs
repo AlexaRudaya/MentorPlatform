@@ -1,4 +1,5 @@
 ﻿using InvalidValueException = Mentors.ApplicationCore.Exceptions.InvalidValueException;
+using ObjectNotFoundException = Mentors.ApplicationCore.Exceptions.ObjectNotFoundException;
 
 namespace MentorPlatform.Tests.UnitTests.Mentors.API.Middlewares
 {

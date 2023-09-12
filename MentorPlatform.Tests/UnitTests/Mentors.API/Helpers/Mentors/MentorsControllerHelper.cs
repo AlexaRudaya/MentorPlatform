@@ -1,4 +1,6 @@
-﻿namespace MentorPlatform.Tests.UnitTests.Mentors.API.Helpers.Mentors
+﻿using MentorDto = Mentors.ApplicationCore.DTO.MentorDto;
+
+namespace MentorPlatform.Tests.UnitTests.Mentors.API.Helpers.Mentors
 {
     public class MentorsControllerHelper
     {

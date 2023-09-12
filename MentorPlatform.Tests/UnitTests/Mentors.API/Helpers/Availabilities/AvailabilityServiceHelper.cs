@@ -1,4 +1,6 @@
-﻿namespace MentorPlatform.Tests.UnitTests.Mentors.API.Helpers.Availabilities
+﻿using AvailabilityDto = Mentors.ApplicationCore.DTO.AvailabilityDto;
+
+namespace MentorPlatform.Tests.UnitTests.Mentors.API.Helpers.Availabilities
 {
     public class AvailabilityServiceHelper
     {

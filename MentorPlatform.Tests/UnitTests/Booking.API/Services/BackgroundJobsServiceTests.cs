@@ -1,4 +1,8 @@
-﻿namespace MentorPlatform.Tests.UnitTests.Booking.API.Services
+﻿using AvailabilityDto = Booking.ApplicationCore.DTO.AvailabilityDto;
+using MentorDto = Booking.ApplicationCore.DTO.MentorDto;
+using ObjectNotFoundException = Booking.ApplicationCore.Exceptions.ObjectNotFoundException;
+
+namespace MentorPlatform.Tests.UnitTests.Booking.API.Services
 {
     public class BackgroundJobsServiceTests
     {

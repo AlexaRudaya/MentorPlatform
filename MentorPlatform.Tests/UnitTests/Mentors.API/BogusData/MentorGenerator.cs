@@ -1,4 +1,7 @@
-﻿namespace MentorPlatform.Tests.UnitTests.Mentors.API.BogusData
+﻿using AvailabilityDto = Mentors.ApplicationCore.DTO.AvailabilityDto;
+using MentorDto = Mentors.ApplicationCore.DTO.MentorDto;
+
+namespace MentorPlatform.Tests.UnitTests.Mentors.API.BogusData
 {
     public class MentorGenerator
     {

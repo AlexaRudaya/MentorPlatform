@@ -1,4 +1,6 @@
-﻿namespace MentorPlatform.Tests.UnitTests.Booking.API.Services
+﻿using AvailabilityDto = Booking.ApplicationCore.DTO.AvailabilityDto;
+
+namespace MentorPlatform.Tests.UnitTests.Booking.API.Services
 {
     public class BookingForMentorServiceTests
     {

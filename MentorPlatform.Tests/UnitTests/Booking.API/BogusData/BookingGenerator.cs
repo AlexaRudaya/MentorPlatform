@@ -1,4 +1,6 @@
-﻿namespace MentorPlatform.Tests.UnitTests.Booking.API.BogusData
+﻿using AvailabilityDto = Booking.ApplicationCore.DTO.AvailabilityDto;
+
+namespace MentorPlatform.Tests.UnitTests.Booking.API.BogusData
 {
     public class BookingGenerator
     {
