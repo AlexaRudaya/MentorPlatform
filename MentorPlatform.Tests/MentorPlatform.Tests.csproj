@@ -30,6 +30,7 @@
     <ProjectReference Include="..\Booking.API\Booking.API.csproj" />
     <ProjectReference Include="..\Chat.API\Chat.API.csproj" />
     <ProjectReference Include="..\Identity.API\Identity.API.csproj" />
+    <ProjectReference Include="..\Mentors.API\Mentors.API.csproj" />
   </ItemGroup>
 
 </Project>

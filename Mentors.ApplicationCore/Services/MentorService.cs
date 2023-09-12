@@ -64,7 +64,7 @@
             else
             {
                 _logger.LogError($"Failed finding category with Id:{mentorCreateDto.CategoryId}.");
-                throw new MentorNotFoundException(mentorCreateDto.CategoryId);
+                throw new CategoryNotFoundException(mentorCreateDto.CategoryId);
             }
 
             _mapper.Map(mentorCreateDto.Availabilities, mentorToCreate.Availabilities);
