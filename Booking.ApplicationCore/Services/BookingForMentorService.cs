@@ -4,13 +4,13 @@
     {
         private readonly IMentorBookingRepository _bookingRepository;
         private readonly IMapper _mapper;
-        private readonly ILogger<BookingService> _logger;
+        private readonly ILogger<BookingForMentorService> _logger;
         private readonly IBackgroundJobsService _backgroundJobsService;
 
         public BookingForMentorService(
             IMentorBookingRepository bookingRepository,
             IMapper mapper,
-            ILogger<BookingService> logger,
+            ILogger<BookingForMentorService> logger,
             IBackgroundJobsService backgroundJobsService)
         {
             _bookingRepository = bookingRepository;
@@ -40,8 +40,10 @@
         public async Task<IEnumerable<AvailabilityDto>> GetAvailabilitiesOfMentor(string mentorId, 
             CancellationToken cancellationToken = default)
         {
-            RecurringJob.AddOrUpdate<IBackgroundJobsService>($"GetAvailabilitiesForMentor-{mentorId}",
-                backgroundJob => backgroundJob.GetMentorAvailabilitiesFromMentorApi(mentorId, cancellationToken), Cron.Daily);
+            _backgroundJobsService.ScheduleRecurringJob<IBackgroundJobsService>(
+                $"GetAvailabilitiesForMentor-{mentorId}",
+                 backgroundJob => backgroundJob.GetMentorAvailabilitiesFromMentorApi(mentorId, cancellationToken), 
+                 Cron.Daily());
 
             var availabilities = await _backgroundJobsService.GetMentorAvailabilitiesFromMentorApi(mentorId, cancellationToken);
 
