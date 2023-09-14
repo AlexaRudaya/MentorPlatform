@@ -19,7 +19,7 @@
     <None Include="Kubernetes\chat-db-service.yml" />
     <None Include="Kubernetes\chat-service.yml" />
     <None Include="Kubernetes\kibana-service.yml" />
-    <None Include="Kubernetes\kibana-deployment .yml" />
+    <None Include="Kubernetes\kibana-deployment.yml" />
     <None Include="Kubernetes\gateway-service.yml" />
     <None Include="Kubernetes\identity-db-service.yml" />
     <None Include="Kubernetes\identityserver-service.yml" />
