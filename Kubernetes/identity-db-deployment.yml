@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Deployment
+metadata:
+ name: identity_db
+ labels: 
+  name: identity_db
+  app: mentorplatform
+
+spec:  
+ containers:
+  - name: identity_db   
+    image: postgres:latest
+    env:
+     - name: POSTGRES_USER
+       value: postgres
+     - name: POSTGRES_PASSWORD
+       value: password
+    ports:
+    - containerPort: 5432

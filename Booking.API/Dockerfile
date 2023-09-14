@@ -5,10 +5,10 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["Booking.API/Booking.API.csproj", "Booking.API/"]
-COPY ["Booking.ApplicationCore/Booking.ApplicationCore.csproj", "Booking.ApplicationCore/"]
-COPY ["Booking.Domain/Booking.Domain.csproj", "Booking.Domain/"]
-COPY ["Booking.Infrastructure/Booking.Infrastructure.csproj", "Booking.Infrastructure/"]
+COPY ["Booking.API/Booking.API.csproj", "./Booking.API/"]
+COPY ["../Booking.ApplicationCore/Booking.ApplicationCore.csproj", "Booking.ApplicationCore/"]
+COPY ["../Booking.Domain/Booking.Domain.csproj", "Booking.Domain/"]
+COPY ["../Booking.Infrastructure/Booking.Infrastructure.csproj", "Booking.Infrastructure/"]
 RUN dotnet restore "Booking.API/Booking.API.csproj"
 COPY . .
 WORKDIR "/src/Booking.API"

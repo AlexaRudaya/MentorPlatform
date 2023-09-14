@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Deployment
+metadata:
+ name: rabbitmq
+ labels: 
+  name: rabbitmq
+  app: mentorplatform
+
+spec:  
+ containers:
+  - name: mentor_queue   
+    image: rabbitmq:latest
+    ports:
+    - containerPort: 5672
+    - containerPort: 15672

@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+ name: chat-service
+ labels: 
+  name: chat-service
+  app: mentorplatform
+
+spec:  
+ type: LoadBalancer
+ ports:
+  - protocol: TCP
+    port: 7006
+    targetPort: 7006
+ selector:
+  name: chat_api
+  app: mentorplatform   

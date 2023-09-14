@@ -5,9 +5,9 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["Chat.API/Chat.API.csproj", "Chat.API/"]
-COPY ["Chat.Infrastructure/Chat.Infrastructure.csproj", "Chat.Infrastructure/"]
-COPY ["Chat.Domain/Chat.Domain.csproj", "Chat.Domain/"]
+COPY ["Chat.API/Chat.API.csproj", "./Chat.API/"]
+COPY ["../Chat.Infrastructure/Chat.Infrastructure.csproj", "Chat.Infrastructure/"]
+COPY ["../Chat.Domain/Chat.Domain.csproj", "Chat.Domain/"]
 RUN dotnet restore "Chat.API/Chat.API.csproj"
 COPY . .
 WORKDIR "/src/Chat.API"

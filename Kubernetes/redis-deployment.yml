@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Deployment
+metadata:
+ name: redis
+ labels: 
+  name: redis
+  app: mentorplatform
+
+spec:  
+ containers:
+  - name: redis   
+    image: redis
+    ports:
+    - containerPort: 6379

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Deployment
+metadata:
+ name: mentors_api
+ labels: 
+  name: mentors_api
+  app: mentorplatform
+
+spec:  
+ containers:
+  - name: mentor_api   
+    image: alexandrarudaya/mentor_api:latest
+    ports:
+    - containerPort: 7001
+    - containerPort: 7002

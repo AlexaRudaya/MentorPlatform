@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+ name: booking-service
+ labels: 
+  name: booking-service
+  app: mentorplatform
+
+spec: 
+ type: LoadBalancer
+ ports:
+  - protocol: TCP
+    port: 7005
+    targetPort: 7005
+ selector:
+  name: booking_api
+  app: mentorplatform
