@@ -6,14 +6,25 @@ metadata:
   name: booking_db
   app: mentorplatform
 
-spec:  
- containers:
-  - name: booking_db  
-    image: mcr.microsoft.com/mssql/server:2022-latest
-    env:
-     - name: ACCEPT_EULA
-       value: "Y"
-     - name: MSSQL_SA_PASSWORD
-       value: Book1!pass
-    ports:
-    - containerPort: 5000
+spec:
+ replicas: 1  
+ selector:
+  matchLabels:
+   name: booking_db
+   app: mentorplatform
+ template:
+  metadata:
+   labels:
+    name: booking_db
+    app: mentorplatform
+  spec:
+   containers:
+    - name: booking_db  
+      image: mcr.microsoft.com/mssql/server:2022-latest
+      env:
+       - name: ACCEPT_EULA
+         value: "Y"
+       - name: MSSQL_SA_PASSWORD
+         value: Book1!pass
+      ports:
+       - containerPort: 5000

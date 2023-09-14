@@ -6,14 +6,25 @@ metadata:
   name: mentor_db
   app: mentorplatform
 
-spec:  
- containers:
-  - name: mentor_db   
-    image: mcr.microsoft.com/mssql/server:2022-latest
-    env:
-     - name: ACCEPT_EULA
-       value: "Y"
-     - name: MSSQL_SA_PASSWORD
-       value: Ms!1password
-    ports:
-    - containerPort: 5015
+spec:
+ replicas: 1  
+ selector:
+  matchLabels:
+   name: mentor_db
+   app: mentorplatform
+ template:
+  metadata:
+   labels:
+    name: mentor_db
+    app: mentorplatform
+  spec:
+   containers:
+    - name: mentor_db  
+      image: mcr.microsoft.com/mssql/server:2022-latest
+      env:
+       - name: ACCEPT_EULA
+         value: "Y"
+       - name: MSSQL_SA_PASSWORD
+         value: Ms!1password
+      ports:
+       - containerPort: 5015

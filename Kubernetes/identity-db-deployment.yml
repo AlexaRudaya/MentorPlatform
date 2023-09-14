@@ -6,14 +6,25 @@ metadata:
   name: identity_db
   app: mentorplatform
 
-spec:  
- containers:
-  - name: identity_db   
-    image: postgres:latest
-    env:
-     - name: POSTGRES_USER
-       value: postgres
-     - name: POSTGRES_PASSWORD
-       value: password
-    ports:
-    - containerPort: 5432
+spec:
+ replicas: 1  
+ selector:
+  matchLabels:
+   name: identity_db
+   app: mentorplatform
+ template:
+  metadata:
+   labels:
+    name: identity_db
+    app: mentorplatform
+  spec:
+   containers:
+    - name: identity_db  
+      image: postgres:latest
+      env:
+       - name: POSTGRES_USER
+         value: postgres
+       - name: POSTGRES_PASSWORD
+         value: password
+      ports:
+       - containerPort: 5432

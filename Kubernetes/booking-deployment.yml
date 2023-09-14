@@ -6,9 +6,20 @@ metadata:
   name: booking_api
   app: mentorplatform
 
-spec:  
- containers:
-  - name: booking_api   
-    image: alexandrarudaya/booking_api:latest
-    ports:
-    - containerPort: 7005
+spec:
+ replicas: 1  
+ selector:
+  matchLabels:
+   name: booking_api
+   app: mentorplatform
+ template:
+  metadata:
+   labels:
+    name: booking_api
+    app: mentorplatform
+  spec:
+   containers:
+    - name: booking_api   
+      image: alexandrarudaya/booking_api:latest
+      ports:
+       - containerPort: 7005

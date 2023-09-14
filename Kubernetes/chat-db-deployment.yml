@@ -6,14 +6,25 @@ metadata:
   name: chat_db
   app: mentorplatform
 
-spec:  
- containers:
-  - name: chat_db  
-    image: mcr.microsoft.com/mssql/server:2022-latest
-    env:
-     - name: ACCEPT_EULA
-       value: "Y"
-     - name: MSSQL_SA_PASSWORD
-       value: Chat!pass
-    ports:
-    - containerPort: 5001
+spec:
+ replicas: 1  
+ selector:
+  matchLabels:
+   name: chat_db
+   app: mentorplatform
+ template:
+  metadata:
+   labels:
+    name: chat_db
+    app: mentorplatform
+  spec:
+   containers:
+    - name: chat_db  
+      image: mcr.microsoft.com/mssql/server:2022-latest
+      env:
+       - name: ACCEPT_EULA
+         value: "Y"
+       - name: MSSQL_SA_PASSWORD
+         value: Chat!pass
+      ports:
+       - containerPort: 5001

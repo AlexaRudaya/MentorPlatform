@@ -6,9 +6,20 @@ metadata:
   name: chat_api
   app: mentorplatform
 
-spec:  
- containers:
-  - name: chat_api   
-    image: alexandrarudaya/chat_api:latest
-    ports:
-    - containerPort: 7006
+spec:
+ replicas: 1  
+ selector:
+  matchLabels:
+   name: chat_api
+   app: mentorplatform
+ template:
+  metadata:
+   labels:
+    name: chat_api
+    app: mentorplatform
+  spec:
+   containers:
+    - name: chat_api  
+      image: alexandrarudaya/chat_api:latest
+      ports:
+       - containerPort: 7006
