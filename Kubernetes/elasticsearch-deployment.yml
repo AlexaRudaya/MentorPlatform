@@ -21,5 +21,23 @@ spec:
    containers:
     - name: elasticsearch  
       image: elasticsearch:8.8.1
+    - env: 
+      - name: ES_JAVA_OPTS
+        value: "Xms512m -Xmx512m"
+      - name: discovery.type
+        value: "single-node"
+      - name: xpack.security.enabled
+        value: "false"
       ports:
        - containerPort: 9200
+      resources:
+       limits:
+         memory: 500Mi
+      volumeMounts:
+       - name: elasticsearch-data
+         mountPath: /usr/share/elasticsearch/data
+  volumes:
+   - name: elasticsearch-data
+     persistentVolumeClaim:
+      claimName: elasticsearch-pvc
+   
