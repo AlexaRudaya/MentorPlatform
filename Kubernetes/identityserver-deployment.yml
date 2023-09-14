@@ -23,3 +23,6 @@ spec:
       image: alexandrarudaya/identity_api:latest
       ports:
        - containerPort: 443
+      env:
+       - name: ElasticConfiguration__Uri
+         value: "http://elasticsearch:9200"
