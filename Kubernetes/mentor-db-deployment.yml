@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
- name: mentor_db
+ name: mentor-db
  labels: 
-  name: mentor_db
+  name: mentor-db
   app: mentorplatform
 
 spec:
  replicas: 1  
  selector:
   matchLabels:
-   name: mentor_db
+   name: mentor-db
    app: mentorplatform
  template:
   metadata:
    labels:
-    name: mentor_db
+    name: mentor-db
     app: mentorplatform
   spec:
    containers:
-    - name: mentor_db  
+    - name: mentor-db  
       image: mcr.microsoft.com/mssql/server:2022-latest
       env:
        - name: ACCEPT_EULA

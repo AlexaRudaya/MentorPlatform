@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
- name: identity_api
+ name: identity-api
  labels: 
-  name: identity_api
+  name: identity-api
   app: mentorplatform
 
 spec:
  replicas: 1  
  selector:
   matchLabels:
-   name: identity_api
+   name: identity-api
    app: mentorplatform
  template:
   metadata:
    labels:
-    name: identity_api
+    name: identity-api
     app: mentorplatform
   spec:
    containers:
-    - name: identity_server   
+    - name: identity-server   
       image: alexandrarudaya/identity_api:latest
       ports:
        - containerPort: 443

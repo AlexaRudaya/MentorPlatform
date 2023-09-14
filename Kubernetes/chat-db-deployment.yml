@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
- name: chat_db
+ name: chat-db
  labels: 
-  name: chat_db
+  name: chat-db
   app: mentorplatform
 
 spec:
  replicas: 1  
  selector:
   matchLabels:
-   name: chat_db
+   name: chat-db
    app: mentorplatform
  template:
   metadata:
    labels:
-    name: chat_db
+    name: chat-db
     app: mentorplatform
   spec:
    containers:
-    - name: chat_db  
+    - name: chat-db  
       image: mcr.microsoft.com/mssql/server:2022-latest
       env:
        - name: ACCEPT_EULA

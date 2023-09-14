@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
- name: chat_api
+ name: chat-api
  labels: 
-  name: chat_api
+  name: chat-api
   app: mentorplatform
 
 spec:
  replicas: 1  
  selector:
   matchLabels:
-   name: chat_api
+   name: chat-api
    app: mentorplatform
  template:
   metadata:
    labels:
-    name: chat_api
+    name: chat-api
     app: mentorplatform
   spec:
    containers:
-    - name: chat_api  
+    - name: chat-api  
       image: alexandrarudaya/chat_api:latest
       ports:
        - containerPort: 7006

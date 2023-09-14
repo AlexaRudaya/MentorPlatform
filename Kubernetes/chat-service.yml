@@ -13,5 +13,5 @@ spec:
     port: 7006
     targetPort: 7006
  selector:
-  name: chat_api
+  name: chat-api
   app: mentorplatform   

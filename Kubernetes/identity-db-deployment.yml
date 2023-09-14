@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
- name: identity_db
+ name: identity-db
  labels: 
-  name: identity_db
+  name: identity-db
   app: mentorplatform
 
 spec:
  replicas: 1  
  selector:
   matchLabels:
-   name: identity_db
+   name: identity-db
    app: mentorplatform
  template:
   metadata:
    labels:
-    name: identity_db
+    name: identity-db
     app: mentorplatform
   spec:
    containers:
-    - name: identity_db  
+    - name: identity-db  
       image: postgres:latest
       env:
        - name: POSTGRES_USER

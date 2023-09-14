@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
- name: booking_api
+ name: booking-api
  labels: 
-  name: booking_api
+  name: booking-api
   app: mentorplatform
 
 spec:
  replicas: 1  
  selector:
   matchLabels:
-   name: booking_api
+   name: booking-api
    app: mentorplatform
  template:
   metadata:
    labels:
-    name: booking_api
+    name: booking-api
     app: mentorplatform
   spec:
    containers:
-    - name: booking_api   
+    - name: booking-api   
       image: alexandrarudaya/booking_api:latest
       ports:
        - containerPort: 7005

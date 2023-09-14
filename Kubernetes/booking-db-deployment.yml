@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
- name: booking_db
+ name: booking-db
  labels: 
-  name: booking_db
+  name: booking-db
   app: mentorplatform
 
 spec:
  replicas: 1  
  selector:
   matchLabels:
-   name: booking_db
+   name: booking-db
    app: mentorplatform
  template:
   metadata:
    labels:
-    name: booking_db
+    name: booking-db
     app: mentorplatform
   spec:
    containers:
-    - name: booking_db  
+    - name: booking-db  
       image: mcr.microsoft.com/mssql/server:2022-latest
       env:
        - name: ACCEPT_EULA

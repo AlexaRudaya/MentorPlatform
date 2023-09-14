@@ -19,7 +19,7 @@ spec:
     app: mentorplatform
   spec:
    containers:
-    - name: mentor_queue  
+    - name: mentor-queue  
       image: rabbitmq:latest
       ports:
        - containerPort: 5672

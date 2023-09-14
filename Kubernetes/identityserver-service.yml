@@ -13,5 +13,5 @@ spec:
     port: 443
     targetPort: 443
  selector:
-  name: identity_api
+  name: identity-api
   app: mentorplatform

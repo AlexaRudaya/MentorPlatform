@@ -13,5 +13,5 @@ spec:
     port: 7005
     targetPort: 7005
  selector:
-  name: booking_api
+  name: booking-api
   app: mentorplatform

@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
- name: booking_db
+ name: booking-db
  labels: 
   name: bookingdb-service
   app: mentorplatform
@@ -12,5 +12,5 @@ spec:
     port: 5000
     targetPort: 1433
  selector:
-  name: booking_db
+  name: booking-db
   app: mentorplatform
