@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: elasticsearch
+ labels: 
+  name: elasticsearch
+  app: mentorplatform
+
+spec:
+ replicas: 1  
+ selector:
+  matchLabels:
+   name: elasticsearch
+   app: mentorplatform
+ template:
+  metadata:
+   labels:
+    name: elasticsearch
+    app: mentorplatform
+  spec:
+   containers:
+    - name: elasticsearch  
+      image: elasticsearch:8.8.1
+      ports:
+       - containerPort: 9200

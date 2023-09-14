@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: kibana
+ labels: 
+  name: kibana
+  app: mentorplatform
+
+spec:
+ replicas: 1  
+ selector:
+  matchLabels:
+   name: kibana
+   app: mentorplatform
+ template:
+  metadata:
+   labels:
+    name: kibana
+    app: mentorplatform
+  spec:
+   containers:
+    - name: kibana  
+      env:
+       - name: ELASTICSEARCH_URL
+         value: http://localhost:9200
+      image: kibana:8.8.1
+      ports:
+       - containerPort: 5601

@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+ name: elasticsearch
+ labels: 
+  name: elasticsearch-service
+  app: mentorplatform
+
+spec:  
+ ports:
+  - protocol: TCP
+    port: 9200
+    targetPort: 9200
+ selector:
+  name: elasticsearch
+  app: mentorplatform   
